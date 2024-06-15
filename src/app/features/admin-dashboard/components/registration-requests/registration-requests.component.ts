@@ -10,7 +10,7 @@ import { RegistrationRequestsServiceService } from '../../../../core/services/re
 import { DataTablesModule } from 'angular-datatables';
 import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faCheck, faEdit, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faEdit, faTimes, faUser, faX } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-registration-requests',
@@ -28,6 +28,8 @@ export class RegistrationRequestsComponent {
 faEdit = faEdit;
 faCheck = faCheck;
 faTimes = faTimes;
+faUsers = faUser;
+faX = faX;
 
   dtOptions: Config = {};
   companies: Company[] = [];
