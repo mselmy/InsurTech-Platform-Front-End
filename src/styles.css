@@ -1,1 +1,44 @@
-/* You can add global styles to this file, and also import other style files */
+
+/*form-brder*/
+.form-border {
+    border: 3px solid   #5d7571   ;
+    padding: 15px;
+    border-radius: 5px;
+}
+/*btn-color*/
+.btn-colors{
+    background-color: #0A6847;
+}
+/* colors */
+
+.bgcwhite {
+    background-color: #e9eeed !important;
+}
+
+.bgcgray {
+    background-color: #898b8b !important;
+}
+
+.bgcbrightgrean {
+    background-color: #24c9aa !important;
+}
+
+.bgcgreen {
+    background-color: #1c9c7c !important;
+}
+
+.bgcgreenygray {
+    background-color: #769494 !important;
+}
+
+.bgcmainbg {
+    background-color: #e4f8f4 !important;
+}
+
+.bgcmaincontainer {
+    background-color: #f3fdfb !important;
+}
+
+.bgcdarckgreen {
+    background-color: #001e18 !important;
+}

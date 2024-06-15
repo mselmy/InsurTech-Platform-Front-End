@@ -1,0 +1,188 @@
+<div>
+    <h6 class="d-none">{{companies[0].id}}</h6>
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <h1>{{ "Registration Requests"}}</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="content px-2">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box">
+                        <span class="info-box-icon elevation-1 bgcgreen">
+                            <i class="fas fa-user-plus text-white"></i>
+                        </span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">New Requests</span>
+                            <span class="info-box-number">
+                                {{newRequestCount}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon elevation-1 bgcbrightgrean">
+                            <i class="fas fa-circle-check text-white"></i>
+                        </span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Approved</span>
+                            <span class="info-box-number">
+                                {{approvedCount}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix hidden-md-up"></div>
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box mb-3">
+                        <span class="info-box-icon elevation-1 bgcgreenygray">
+                            <i class="fas fa-solid fa-ban text-white"></i>
+                        </span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Rejected</span>
+                            <span class="info-box-number">
+                                {{rejectedCount}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Open Requests</h3>
+                        </div>
+                        <div class="card-body table-responsive">
+                            <table datatable [dtOptions]="dtOptions" class="row-border hover" id="open-request-table">
+                                <thead class="text-white bgcgreen">
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Name</th>
+                                        <th>Tax Number</th>
+                                        <th>Phone Number</th>
+                                        <th>Location</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (request of companies; track $index)
+                                    {
+                                    @if (request.status == 2)
+                                    {
+                                    <tr>
+                                        <td>{{ request.id }}</td>
+                                        <td>{{ request.name }}</td>
+                                        <td>{{ request.taxNumber }}</td>
+                                        @if(request.phoneNumber == null)
+                                        {
+                                        <td>
+                                            <span class="badge text-bg-danger mx-1">
+                                                No Phone Number
+                                            </span>
+                                        </td>
+                                        }@else {
+                                        <td>{{ request.phoneNumber }}</td>
+                                        }
+                                        <td>{{ request.location }}</td>
+                                        <td>
+                                            <span class="badge text-bg-warning mx-1">
+                                                Pending
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-outline-success me-2"
+                                                (click)="showApproveAlert(request.id)">
+                                                <fa-icon [icon]="faCheck"></fa-icon>
+                                            </a>
+                                            <a class="btn btn-outline-danger ms-2"
+                                                (click)="showDeclineAlert(request.id)">
+                                                <fa-icon [icon]="faTimes"></fa-icon>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Closed Requests</h3>
+                        </div>
+                        <div class="card-body table-responsive">
+                            <table datatable [dtOptions]="dtOptions" class="row-border hover" id="cloded-request-table">
+                                <thead class="text-white bgcgreen">
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Name</th>
+                                        <th>Tax Number</th>
+                                        <th>Phone Number</th>
+                                        <th>Location</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (request of companies; track $index)
+                                    {
+                                    @if (request.status != 2)
+                                    {
+                                    <tr>
+                                        <td>{{ request.id }}</td>
+                                        <td>{{ request.name }}</td>
+                                        <td>{{ request.taxNumber }}</td>
+                                        @if(request.phoneNumber == null)
+                                        {
+                                        <td>
+                                            <span class="badge text-bg-dark mx-1">
+                                                No Phone Number
+                                            </span>
+                                        </td>
+                                        }@else {
+                                        <td>{{ request.phoneNumber }}</td>
+                                        }
+                                        <td>{{ request.location }}</td>
+                                        <td>
+                                            @if (request.status == 1)
+                                            {
+                                            <span class="badge text-bg-success mx-1">
+                                                Approved
+                                            </span>
+                                            }
+                                            @else
+                                            {
+                                            <span class="badge text-bg-danger mx-1">
+                                                Rejected
+                                            </span>
+                                            }
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-outline-info" (click)="showSwitchAlert(request.id)">
+                                                <fa-icon [icon]="faEdit"></fa-icon>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
