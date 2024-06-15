@@ -1,4 +1,4 @@
-import { Component, NgModule, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, NgModule, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { Config } from 'datatables.net-dt';
 import 'datatables.net-responsive';
@@ -11,6 +11,7 @@ import { DataTablesModule } from 'angular-datatables';
 import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCheck, faEdit, faTimes, faUser, faX } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-registration-requests',
@@ -38,20 +39,19 @@ faX = faX;
   rejectedCount: number = 0;
   
 
-constructor(private router: Router, private service : RegistrationRequestsServiceService) { }
-  ngOnInit(): void {
+constructor(
+  private router: Router,
+  private service : RegistrationRequestsServiceService,
+  private cd: ChangeDetectorRef
+) { }
+  
+ngOnInit(): void {
 
-    this.service.GetAll().subscribe((data:any) => {
-      this.companies = data.result.items;
-      this.newRequestCount = this.companies.filter(x => x.status === 2).length;
-      this.approvedCount = this.companies.filter(x => x.status === 1).length;
-      this.rejectedCount = this.companies.filter(x => x.status === 0).length;
-      });
+    this.loadData();
 
     this.dtOptions = {
       columnDefs: [
-        { orderable: false, targets: -1 }, // Disables sorting on the last column
-        // make text align to left for all columns
+        { orderable: false, targets: -1 },
         { className: 'dt-left', targets: '_all' }
       ],
       responsive: true
@@ -59,12 +59,23 @@ constructor(private router: Router, private service : RegistrationRequestsServic
 
   }
 
+  private loadData(): void {
+    this.service.GetAll().subscribe((data: any) => {
+      this.companies = data.result.items;
+      this.newRequestCount = this.companies.filter(x => x.status === 2).length;
+      this.approvedCount = this.companies.filter(x => x.status === 1).length;
+      this.rejectedCount = this.companies.filter(x => x.status === 0).length;
+      this.cd.detectChanges();
+    });
+  }
+
+
   AcceptRequest(id: number){
-    this.service.ApproveRequest(id).subscribe((data:any) => {});
+    this.service.ApproveRequest(id).subscribe((data:any) => {this.loadData();});
   }
 
   RejectRequest(id: number){
-    this.service.RejectRequest(id).subscribe((data:any) => {});
+    this.service.RejectRequest(id).subscribe((data:any) => {this.loadData();});
   }
 
   SwitchRequestStatus(id: number){
@@ -74,6 +85,7 @@ constructor(private router: Router, private service : RegistrationRequestsServic
       } else {
         this.AcceptRequest(id);
       }
+      this.loadData();
     });
   }
 
@@ -96,10 +108,6 @@ constructor(private router: Router, private service : RegistrationRequestsServic
         });
       }
     });
-    // refresh the company list
-    this.service.GetAll().subscribe((data:any) => {
-      this.companies = data.result.items;
-    });
   }
 
   showDeclineAlert(id:number) {
@@ -120,10 +128,6 @@ constructor(private router: Router, private service : RegistrationRequestsServic
           icon: "success"
         });
       }
-    });
-    // refresh the company list
-    this.service.GetAll().subscribe((data:any) => {
-      this.companies = data.result.items;
     });
   }
 
@@ -146,10 +150,5 @@ constructor(private router: Router, private service : RegistrationRequestsServic
         });
       }
     });
-    // refresh the company list
-    this.service.GetAll().subscribe((data:any) => {
-      this.companies = data.result.items;
-    });
   }
-
 }
