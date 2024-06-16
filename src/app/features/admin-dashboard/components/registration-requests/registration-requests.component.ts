@@ -11,6 +11,7 @@ import { DataTablesModule } from 'angular-datatables';
 import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCheck, faEdit, faTimes, faUser, faX } from '@fortawesome/free-solid-svg-icons';
+import { Subject } from 'rxjs';
 
 
 @Component({
@@ -38,6 +39,7 @@ faX = faX;
   approvedCount: number = 0;
   rejectedCount: number = 0;
   
+  dtTrigger: Subject<any> = new Subject<any>();
 
 constructor(
   private router: Router,
@@ -46,46 +48,62 @@ constructor(
 ) { }
   
 ngOnInit(): void {
-
-    this.loadData();
-
-    this.dtOptions = {
-      columnDefs: [
-        { orderable: false, targets: -1 },
-        { className: 'dt-left', targets: '_all' }
-      ],
-      responsive: true
-    };
-
+  this.dtOptions = {
+    columnDefs: [
+      { orderable: false, targets: -1 },
+      { className: 'dt-left', targets: '_all' }
+    ],
+    processing: true,
+    retrieve: true,
+    responsive: true
+  };
+  
+  this.loadData();
   }
 
   private loadData(): void {
     this.service.GetAll().subscribe((data: any) => {
-      this.companies = data.result.items;
-      this.newRequestCount = this.companies.filter(x => x.status === 2).length;
-      this.approvedCount = this.companies.filter(x => x.status === 1).length;
-      this.rejectedCount = this.companies.filter(x => x.status === 0).length;
+      this.companies = data;
+      this.updateCounts();
       this.cd.detectChanges();
+      this.dtTrigger.next(null);
     });
+  }
+
+    private updateCounts(): void {
+    this.newRequestCount = this.companies.filter(x => x.status === 'pending').length;
+    this.approvedCount = this.companies.filter(x => x.status === 'approved').length;
+    this.rejectedCount = this.companies.filter(x => x.status === 'rejected').length;
   }
 
 
   AcceptRequest(id: number){
-    this.service.ApproveRequest(id).subscribe((data:any) => {this.loadData();});
+    this.service.ApproveRequest(id).subscribe((data:any) => {
+      const companyIndex = this.companies.findIndex(c => c.id === id);
+      if (companyIndex > -1) {
+        this.companies[companyIndex].status = 'approved';
+        this.dtTrigger.next(null);
+      }
+    });
   }
 
   RejectRequest(id: number){
-    this.service.RejectRequest(id).subscribe((data:any) => {this.loadData();});
+    this.service.RejectRequest(id).subscribe((data:any) => {
+      const companyIndex = this.companies.findIndex(c => c.id === id);
+      if (companyIndex > -1) {
+        this.companies[companyIndex].status = 'rejected';
+        this.dtTrigger.next(null);
+      }
+    });
   }
 
   SwitchRequestStatus(id: number){
     this.service.GetById(id).subscribe((data:any) => {
-      if(data.result.status === 1){
+      if(data === "approved"){
         this.RejectRequest(id);
       } else {
         this.AcceptRequest(id);
       }
-      this.loadData();
     });
   }
 

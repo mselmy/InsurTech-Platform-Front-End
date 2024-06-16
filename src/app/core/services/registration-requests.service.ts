@@ -6,22 +6,22 @@ import { HttpClient } from "@angular/common/http";
   providedIn: 'root'
 })
 export class RegistrationRequestsServiceService {
-  private baseUrl: string = 'https://localhost:44311/api/services';
+  private baseUrl: string = 'http://localhost:5028/api';
   constructor( private http:HttpClient) { }
 
   GetAll(){
-    return this.http.get(this.baseUrl + '/app/Company/GetAll');
+    return this.http.get(this.baseUrl + '/companies');
   }
 
   GetById(id: number){
-    return this.http.get(this.baseUrl + '/app/Company/Get?id=' + id);
+    return this.http.get(this.baseUrl + '/companies/' + id);
   }
 
   ApproveRequest(id: number){
-    return this.http.post(this.baseUrl + '/app/Company/Accept', {"id": id});
+    return this.http.post(this.baseUrl + '/companies/ApproveCompany/' + id, {});
   }
 
   RejectRequest(id: number){
-    return this.http.post(this.baseUrl + '/app/Company/Reject', {"id": id});
+    return this.http.post(this.baseUrl + '/companies/RejectCompany/' + id, {});
   }
 }

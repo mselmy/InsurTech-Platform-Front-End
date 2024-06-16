@@ -1,5 +1,4 @@
 <div>
-    <h6 class="d-none">{{companies[0].id}}</h6>
     <section class="content-header">
         <div class="container-fluid">
             <div class="row">
@@ -71,7 +70,7 @@
                             <h3 class="card-title">Open Requests</h3>
                         </div>
                         <div class="card-body table-responsive">
-                            <table datatable [dtOptions]="dtOptions" class="row-border hover" id="open-request-table">
+                            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" id="open-request-table">
                                 <thead class="text-white bgcgreen">
                                     <tr>
                                         <th>Id</th>
@@ -86,7 +85,7 @@
                                 <tbody>
                                     @for (request of companies; track $index)
                                     {
-                                    @if (request.status == 2)
+                                    @if (request.status == "pending")
                                     {
                                     <tr>
                                         <td>{{ request.id }}</td>
@@ -134,7 +133,7 @@
                             <h3 class="card-title">Closed Requests</h3>
                         </div>
                         <div class="card-body table-responsive">
-                            <table datatable [dtOptions]="dtOptions" class="row-border hover" id="cloded-request-table">
+                            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" id="cloded-request-table">
                                 <thead class="text-white bgcgreen">
                                     <tr>
                                         <th>Id</th>
@@ -149,7 +148,7 @@
                                 <tbody>
                                     @for (request of companies; track $index)
                                     {
-                                    @if (request.status != 2)
+                                    @if (request.status != "pending")
                                     {
                                     <tr>
                                         <td>{{ request.id }}</td>
@@ -167,7 +166,7 @@
                                         }
                                         <td>{{ request.location }}</td>
                                         <td>
-                                            @if (request.status == 1)
+                                            @if (request.status == "approved")
                                             {
                                             <span class="badge text-bg-success mx-1">
                                                 Approved

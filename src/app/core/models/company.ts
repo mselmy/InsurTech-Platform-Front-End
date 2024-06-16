@@ -1,12 +1,14 @@
 export class Company {
     constructor(
+        public id: number,
         public name: string,
         public userName: string,
-        public emailAddress: string,
+        public email: string,
         public taxNumber: string,
         public location: string,
-        public id: number,
-        public status: number,
-        public phoneNumber?: string
+        public insurancePlansCount: number,
+        public status: string,
+        public roles?: string[],
+        public phoneNumber?: string,
     ) {}
 }
