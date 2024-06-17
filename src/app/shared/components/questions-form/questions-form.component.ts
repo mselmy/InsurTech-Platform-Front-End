@@ -6,7 +6,7 @@ import {MatInputModule} from '@angular/material/input';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule } from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import Swal from 'sweetalert2';
-import { data, error } from 'jquery';
+import { ButtonModule } from 'primeng/button';
 
 
 
@@ -19,7 +19,9 @@ import { data, error } from 'jquery';
     FormsModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    MatButtonModule
+    MatButtonModule,
+    ButtonModule,
+
   ],
   providers: [
     {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}}
