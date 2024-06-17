@@ -17,6 +17,7 @@ import { AppFooterComponent } from './app.footer.component';
 import { AppConfigModule } from './config/config.module';
 import { AppSidebarComponent } from "./app.sidebar.component";
 import { AppLayoutComponent } from "./app.layout.component";
+import { CommonModule } from '@angular/common';
 
 @NgModule({
     declarations: [
@@ -28,10 +29,9 @@ import { AppLayoutComponent } from "./app.layout.component";
         AppLayoutComponent,
     ],
     imports: [
-        BrowserModule,
+        CommonModule,
         FormsModule,
         HttpClientModule,
-        BrowserAnimationsModule,
         InputTextModule,
         SidebarModule,
         BadgeModule,
