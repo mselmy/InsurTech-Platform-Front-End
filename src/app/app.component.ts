@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HomeComponent } from './home/home.component';
+import { AppLayoutModule } from './features/admin-dashboard/layout/app.layout.module';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,HomeComponent],
+  imports: [
+    RouterOutlet,
+    AppLayoutModule
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

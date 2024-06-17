@@ -12,6 +12,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCheck, faEdit, faTimes, faUser, faX } from '@fortawesome/free-solid-svg-icons';
 import { Subject } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { ButtonModule } from 'primeng/button';
+
 
 
 @Component({
@@ -20,7 +23,9 @@ import { Subject } from 'rxjs';
   imports: [
     DataTablesModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    CommonModule,
+    ButtonModule
   ],
   animations: [appModuleAnimation()],
   templateUrl: './registration-requests.component.html',
