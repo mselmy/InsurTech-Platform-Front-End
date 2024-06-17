@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { AppLayoutModule } from './layout/app.layout.module';
+import { AppLayoutModule } from './features/admin-dashboard/layout/app.layout.module';
 
 @Component({
   selector: 'app-root',
