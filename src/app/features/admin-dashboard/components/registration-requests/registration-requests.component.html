@@ -22,7 +22,7 @@
                 <div class="card-statistic-3 p-4">
                     <div class="card-icon card-icon-large"><fa-icon class="fas" [icon]="faCheck"></fa-icon></div>
                     <div class="mb-2">
-                        <h5 class="card-title mb-0 text-white">Approved</h5>
+                        <h3 class="card-title mb-0 text-white">Approved</h3>
                     </div>
                     <div class="row align-items-center d-flex">
                         <div class="col-8">
@@ -39,7 +39,7 @@
                 <div class="card-statistic-3 p-4">
                     <div class="card-icon card-icon-large"><fa-icon class="fas" [icon]="faX"></fa-icon></div>
                     <div class="mb-2">
-                        <h5 class="card-title mb-0 text-white">Rejected</h5>
+                        <h3 class="card-title mb-0 text-white">Rejected</h3>
                     </div>
                     <div class="row align-items-center d-flex">
                         <div class="col-8">
@@ -97,14 +97,8 @@
                                     </span>
                                 </td>
                                 <td>
-                                    <a class="btn btn-outline-success me-2"
-                                        (click)="showApproveAlert(request.id)">
-                                        <fa-icon [icon]="faCheck"></fa-icon>
-                                    </a>
-                                    <a class="btn btn-outline-danger ms-2"
-                                        (click)="showDeclineAlert(request.id)">
-                                        <fa-icon [icon]="faTimes"></fa-icon>
-                                    </a>
+                                    <p-button icon="pi pi-check" (click)="showApproveAlert(request.id)" class="me-3"/>
+                                    <p-button icon="pi pi-times" severity="danger" (click)="showDeclineAlert(request.id)"/>
                                 </td>
                             </tr>
                             }
@@ -169,9 +163,7 @@
                                     }
                                 </td>
                                 <td>
-                                    <a class="btn btn-outline-info" (click)="showSwitchAlert(request.id)">
-                                        <fa-icon [icon]="faEdit"></fa-icon>
-                                    </a>
+                                    <p-button icon="pi pi-pencil" severity="info" (click)="showSwitchAlert(request.id)"/>
                                 </td>
                             </tr>
                             }
