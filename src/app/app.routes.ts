@@ -6,12 +6,10 @@ import { QuestionsFormComponent } from './shared/components/questions-form/quest
 import { AppLayoutComponent } from './features/admin-dashboard/layout/app.layout.component';
 
 export const routes: Routes = [
-    {path: 'admin', component: AdminDashboardComponent, children: [
+    {path: 'admin', component: AppLayoutComponent, children: [
         {path: 'registration-requests', component: RegistrationRequestsComponent}
     ]
     },
-    {path: 'test', component: AppLayoutComponent},
-    {path: 'home', component: HomeComponent},
     {path: 'form', component: QuestionsFormComponent},
-    {path: '', redirectTo: '/home', pathMatch: 'full'}
+    {path: '', component: HomeComponent, pathMatch: 'full'}
 ];
