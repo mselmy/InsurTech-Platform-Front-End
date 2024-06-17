@@ -7,6 +7,7 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule } from '@angular/mat
 import {MatButtonModule} from '@angular/material/button';
 import Swal from 'sweetalert2';
 import { ButtonModule } from 'primeng/button';
+import { TabViewModule } from 'primeng/tabview';
 
 
 
@@ -21,7 +22,7 @@ import { ButtonModule } from 'primeng/button';
     ReactiveFormsModule,
     MatButtonModule,
     ButtonModule,
-
+    TabViewModule
   ],
   providers: [
     {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}}
