@@ -1,0 +1,56 @@
+.register-container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-size: 200% 200%;
+  animation: gradientAnimation 15s ease infinite;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-control {
+  border-radius: 0;
+}
+
+.text-danger {
+  font-size: 0.875em;
+}
+
+.btn-primary {
+  width: 100%;
+  border-radius: 0;
+}
+
+.form-group label {
+  font-weight: bold;
+}
+
+.form-group label i {
+  margin-right: 5px;
+}
+#submitButton {
+  background-color: #201f1f;
+  color: rgb(249, 248, 248);
+  border-radius: 0;
+  width: 100%;
+}
+#submitButton:hover {
+  background-color: #f9f9f9;
+  color: rgb(88, 14, 14);
+}

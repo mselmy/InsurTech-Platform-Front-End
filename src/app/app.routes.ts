@@ -3,12 +3,20 @@ import { RegistrationRequestsComponent } from './features/admin-dashboard/compon
 import { HomeComponent } from './home/home.component';
 import { QuestionsFormComponent } from './shared/components/questions-form/questions-form.component';
 import { AppLayoutComponent } from './features/admin-dashboard/layout/app.layout.component';
+import { RegisterComponent } from './register/register.component';
 
 export const routes: Routes = [
-    {path: 'admin', component: AppLayoutComponent, children: [
-        {path: 'registration-requests', component: RegistrationRequestsComponent}
-    ]
-    },
-    {path: 'form', component: QuestionsFormComponent},
-    {path: '', component: HomeComponent, pathMatch: 'full'}
+  {
+    path: 'admin',
+    component: AppLayoutComponent,
+    children: [
+      {
+        path: 'registration-requests',
+        component: RegistrationRequestsComponent,
+      },
+    ],
+  },
+  { path: 'form', component: QuestionsFormComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: '', component: HomeComponent, pathMatch: 'full' },
 ];
