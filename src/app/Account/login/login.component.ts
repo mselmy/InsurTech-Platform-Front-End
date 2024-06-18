@@ -4,9 +4,9 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import {LoginService} from '../../services/account/login.service'
-import { RouterLink } from '@angular/router';
+import { RouterLink ,Router } from '@angular/router';
 import { Googlelogin } from '../../models/Account/googlelogin';
-
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
 
     google.accounts.id.renderButton(document.getElementById("google-btn"),{
     theme:'filled_blue',
-    size:'large',
+    size:'small',
     shape:'rectangle',
     width:50
 
@@ -47,12 +47,29 @@ export class LoginComponent implements OnInit {
   
       this.loginService.googlelog(googleObj).subscribe({
         next: (data) => {
+          sessionStorage.setItem('userData', JSON.stringify(data));
           console.log('Login successful:', data);
-          // Handle successful login, e.g., navigate to a different page
+          if(data.userType=="0"){
+            console.log("customer")
+          //  this.router.navigate(['/dashboard']);  // Navigate to the desired route
+          }
+          else if(data.userType=="1"){
+            console.log("company")
+           // this.router.navigate(['/dashboard']);  // Navigate to the desired route
+          }
+          else(data.userType=="2")
+            console.log("admin")
+           // this.router.navigate(['/dashboard']);  // Navigate to the desired route
+          
         },
         error: (error) => {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Email Or Password IS wrong",
+          });  
           console.error('Login error:', error);
-          // Handle error, e.g., display error message
+         
         }
       });
     }
@@ -61,27 +78,38 @@ export class LoginComponent implements OnInit {
     Email :new FormControl(),
     Password : new FormControl()
   })
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: LoginService ,private router: Router) {}
   login() {
     const email = this.Loginform.get('Email')?.value;
     const password = this.Loginform.get('Password')?.value;
 
-  //  debugger;
       this.loginService.login(email, password).subscribe(
         {next:(data)=>{
+          sessionStorage.setItem('userData', JSON.stringify(data));
+          if(data.userType=="0"){
+            console.log("customer")
+          //  this.router.navigate(['/dashboard']);  // Navigate to the desired route
+          }
+          else if(data.userType=="1"){
+            console.log("company")
+          //  this.router.navigate(['/dashboard']);  // Navigate to the desired route
+          }
+          else(data.userType=="2")
+            console.log("admin")
+          //  this.router.navigate(['/dashboard']);  // Navigate to the desired route
+          
           console.log('Login successful:', data);
         },
         error:(error) => {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Email Or Password IS Wrong",
+          }); 
           console.error('Login error:', error);
         }
       }
-      //  next :(response) => {
-      //     console.log('Login successful:', response);
-      //   },
-      // (error) => {
-      //   // Handle error
-      //   console.error('Login error:', error);
-      // }
+     
       );
     
   }
