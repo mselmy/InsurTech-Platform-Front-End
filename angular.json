@@ -22,16 +22,9 @@
             "styles": [
               "node_modules/datatables.net-dt/css/dataTables.dataTables.min.css",
               "node_modules/datatables.net-responsive-dt/css/responsive.dataTables.css",
-              "src/styles.css",
               "src/app/register/fonts/font-awesome-4.7.0/css/font-awesome.min.css",
               "src/app/register/fonts/iconic/css/material-design-iconic-font.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/datatables.net-dt/css/dataTables.dataTables.min.css",
-              "node_modules/datatables.net-responsive-dt/css/responsive.dataTables.css",
-              "src/styles.css",
-              "src/app/register/fonts/font-awesome-4.7.0/css/font-awesome.min.css",
-              "src/app/register/fonts/iconic/css/material-design-iconic-font.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "src/styles.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
