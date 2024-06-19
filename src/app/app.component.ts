@@ -1,15 +1,18 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet , RouterModule } from '@angular/router';
-import { routes } from './app.routes';
-import {LoginComponent} from '../app/Account/login/login.component'
-import { ForgetPasswordComponent} from '../app/Account/forget-password/forget-password.component'
+import { AppLayoutModule } from './features/admin-dashboard/layout/app.layout.module';
 
 @Component({
-    selector: 'app-root',
-    standalone: true,
-    templateUrl: './app.component.html',
-    styleUrl: './app.component.css',
-    imports: [RouterOutlet, LoginComponent,RouterLink,RouterModule]
+  selector: 'app-root',
+  standalone: true,
+  imports: [
+    RouterOutlet,
+    AppLayoutModule,
+    RouterLink,
+    RouterModule
+  ],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'InsurTech-Platform-Front-End';
