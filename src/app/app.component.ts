@@ -7,7 +7,8 @@ import { AppLayoutModule } from './features/admin-dashboard/layout/app.layout.mo
   standalone: true,
   imports: [
     RouterOutlet,
-    AppLayoutModule
+    AppLayoutModule,
+    
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
