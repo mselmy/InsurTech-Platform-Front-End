@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { CompanyService } from '../../Services/CompanyServices/company.service';
 import { Subscription } from 'rxjs';
+import { ListInsurancePlan } from '../../Model/company/ListInsurancePlan'; // Add this import
 import { HealthInsurancePlan } from '../../Model/company/HealthInsurancePlan';
 import { HomeInsurancePlan } from '../../Model/company/HomeInsurancePlan';
 import { MotorInsurancePlan } from '../../Model/company/MotorInsurancePlan';
@@ -20,7 +21,7 @@ import { TagModule } from 'primeng/tag';
 import { FormsModule } from '@angular/forms';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { AvatarModule } from 'primeng/avatar';
-import {MotorinsuranceComponent} from '../Motorinsurance/motorinsurance/motorinsurance.component'
+import { MotorinsuranceComponent } from '../Motorinsurance/motorinsurance/motorinsurance.component';
 import { HealthinsuranceComponent } from '../Helathinsurance/healthinsurance/healthinsurance.component';
 import { HomeinsuranceComponent } from '../Homeinsurance/homeinsurance/homeinsurance.component';
 import { EditHealthInsurancePlanComponent } from '../Helathinsurance/edithealthinsurance/edithealthinsurance.component';
@@ -29,15 +30,14 @@ import { EditmotorinsuranceComponent } from '../Motorinsurance/editmotorinsuranc
 import { EditMotorInsurance } from '../../Model/Motorinsurance/edit-motor-insurance';
 import { RouterLink } from '@angular/router';
 
-
 @Component({
   selector: 'app-list-insurance-plan',
   standalone: true,
   imports: [CommonModule, TableModule, DialogModule, RippleModule, ButtonModule,
     ToastModule, ToolbarModule, ConfirmDialogModule, InputTextModule, InputTextareaModule, DropdownModule, TagModule,
-    InputTextModule, InputNumberModule, FormsModule, RippleModule,AvatarModule,MotorinsuranceComponent,
-    HealthinsuranceComponent,HomeinsuranceComponent,EditHealthInsurancePlanComponent,EdithomeinsuranceComponent,
-    EditmotorinsuranceComponent,RouterLink],
+    InputTextModule, InputNumberModule, FormsModule, RippleModule, AvatarModule, MotorinsuranceComponent,
+    HealthinsuranceComponent, HomeinsuranceComponent, EditHealthInsurancePlanComponent, EdithomeinsuranceComponent,
+    EditmotorinsuranceComponent, RouterLink],
   providers: [MessageService, ConfirmationService],
   templateUrl: './list-insurance-plan.component.html',
   styleUrls: ['./list-insurance-plan.component.css']
@@ -47,13 +47,11 @@ export class ListInsurancePlanComponent implements OnInit, OnDestroy {
   public HomeList: HomeInsurancePlan[] = [];
   public MotorList: MotorInsurancePlan[] = [];
   visible: boolean = false;
-  VisibleEdit:boolean=false;
-
+  VisibleEdit: boolean = false;
   public flag: number = 1;
   private Id: number = 1;
-  sub: Subscription | null = null;
-  selectedInsurance: EditMotorInsurance=new EditMotorInsurance(0,0,0,0,"",0,0,0,0,0); 
-
+  subscriptions: Subscription[] = [];
+  selectedInsurance: EditMotorInsurance = new EditMotorInsurance(0, 0, 0, 0, "", 0, 0, 0, 0, 0);
 
   constructor(
     private CompanyServices: CompanyService,
@@ -64,23 +62,27 @@ export class ListInsurancePlanComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.laodData();
+    this.loadData();
+    this.subscriptions.push(
+      this.CompanyServices.insurancePlans$.subscribe({
+        next: (data: ListInsurancePlan | null) => { 
+          if (data) {
+            this.HealthList = data.healthInsurancePlans || [];
+            this.HomeList = data.homeInsurancePlans || [];
+            this.MotorList = data.motorInsurancePlans || [];
+          }
+        },
+        error: (error: any) => { console.log(error); } 
+      })
+    );
   }
-  laodData() {
-    this.sub = this.CompanyServices.GetAll(this.Id).subscribe({
-      next: (data) => {
-        console.log(data);
-        this.HealthList = data.healthInsurancePlans || [];
-        this.HomeList = data.homeInsurancePlans || [];
-        this.MotorList = data.motorInsurancePlans || [];
 
-      },
-      error: (error) => { console.log(error) }
-    });
+  loadData() {
+    this.CompanyServices.GetAll(this.Id);
   }
 
   ngOnDestroy(): void {
-    this.sub?.unsubscribe();
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
   click(name: string) {
@@ -101,20 +103,6 @@ export class ListInsurancePlanComponent implements OnInit, OnDestroy {
     }
   }
 
-  editMotorInsurance(plan: MotorInsurancePlan) {
-   this.selectedInsurance.id=plan.id;
-   this.selectedInsurance.legalExpenses=plan.legalExpenses
-   this.selectedInsurance.level=plan.level
-   this.selectedInsurance.ownDamage=plan.ownDamage
-   this.selectedInsurance.personalAccident=plan.personalAccident
-   this.selectedInsurance.quotation=plan.quotation
-   this.selectedInsurance.theft=plan.theft
-   this.selectedInsurance.thirdPartyLiability=plan.thirdPartyLiability
-   this.selectedInsurance.yearlyCoverage=plan.yearlyCoverage
-   this.VisibleEdit=true;
-
-  }
-
   deleteInsurance(id: number) {
     this.confirmationService.confirm({
       message: 'Are you sure you want to delete This plan?',
@@ -126,31 +114,21 @@ export class ListInsurancePlanComponent implements OnInit, OnDestroy {
       rejectIcon: "none",
       accept: () => {
         this.CompanyServices.Delete(id).subscribe({
-          next:(data)=>{this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Insurance plan Deleted' });
-          if(this.flag==1){this.MotorList = this.MotorList.filter(insurance => insurance.id !== id);}
-          else if(this.flag==2){this.HealthList = this.HealthList.filter(insurance => insurance.id !== id);}
-          else{this.HomeList = this.HomeList.filter(insurance => insurance.id !== id);}
-        },
-          error:(error)=>{ this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'An Error occured' });
-        }
+          next: (data: any) => { 
+            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Insurance plan Deleted' });
+            this.loadData();  
+          },
+          error: (error: any) => { 
+            this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'An Error occurred' });
+          }
         })
-
       },
       reject: () => {
         this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
-    }
+      }
     });
   }
-
-  editHealthInsurance(id: number) {
-    console.log("edit health");
-  }
-
-  editHomeInsurance(id: number) {
-    console.log("edit home");
-  }
-
   showDialog() {
     this.visible = true;
-}
+  }
 }

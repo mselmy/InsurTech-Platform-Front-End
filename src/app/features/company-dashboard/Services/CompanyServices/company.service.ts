@@ -10,21 +10,24 @@ import { CompanyUsers } from '../../Model/company/CompanyUser';
 export class CompanyService {
 
   private baseUrl: string = "http://localhost:5028/api/";
-  private dataSource = new BehaviorSubject<any>(null); 
-  currentData = this.dataSource.asObservable();
 
-  constructor(private HttpClient: HttpClient) { }
+  private insurancePlansSubject = new BehaviorSubject<ListInsurancePlan | null>(null);
+  insurancePlans$ = this.insurancePlansSubject.asObservable();
 
-  GetAll(Id: number) {
-    return this.HttpClient.get<ListInsurancePlan>(this.baseUrl +"InsurancePlan/InsurancePlansByCompanyId/"+Id)
+  constructor(private httpClient: HttpClient) { }
+
+  GetAll(Id: number): void {
+    this.httpClient.get<ListInsurancePlan>(this.baseUrl + "InsurancePlan/InsurancePlansByCompanyId/" + Id)
+      .subscribe(data => {
+        this.insurancePlansSubject.next(data);
+      });
   }
-  Delete(Id:number)
-  {
-        return this.HttpClient.delete(this.baseUrl +"InsurancePlan/DeleteInsurancePlan/"+ Id);
 
+  Delete(Id: number): Observable<any> {
+    return this.httpClient.delete(this.baseUrl + "InsurancePlan/DeleteInsurancePlan/" + Id);
   }
-  GetCompanyUsers(Id:number)
-  {
-    return this.HttpClient.get<CompanyUsers[]>(this.baseUrl+"companies/Users/"+Id);
+
+  GetCompanyUsers(Id: number): Observable<CompanyUsers[]> {
+    return this.httpClient.get<CompanyUsers[]>(this.baseUrl + "companies/Users/" + Id);
   }
 }
