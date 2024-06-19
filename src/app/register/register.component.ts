@@ -28,7 +28,7 @@ import { RegistrationService } from '../services/registration.service'; // Adjus
 })
 export class RegisterComponent {
   registerForm: FormGroup;
-  registrationError: string | null = null;
+  processInProgress: string | null = null;
   showPassword: boolean = false; // Property to toggle password visibility
 
   constructor(
@@ -102,18 +102,16 @@ export class RegisterComponent {
 
   onSubmit() {
     if (this.registerForm.valid) {
+      const email = this.registerForm.get('emailAddress')?.value;
+      this.processInProgress = `Processing your request. Please check your email (${email}) for further instructions.`;
+
       const registerData: RegisterData = this.registerForm.value;
       this.registrationService.registerUser(registerData).subscribe({
-        next: (response) => {
-          console.log('Registration successful', response);
+        next: () => {},
+        error: () => {
+          // Handle error if needed, currently doing nothing
         },
-        error: (error) => {
-          this.registrationError = 'Registration failed. Please try again.';
-          console.error('Registration failed', error);
-        },
-        complete: () => {
-          console.log('Request completed');
-        },
+        complete: () => {},
       });
     }
   }
