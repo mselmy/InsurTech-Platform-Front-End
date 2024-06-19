@@ -28,16 +28,14 @@ export const routes: Routes = [
   { path: 'apply-for-insurance', component: ApplyForInsuranceComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'register-user', component: RegisterUserComponent },
-  { path: '', component: HomeComponent, pathMatch: 'full' },
-
   {
     path: 'Insurance',
     component: AppComponent,
     children: [
-      { path: '', component: DisplayComponent },
       { path: 'Health', component: SubCategoryHealthComponent },
       { path: 'Home', component: SubCategoryHomeComponent },
-      { path: 'Motor', component: SubCategoryMotorComponent }
+      { path: 'Motor', component: SubCategoryMotorComponent },
+      { path: '', component: DisplayComponent },
     ]
   },
   {
@@ -48,4 +46,5 @@ export const routes: Routes = [
      
     ]
   },
+  { path: '', component: HomeComponent, pathMatch: 'full' },
 ];
