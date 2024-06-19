@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ForgotpasswordService } from '../../services/account/forgotpassword.service';
 import { CommonModule } from '@angular/common';
+import { Router,ActivatedRoute } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 
@@ -15,7 +16,8 @@ import Swal from 'sweetalert2';
 export class ForgetPasswordComponent {
   forgotpass: FormGroup;
 
-  constructor(private forgotpasswordService: ForgotpasswordService) {
+  constructor(private forgotpasswordService: ForgotpasswordService,private route: ActivatedRoute,
+    private router: Router) {
     this.forgotpass = new FormGroup({
       email: new FormControl('', [
         Validators.required,
@@ -34,10 +36,12 @@ export class ForgetPasswordComponent {
             Swal.fire({
               position: "top-end",
               icon: "success",
-              title: "Email sent successfully",
+              title: "Email sent successfully , Check your email",
               showConfirmButton: false,
               timer: 1500
-            });
+            }).then(() => {
+              this.router.navigate(['/login']); // Redirect to login page
+            }); ;
           },
           error:(error) => {
             Swal.fire({

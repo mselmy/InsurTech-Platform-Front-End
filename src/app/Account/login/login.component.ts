@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     })
 
     google.accounts.id.renderButton(document.getElementById("google-btn"),{
-    theme:'filled_blue',
+    theme:'filled_white',
     size:'small',
     shape:'rectangle',
     width:50
@@ -57,9 +57,11 @@ export class LoginComponent implements OnInit {
             console.log("company")
            // this.router.navigate(['/dashboard']);  // Navigate to the desired route
           }
-          else(data.userType=="2")
+          else if(data.userType=="2"){
             console.log("admin")
-           // this.router.navigate(['/dashboard']);  // Navigate to the desired route
+            // this.router.navigate(['/dashboard']);  // Navigate to the desired route
+           
+          }
           
         },
         error: (error) => {
@@ -94,10 +96,12 @@ export class LoginComponent implements OnInit {
             console.log("company")
           //  this.router.navigate(['/dashboard']);  // Navigate to the desired route
           }
-          else(data.userType=="2")
+          else if(data.userType=="2"){
             console.log("admin")
-          //  this.router.navigate(['/dashboard']);  // Navigate to the desired route
-          
+            //  this.router.navigate(['/dashboard']);  // Navigate to the desired route
+            
+          }
+         
           console.log('Login successful:', data);
         },
         error:(error) => {
