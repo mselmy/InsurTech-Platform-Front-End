@@ -1,0 +1,24 @@
+<div class=" xl:flex xl:justify-content-center">
+  <h2>Users List</h2>
+  <div *ngIf="UsersList && UsersList.length > 0; else noUsers" class="overflow-auto card" style="max-height: 30rem;">
+    <div *ngFor="let user of UsersList" class="d-flex align-items-center mb-3 border-bottom py-3">
+      <div class="rounded-circle text-white d-flex justify-content-center align-items-center"
+           style="width: 2.5rem; height: 2.5rem; font-size: 1rem; background-color: #a0e6ba; border: 1px solid green;">
+        {{ user.name.charAt(0).toUpperCase() }}
+      </div>
+      <div class="flex-1 ms-3">
+        <div class="font-bold">{{ user.name }}</div>
+        <div class="d-flex align-items-center gap-2">
+          <i class="pi pi-tag text-sm"></i>
+          <span>{{ user.email }}</span>
+        </div>
+        <div class="font-bold text-900">{{ user.phone }}</div>
+      </div>
+    </div>
+  </div>
+  <ng-template #noUsers>
+    <div class="flex justify-content-center align-items-center" style="height: 30rem;">
+      <img src="../../../../../assets/images/Company/Empty.gif" alt="No Users" style="width:400px"/>
+    </div>
+  </ng-template>
+</div>
