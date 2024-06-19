@@ -12,6 +12,9 @@ import { SubCategoryHomeComponent } from './Categories/sub-Homecategory/sub-cate
 import { SubCategoryMotorComponent } from './Categories/sub-Motorcategory/sub-category.component';
 import { CompanyInsurancePlanComponent } from './Company/company-insurance-plan/company-insurance-plan.component';
 import { AppComponent } from './app.component';
+import {LoginComponent} from '../app/Account/login/login.component'
+import {ForgetPasswordComponent} from '../app/Account/forget-password/forget-password.component'
+import{ResetpasswordComponent} from '../app/Account/resetpassword/resetpassword.component'
 
 
 export const routes: Routes = [
@@ -28,6 +31,9 @@ export const routes: Routes = [
   { path: 'apply-for-insurance', component: ApplyForInsuranceComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'register-user', component: RegisterUserComponent },
+  { path:"login",component:LoginComponent},
+    { path:"forgetpassword",component:ForgetPasswordComponent},
+    { path: 'resetpassword', component: ResetpasswordComponent }
   {
     path: 'Insurance',
     component: AppComponent,
