@@ -1,12 +1,13 @@
 import { Component, Input, input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { QuestionsFormService } from '../../../core/services/questions-form.service';
-import { Question } from '../../../core/models/question';
+import { QuestionsFormService } from '../../../../core/services/questions-form.service';
+import { Question } from '../../../../core/models/question';
 import {MatInputModule} from '@angular/material/input';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule } from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import Swal from 'sweetalert2';
 import { ButtonModule } from 'primeng/button';
+import { TabViewModule } from 'primeng/tabview';
 
 
 
@@ -21,7 +22,7 @@ import { ButtonModule } from 'primeng/button';
     ReactiveFormsModule,
     MatButtonModule,
     ButtonModule,
-
+    TabViewModule
   ],
   providers: [
     {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}}
@@ -34,6 +35,7 @@ export class QuestionsFormComponent {
   // properties
   questions: Question[] = [];
   form: FormGroup;
+  activeIndex: number = 0;
   @Input() customerId: string = "1";
   @Input() categoryId: number = 1;
   @Input() insurancePlanId: number = 2;
@@ -59,7 +61,19 @@ export class QuestionsFormComponent {
   }
 
   // methods
-  submit(){
+  Next(){
+    if(this.activeIndex < this.questions.length - 1){
+      this.activeIndex++;
+    }
+  }
+
+  Previous(){
+    if(this.activeIndex > 0){
+      this.activeIndex--;
+    }
+  }
+
+  Submit(){
     if(this.form.valid){
       let request: {
         customerId: string,
@@ -94,6 +108,13 @@ export class QuestionsFormComponent {
         });
       }
       );
+    }
+    else{
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please fill all the fields!',
+      });
     }
   }
 }

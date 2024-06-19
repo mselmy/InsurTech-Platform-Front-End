@@ -1,5 +1,5 @@
 /* Define the order of layers */
-@layer reset, bootstrap, angular-material, primeng, custom;
+@layer reset, bootstrap, angular-material, dashboard, primeng, custom;
 
 /* Import full Bootstrap CSS */
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css" layer(bootstrap);
@@ -8,14 +8,14 @@
 @import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css" layer(angular-material);
 
 /* Import dahsboard layout styles */
-@import "./assets/layout/styles/layout/layout.css" layer(primeng);
+@import "./assets/layout/styles/layout/layout.css" layer(dashboard);
 
 /* Import PrimeNG CSS */
 @import "../node_modules/primeng/resources/themes/aura-light-green/theme.css" layer(primeng);
 @import "../node_modules/primeng/resources/primeng.min.css" layer(primeng);
 
 /* Import PrimeFlex CSS */
-@import "../node_modules/primeflex/primeflex.css" layer(primeng);
+/* @import "../node_modules/primeflex/primeflex.css" layer(primeng); */
 
 /* Import Prime Icon */
 @import "../node_modules/primeicons/primeicons.css" layer(primeng);
@@ -29,6 +29,7 @@
         padding: 15px;
         border-radius: 5px;
     }
+
 
     /* Example of custom button styles */
     .btn-colors {
