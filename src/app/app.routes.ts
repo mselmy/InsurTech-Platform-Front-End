@@ -32,8 +32,8 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'register-user', component: RegisterUserComponent },
   { path:"login",component:LoginComponent},
-    { path:"forgetpassword",component:ForgetPasswordComponent},
-    { path: 'resetpassword', component: ResetpasswordComponent }
+  { path:"forgetpassword",component:ForgetPasswordComponent},
+  { path: 'resetpassword', component: ResetpasswordComponent },
   {
     path: 'Insurance',
     component: AppComponent,

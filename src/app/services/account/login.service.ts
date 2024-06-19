@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import  { Userlogin } from '../../models/Account/userlogin';
 import { text } from '@fortawesome/fontawesome-svg-core';
 import{Googlelogin} from '../../models/Account/googlelogin'
+import { BASE_URL } from '../../core/base-url';
 
 
 
@@ -11,7 +12,7 @@ import{Googlelogin} from '../../models/Account/googlelogin'
   providedIn: 'root'
 })
 export class LoginService {
-    private baseurl:string="https://localhost:7113/api/Account/Login"
+    private baseurl:string=`${BASE_URL}/Account/Login`
     constructor(public http: HttpClient) {}
     user:Userlogin=new Userlogin("","")
     login(email: string, password: string): Observable<any> {
@@ -20,7 +21,7 @@ export class LoginService {
         this.user.password=password;
       return this.http.post<any>(this.baseurl,this.user );
     }
-    private googleurl:string="https://localhost:7113/api/Account/GooglleLogin"
+    private googleurl:string=`${BASE_URL}/Account/GooglleLogin`
     googlelog(Text:Googlelogin): Observable<any>{
       return this.http.post<any>(this.googleurl,Text );
     }

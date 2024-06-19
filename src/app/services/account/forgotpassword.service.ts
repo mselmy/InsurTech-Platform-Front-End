@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Forgotpassword } from '../../models/Account/forgotpassword';
 import{Resetpassword} from '../../models/Account/resetpassword'
+import { BASE_URL } from '../../core/base-url';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,8 @@ export class ForgotpasswordService {
 
   constructor(private http: HttpClient) {}
 
-  private baseurl: string = "https://localhost:7113/api/Account/ForgotPasswordAngular";
-  private reseturl:string="https://localhost:7113/api/Account/ResetPassword";
+  private baseurl: string = `${BASE_URL}/Account/ForgotPasswordAngular`;
+  private reseturl:string=`${BASE_URL}/Account/ResetPassword`;
   forgot(email: string): Observable<any> {
     const forgotpass: Forgotpassword = { email };
     return this.http.post<any>(this.baseurl, forgotpass);
