@@ -5,11 +5,13 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { HealthinsuranceService } from '../../../Services/ManageHealthServices/healthinsurance.service';
 import { AddHealthInsurance, InsurancePlanLevel } from '../../../Model/Helathinsurance/add-health-insurance';
 import { ConfirmationService, MessageService } from 'primeng/api'
+import { ToastModule } from 'primeng/toast';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @Component({
   selector: 'app-healthinsurance',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule,ToastModule,ConfirmDialogModule],
   providers: [MessageService, ConfirmationService],
   templateUrl: './healthinsurance.component.html',
   styleUrls: ['./healthinsurance.component.css']

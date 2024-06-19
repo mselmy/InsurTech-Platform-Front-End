@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { AddHomeInsurance } from '../../Model/Homeinsurance/add-home-insurance';
 import { EditHomeInsurance } from '../../Model/Homeinsurance/edit-home-insurance';
-import { Observable, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { Observable, Subject, throwError } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +13,15 @@ export class HomeinsuranceService {
 
   constructor(private httpClient: HttpClient) { }
 
+  private homeinsurancechanges=new Subject<void>();
+  homeinsurancechanges$=this.homeinsurancechanges.asObservable();
+
   add(homeinsurance: AddHomeInsurance): Observable<any> {
     return this.httpClient.post<any>(`${this.baseurl}AddHomePlan`, homeinsurance)
       .pipe(
-        catchError(this.handleError)
-      );
+        catchError(this.handleError),
+        tap(()=>this.homeinsurancechanges.next())
+      )
   }
 
   // Edit

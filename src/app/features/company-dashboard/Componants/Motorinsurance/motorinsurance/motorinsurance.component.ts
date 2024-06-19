@@ -4,12 +4,14 @@ import{ MotorinsuranceService } from '../../../Services/ManageMotorServices/moto
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AddMotorInsurance, InsurancePlanLevel } from '../../../Model/Motorinsurance/add-motor-insurance';
 import { ConfirmationService, MessageService } from 'primeng/api'
+import { ToastModule } from 'primeng/toast';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-motorinsurance',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule,FormsModule],
+  imports: [CommonModule,ReactiveFormsModule,FormsModule,ToastModule,ConfirmDialogModule],
   providers: [MessageService, ConfirmationService],
   templateUrl: './motorinsurance.component.html',
   styleUrl: './motorinsurance.component.css'

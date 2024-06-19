@@ -5,13 +5,14 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AddHomeInsurance ,InsurancePlanLevel} from '../../../Model/Homeinsurance/add-home-insurance'; // Corrected import path
 import { ActivatedRoute } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api'
-
+import { ToastModule } from 'primeng/toast';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @Component({
   selector: 'app-homeinsurance',
   standalone: true,
   providers: [MessageService, ConfirmationService],
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule,ToastModule,ConfirmDialogModule],
   templateUrl: './homeinsurance.component.html',
   styleUrl: './homeinsurance.component.css'
 
