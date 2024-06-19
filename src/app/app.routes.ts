@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { QuestionsFormComponent } from './shared/components/questions-form/questions-form.component';
 import { AppLayoutComponent } from './features/admin-dashboard/layout/app.layout.component';
 import { RegisterComponent } from './register/register.component';
+import { RegisterUserComponent } from './register-user/register-user.component';
 
 export const routes: Routes = [
   {
@@ -18,5 +19,6 @@ export const routes: Routes = [
   },
   { path: 'form', component: QuestionsFormComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'register-user', component: RegisterUserComponent },
   { path: '', component: HomeComponent, pathMatch: 'full' },
 ];
