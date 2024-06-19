@@ -19,7 +19,7 @@
         <div *ngIf="registerForm.get('userName')?.errors?.['required']">
           User Name is required.
         </div>
-        <div *ngIf="registerForm.get('userName')?.errors?.['uniqueUsername']">
+        <div *ngIf="registerForm.get('userName')?.errors?.['usernameTaken']">
           User Name must be unique.
         </div>
       </div>
@@ -31,14 +31,30 @@
       <input id="emailAddress" formControlName="emailAddress" class="form-control" required type="email">
       <div *ngIf="registerForm.get('emailAddress')?.invalid && registerForm.get('emailAddress')?.touched"
         class="text-danger">
-        Valid Email Address is required.
+        <div *ngIf="registerForm.get('emailAddress')?.errors?.['required']">
+          Valid Email Address is required.
+        </div>
+        <div *ngIf="registerForm.get('emailAddress')?.errors?.['email']">
+          Email Address is invalid.
+        </div>
+        <div *ngIf="registerForm.get('emailAddress')?.errors?.['emailTaken']">
+          Email Address must be unique.
+        </div>
       </div>
     </div>
     <div class="form-group">
       <label for="password">
         <i class="fa fa-lock"></i> Password:
       </label>
-      <input id="password" formControlName="password" class="form-control" required type="password">
+      <div class="input-group">
+        <input id="password" [type]="showPassword ? 'text' : 'password'" formControlName="password" class="form-control"
+          required>
+        <div class="input-group-append">
+          <span class="input-group-text" (click)="togglePasswordVisibility()">
+            <i [class.fa-eye]="!showPassword" [class.fa-eye-slash]="showPassword" class="fa"></i>
+          </span>
+        </div>
+      </div>
       <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="text-danger">
         <div *ngIf="registerForm.get('password')?.errors?.['required']">
           Password is required.
@@ -85,7 +101,7 @@
           Phone Number is required.
         </div>
         <div *ngIf="registerForm.get('phoneNumber')?.errors?.['pattern']">
-          Phone Number must be exactly 11 digits.
+          Phone Number must start with 011, 012, or 010 and be exactly 11 digits.
         </div>
       </div>
     </div>
