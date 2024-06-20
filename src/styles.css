@@ -20,6 +20,9 @@
 /* Import Prime Icon */
 @import "../node_modules/primeicons/primeicons.css" layer(primeng);
 
+@import 'primeicons/primeicons.css';
+
+
 
 /* Custom styles to resolve conflicts and override defaults */
 @layer custom {
