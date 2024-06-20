@@ -1,4 +1,4 @@
-<div class="grid">
+<!-- <div class="grid">
     <div class="col-12 md:col-6">
       <div class="card" *ngIf="faqs.length > 0">
         <h5>FAQs</h5>
@@ -12,6 +12,27 @@
       <div class="card" *ngIf="faqs.length === 0">
         <h5>No FAQs found</h5>
         <p>No frequently asked questions available.</p>
+      </div>
+    </div>
+  </div>
+   -->
+
+   <div class="grid">
+    <div class="col-12 col-md-6">
+      <div class="card" *ngIf="faqs.length > 0">
+        <h5 class="card-header">FAQs</h5>
+        <p-accordion [multiple]="true" [activeIndex]="-1">
+          <p-accordionTab *ngFor="let faq of faqs; let i = index" [header]="'Question ' + (i + 1)">
+            <div>{{ faq.body }}</div>
+            <div class="mt-2">Answer: {{ faq.answer }}</div>
+          </p-accordionTab>
+        </p-accordion>
+      </div>
+      <div class="card" *ngIf="faqs.length === 0">
+        <h5 class="card-header">No FAQs found</h5>
+        <div class="card-body">
+          <p>No frequently asked questions available.</p>
+        </div>
       </div>
     </div>
   </div>
