@@ -1,0 +1,50 @@
+
+  
+  .card .p-carousel {
+    padding: 1rem;
+  }
+  
+  .card .border-round {
+    border-radius: 12px;
+  }
+  
+  .card .shadow-2 {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card .text-secondary {
+    color: #6c757d;
+  }
+  
+  .image-container {
+    width: 150px; /* Adjust width as needed */
+    height: 150px; /* Adjust height as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%; /* Optional: makes the image circular */
+  }
+  
+  .image {
+    width: 100%; /* Adjust width to fit container */
+    height: 100%; /* Adjust height to fit container */
+    object-fit: cover; /* Ensures the image covers the container without distortion */
+  }
+  
+  .company-name {
+    color: #28a745; /* Green color */
+    font-size: 1.5rem; /* Larger font size */
+    font-weight: bold;
+  }
+  
+  .card-content {
+    transition: border-color 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    border: 1px solid transparent; /* Ensure there is an initial border to see the transition */
+  }
+  
+  .card-content:hover {
+    border-color: #28a745; /* Green border on hover */
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.2); /* Optional: shadow effect on hover */
+  }
+  

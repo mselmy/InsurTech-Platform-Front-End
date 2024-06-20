@@ -1,0 +1,117 @@
+.card {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 12px;
+}
+
+.tabview-custom .p-tabview-nav {
+  background-color: #f8f9fa;
+  border-radius: 12px;
+}
+
+.tabview-custom .p-tabview-selected .p-tabview-title {
+  color: #28a745; /* Green color for active tab */
+  font-size: 1.3rem; /* Slightly larger font for active tab */
+  border-bottom: none; /* Remove underline for active tab */
+  border: 2px solid #28a745; /* Green border for active tab */
+  border-radius: 8px; /* Optional: rounded corners for border */
+  padding: 0.2rem 0.5rem; /* Padding inside the border */
+  background-color: #f8f9fa; /* Background color for active tab */
+}
+
+.tabview-custom .p-tabview-title {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #6c757d;
+  border-bottom: none; /* Remove underline for inactive tabs */
+  text-decoration: none;
+}
+
+.flex.align-items-center.gap-2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.white-space-nowrap {
+  white-space: nowrap;
+}
+
+.ml-2 {
+  margin-left: 0.5rem;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+/* Ensure all tabs have a consistent background */
+.tabview-custom .p-tabview-panel {
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.p-tabview-nav-container {
+  background-color: #f8f9fa;
+}
+
+/* Style for the p-badge component */
+.p-badge {
+  background-color: #28a745; /* Green background */
+  color: #fff; /* White text */
+}
+
+/* Additional styles for category name and description */
+.category-name {
+  font-size: 1.5rem; /* Bigger font size */
+  font-weight: bold;
+  color: #28a745; /* Green color for selected name */
+  padding: 0.2rem 0.5rem;
+  border: solid 1px green;
+  border-radius: 8px;
+}
+
+.category-description {
+
+  font-size: 1.2rem; /* Bigger font size */
+  color: #6c757d; /* Text color */
+  padding: 0.5rem;
+}
+
+/* Style for the avatar to be bigger */
+.category-image {
+  width: 330px; /* Adjust width as needed */
+  height: 200px; /* Adjust height as needed */
+  display: block; /* Ensure image behaves as block element */
+  margin: auto; /* Center align the image */
+}
+
+.category-content {
+  text-align: center; /* Center-align content */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* Remove underline from anchor tags inside tabs */
+.tabview-custom .p-tabview-nav li a {
+  text-decoration: none;
+}
+
+/* Set background color for selected anchor tag */
+.tabview-custom .p-tabview-nav li.p-highlight > a {
+  background-color: #f8f9fa; /* Background color for selected tab */
+}
+
+/* New class for the selected category name */
+.selected-category-name {
+  background-color:  #f8f9fa;
+  
+}
+
