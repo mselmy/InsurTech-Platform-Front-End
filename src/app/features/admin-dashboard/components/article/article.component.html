@@ -111,3 +111,27 @@
         </ng-template>
     </p-table>
 </div>
+
+
+<!-- Add New Article Dialog -->
+<p-dialog header="New Article" [(visible)]="articleDialog" [style]="{width: '450px'}" [modal]="true" [closable]="false"
+    [draggable]="false" [resizable]="false" [contentStyle]="{'overflow': 'visible'}">
+    <div class="p-fluid">
+        <div class="p-field">
+            <label for="title">Title</label>
+            <input id="title" type="text" pInputText [(ngModel)]="clonedarticle.title" required autofocus />
+        </div>
+        <div class="p-field">
+            <label for="content">Content</label>
+            <p-editor id="content" [(ngModel)]="clonedarticle.content" [style]="{height: '200px'}"></p-editor>
+        </div>
+        <div class="p-field">
+            <label for="articleImg">Article Image URL</label>
+            <input id="articleImg" type="text" pInputText [(ngModel)]="clonedarticle.articleImg" />
+        </div>
+    </div>
+    <p-footer>
+        <p-button label="Cancel" icon="pi pi-times" class="p-button-text" (click)="closeDialog()"></p-button>
+        <p-button label="Save" icon="pi pi-check" class="p-button-text" (click)="SaveDialog()"></p-button>
+    </p-footer>
+</p-dialog>
