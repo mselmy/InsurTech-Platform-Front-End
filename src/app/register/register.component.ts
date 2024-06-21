@@ -28,6 +28,8 @@ import { RegistrationService } from '../services/registration.service'; // Adjus
 })
 export class RegisterComponent {
   registerForm: FormGroup;
+  processInProgress: string | null = null;
+  showPassword: boolean = false; // Property to toggle password visibility
 
   constructor(
     private fb: FormBuilder,
@@ -35,15 +37,22 @@ export class RegisterComponent {
   ) {
     this.registerForm = this.fb.group({
       name: ['', Validators.required],
-      userName: ['', [Validators.required]],
-      emailAddress: ['', [Validators.required, Validators.email]],
+      userName: ['', [Validators.required], [this.usernameValidator()]],
+      emailAddress: [
+        '',
+        [Validators.required, Validators.email],
+        [this.emailValidator()],
+      ],
       password: [
         '',
         [Validators.required, Validators.minLength(8), this.passwordValidator],
       ],
       taxNumber: ['', [Validators.required, Validators.pattern(/^\d{9}$/)]],
       location: ['', Validators.required],
-      phoneNumber: ['', [Validators.required, Validators.pattern(/^\d{11}$/)]],
+      phoneNumber: [
+        '',
+        [Validators.required, Validators.pattern(/^(011|012|010)\d{8}$/)],
+      ],
     });
   }
 
@@ -61,20 +70,54 @@ export class RegisterComponent {
     return null;
   }
 
+  usernameValidator(): AsyncValidatorFn {
+    return (
+      control: AbstractControl
+    ): Observable<{ [key: string]: any } | null> => {
+      return of(control.value).pipe(
+        debounceTime(300),
+        switchMap((username) =>
+          this.registrationService.checkUsernameAvailability(username)
+        ),
+        map((isAvailable) => (isAvailable ? null : { usernameTaken: true })),
+        catchError(() => of(null))
+      );
+    };
+  }
+
+  emailValidator(): AsyncValidatorFn {
+    return (
+      control: AbstractControl
+    ): Observable<{ [key: string]: any } | null> => {
+      return of(control.value).pipe(
+        debounceTime(300),
+        switchMap((email) =>
+          this.registrationService.checkEmailAvailability(email)
+        ),
+        map((isAvailable) => (isAvailable ? null : { emailTaken: true })),
+        catchError(() => of(null))
+      );
+    };
+  }
+
   onSubmit() {
     if (this.registerForm.valid) {
+      const email = this.registerForm.get('emailAddress')?.value;
+      this.processInProgress = `Processing your request. Please check your email (${email}) for further instructions.`;
+
       const registerData: RegisterData = this.registerForm.value;
       this.registrationService.registerUser(registerData).subscribe({
-        next: (response) => {
-          console.log('Registration successful', response);
+        next: () => {},
+        error: () => {
+          // Handle error if needed, currently doing nothing
         },
-        error: (error) => {
-          console.error('Registration failed', error);
-        },
-        complete: () => {
-          console.log('Request completed');
-        },
+        complete: () => {},
       });
     }
+  }
+
+  // Method to toggle password visibility
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
   }
 }

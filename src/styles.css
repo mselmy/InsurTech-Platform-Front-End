@@ -20,6 +20,14 @@
 /* Import Prime Icon */
 @import "../node_modules/primeicons/primeicons.css" layer(primeng);
 
+/* Import Quill CSS */
+@import "../node_modules/quill/dist/quill.core.css" layer(primeng);
+@import "../node_modules/quill/dist/quill.snow.css" layer(primeng);
+
+
+/* PrimeNG */
+/* @import "assets/layout/styles/layout/layout.scss"; */
+
 
 /* Custom styles to resolve conflicts and override defaults */
 @layer custom {
@@ -29,7 +37,6 @@
         padding: 15px;
         border-radius: 5px;
     }
-
 
     /* Example of custom button styles */
     .btn-colors {

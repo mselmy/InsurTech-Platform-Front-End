@@ -1,0 +1,105 @@
+	<div class="col-12">
+		<button pButton type="button" icon="pi pi-times" class="p-button-text" (click)="goBack()" style="color: #103e13;"></button>
+		<div class="card">
+			<h5>Home</h5>
+			<p-table #dt1 [value]="data" dataKey="id" [rows]="10" [rowHover]="true" styleClass="p-datatable-gridlines" [paginator]="true" [globalFilterFields]="['name','country.name','representative.name','status']" responsiveLayout="scroll">
+				<ng-template pTemplate="header">
+					<tr>
+						<th style="min-width: 9rem">
+							<div class="flex justify-content-between align-items-center">
+								Company
+							</div>
+						</th>
+						<th style="min-width: 9rem">
+							<div class="flex justify-content-between align-items-center">
+								yearlyCoverage
+							</div>
+						</th>
+						<th style="min-width: 6rem">
+							<div class="flex justify-content-between align-items-center">
+								Level
+							</div>
+						</th>
+						<th style="min-width: 6rem">
+							<div class="flex justify-content-between align-items-center">
+								quotation
+							</div>
+						</th>	
+						<th style="min-width: 8rem">
+							<div class="flex justify-content-between align-items-center">
+								WaterDamage
+							</div>
+						</th>
+						<th style="min-width: 8rem">
+							<div class="flex justify-content-between align-items-center">
+								GlassBreakage
+							</div>
+						</th>
+						<th style="min-width: 8rem">
+							<div class="flex justify-content-between align-items-center">
+								NaturalHazard
+							</div>
+						</th>
+						<th style="min-width: 8rem">
+							<div class="flex justify-content-between align-items-center">
+								AttemptedTheft
+							</div>
+						</th>
+						<th style="min-width: 8rem">
+							<div class="flex justify-content-between align-items-center">
+								FiresAndExplosion
+							</div>
+						</th>
+					</tr>
+				</ng-template>
+
+				<ng-template pTemplate="body" let-insurance>
+					<tr>
+						<td>
+							{{insurance.company}}
+						</td>
+						<td>
+							{{insurance.yearlyCoverage}}
+						</td>
+						<td>
+							{{insurance.level}}
+						</td>
+						<td>
+							{{insurance.quotation}}
+						</td>
+
+						
+						<td class="text-center">     
+							
+							<i class="pi" [ngClass]="{'true-icon pi-check-circle text-green-500': insurance.waterDamage, 'false-icon pi-times-circle text-pink-500': !insurance.waterDamage}"></i>
+						</td>
+						<td class="text-center">
+							<i class="pi" [ngClass]="{'true-icon pi-check-circle text-green-500': insurance.glassBreakage, 'false-icon pi-times-circle text-pink-500': !insurance.glassBreakage}"></i>
+						</td>
+						<td class="text-center">
+							<i class="pi" [ngClass]="{'true-icon pi-check-circle text-green-500': insurance.naturalHazard, 'false-icon pi-times-circle text-pink-500': !insurance.naturalHazard}"></i>
+						</td>
+						<td class="text-center">
+							<i class="pi" [ngClass]="{'true-icon pi-check-circle text-green-500': insurance.attemptedTheft, 'false-icon pi-times-circle text-pink-500': !insurance.attemptedTheft}"></i>
+						</td>
+						<td class="text-center">
+							<i class="pi" [ngClass]="{'true-icon pi-check-circle text-green-500': insurance.firesAndExplosion, 'false-icon pi-times-circle text-pink-500': !insurance.firesAndExplosion}"></i>
+						</td>
+					</tr>
+				</ng-template>
+
+				<ng-template pTemplate="emptymessage">
+					<tr>
+						<td colspan="9">No Plans found.</td>
+					</tr>
+				</ng-template>
+				<ng-template pTemplate="loadingbody">
+					<tr>
+						<td colspan="9">Loading Plans data. Please wait.</td>
+					</tr>
+				</ng-template>
+
+    		</p-table>
+		</div>
+
+	</div>
