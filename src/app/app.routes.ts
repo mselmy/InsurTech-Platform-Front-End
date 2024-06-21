@@ -8,13 +8,6 @@ import { UsersCompanyComponent } from './features/company-dashboard/Componants/u
 import { EditHealthInsurancePlanComponent } from './features/company-dashboard/Componants/Helathinsurance/edithealthinsurance/edithealthinsurance.component';
 import { EdithomeinsuranceComponent } from './features/company-dashboard/Componants/Homeinsurance/edithomeinsurance/edithomeinsurance.component';
 import { EditmotorinsuranceComponent } from './features/company-dashboard/Componants/Motorinsurance/editmotorinsurance/editmotorinsurance.component';
-
-export const routes: Routes = [
-    {path:'',component:companydashbordcomponant},
-    { path: 'edithealthinsurance/:id', component:EditHealthInsurancePlanComponent},
-    { path: 'edithomeinsurance/:id', component:EdithomeinsuranceComponent},
-    { path: 'editmotorinsurance/:id', component:EditmotorinsuranceComponent },
-  
 import { RegistrationRequestsComponent } from './features/admin-dashboard/components/registration-requests/registration-requests.component';
 import { HomeComponent } from './home/home.component';
 import { QuestionsFormComponent } from './features/apply-for-insurance/components/questions-form/questions-form.component';
@@ -59,5 +52,8 @@ export const routes: Routes = [
      
     ]
   },
-  { path: '', component: HomeComponent, pathMatch: 'full' },
+  {path:'dashboard',component:companydashbordcomponant},
+  { path: 'edithealthinsurance/:id', component:EditHealthInsurancePlanComponent},
+  { path: 'edithomeinsurance/:id', component:EdithomeinsuranceComponent},
+  { path: 'editmotorinsurance/:id', component:EditmotorinsuranceComponent },
 ];
