@@ -56,4 +56,5 @@ export const routes: Routes = [
   { path: 'edithealthinsurance/:id', component:EditHealthInsurancePlanComponent},
   { path: 'edithomeinsurance/:id', component:EdithomeinsuranceComponent},
   { path: 'editmotorinsurance/:id', component:EditmotorinsuranceComponent },
+  {path:"HomePage",component:HomeComponent},
 ];
