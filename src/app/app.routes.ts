@@ -45,7 +45,7 @@ export const routes: Routes = [
      
     ]
   },
-  {path:'',component:companydashbordcomponant},
+  {path:'dashboard',component:companydashbordcomponant},
   { path: 'edithealthinsurance/:id', component:EditHealthInsurancePlanComponent},
   { path: 'edithomeinsurance/:id', component:EdithomeinsuranceComponent},
   { path: 'editmotorinsurance/:id', component:EditmotorinsuranceComponent },

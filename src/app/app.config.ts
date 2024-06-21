@@ -9,6 +9,8 @@ import {  provideAnimations } from '@angular/platform-browser/animations';
 import { tokenInterceptor } from './core/interceptor/token.interceptor';
 
 
+
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
