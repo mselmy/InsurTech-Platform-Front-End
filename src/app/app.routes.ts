@@ -18,16 +18,7 @@ import{ResetpasswordComponent} from '../app/Account/resetpassword/resetpassword.
 
 
 export const routes: Routes = [
-  {
-    path: 'admin',
-    component: AppLayoutComponent,
-    children: [
-      {
-        path: 'registration-requests',
-        component: RegistrationRequestsComponent,
-      },
-    ],
-  },
+  { path: 'admin', loadChildren: () => import('./features/admin-dashboard/layout/app.layout.module').then(m => m.AppLayoutModule) },
   { path: 'apply-for-insurance', component: ApplyForInsuranceComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'register-user', component: RegisterUserComponent },
