@@ -1,0 +1,121 @@
+#Motor, #health, #home {
+    width: 50px;
+    height: 50px;
+    border-bottom: 2px solid #2acaac;
+    border-radius: 28px;
+    margin-left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: transparent; 
+    cursor: pointer; 
+}
+
+i {
+    color: #2acaac;
+    font-size: 2rem; 
+}
+
+h2 {
+    color: #4d413c;
+}
+
+hr {
+    height: 3px;
+    background-color: #4d413c;
+}
+tr:hover {
+    background-color: #184b40 !important; 
+    color: white;
+}
+tr{
+    border-bottom:1px solid;
+    font-size: 0.8rem;
+}
+th{
+
+    font-size: 0.8rem;
+    padding:0.5rem 0.5rem;
+    border-bottom:2px solid #2acaac;
+    background-color: white;
+}
+.rounded {
+    margin-top: 23px;
+}
+.head
+{
+    border-bottom:2px solid #2acaac;
+}
+.action
+{
+    font-size: 1rem;
+}
+.fa-trash-alt
+{
+    color:red;
+}
+.fa-edit 
+{
+    color:#2acaac;
+}
+.newprimary
+{
+    border: 1px solid #2acaac;
+    border-radius: 50%;
+
+}
+.newdanger
+{
+    border: 1px solid #ff8e8e;
+    border-radius: 50%;
+}
+.message
+{
+    padding-left: 40%;
+    color: #366836;
+    font-size: 1.3rem;
+
+}
+
+.action{
+     border-radius: 84px;
+    font-size:1rem;
+ 
+}
+
+.action2
+{
+    border-radius: 50%;
+    height: 28px;
+    width: 28px;
+}
+.basic-box {
+    background-color: #a9dfeb;
+    padding: 10px; 
+    display: inline-block;
+    border-radius: 10px;
+
+}
+  
+  .standard-box {
+    background-color: lightgreen;
+    padding: 10px; 
+    display: inline-block; 
+    border-radius: 10px;
+
+  }
+  
+  .premium-box {
+    background-color: gold;
+    padding: 10px;
+    display: inline-block; 
+    border-radius: 10px;
+  }
+  
+  .unknown-box {
+    background-color: lightgray;
+    padding: 10px; 
+    display: inline-block; 
+  }
+  
