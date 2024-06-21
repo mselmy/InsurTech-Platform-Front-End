@@ -44,13 +44,17 @@
 .form-group label i {
   margin-right: 5px;
 }
-#submitButton {
-  background-color: #201f1f;
-  color: rgb(249, 248, 248);
-  border-radius: 0;
+.btn-primary {
+  background-color: rgb(194, 0, 0);
+  color: white;
   width: 100%;
 }
-#submitButton:hover {
-  background-color: #f9f9f9;
-  color: rgb(88, 14, 14);
+
+.btn-success {
+  background-color: green;
+  color: white;
+  width: 100%;
+}
+.btn-success:hover {
+  background-color: #6fc683;
 }

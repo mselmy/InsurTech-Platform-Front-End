@@ -10,6 +10,7 @@
       "sourceRoot": "src",
       "prefix": "app",
       "architect": {
+        
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
@@ -95,6 +96,7 @@
               "node_modules/datatables.net/js/dataTables.js",
               "node_modules/datatables.net-responsive/js/dataTables.responsive.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+
             ]
           }
         }
