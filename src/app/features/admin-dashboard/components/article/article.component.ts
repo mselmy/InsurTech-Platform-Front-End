@@ -101,25 +101,24 @@ export class ArticleComponent implements OnInit
 
   deleteProduct(event: Event, id: number) {
     this.confirmationService.confirm({
-            target: event.target as EventTarget,
-            message: 'Do you want to delete this article?',
-            header: 'Delete Confirmation',
-            icon: 'pi pi-info-circle',
-            acceptButtonStyleClass:"p-button-danger p-button-text",
-            rejectButtonStyleClass:"p-button-text p-button-text",
-            acceptIcon:"none",
-            rejectIcon:"none",
+        target: event.target as EventTarget,
+        message: 'Do you want to delete this article?',
+        header: 'Delete Confirmation',
+        icon: 'pi pi-info-circle',
+        acceptButtonStyleClass:"p-button-danger p-button-text",
+        rejectButtonStyleClass:"p-button-text p-button-text",
+        acceptIcon:"none",
+        rejectIcon:"none",
 
-            accept: () => {
-                return this.service.deleteArticle(id).subscribe(() => {
-                  this.loadArticles();
-                  this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Article is deleted' });
-                });
-            },
-            reject: () => {
-                this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
-            }
-        });
-    
+        accept: () => {
+            return this.service.deleteArticle(id).subscribe(() => {
+              this.loadArticles();
+              this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Article is deleted' });
+            });
+        },
+        reject: () => {
+            this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
+        }
+    });
   }
 }
