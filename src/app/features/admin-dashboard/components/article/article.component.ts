@@ -14,6 +14,7 @@ import { TagModule } from 'primeng/tag';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { EditorModule } from 'primeng/editor';
+import { MessagesModule } from 'primeng/messages';
 
 
 
@@ -32,7 +33,8 @@ import { EditorModule } from 'primeng/editor';
     TagModule,
     DropdownModule,
     InputTextareaModule,
-    EditorModule
+    EditorModule,
+    MessagesModule
   ],
   providers: [MessageService, EditableRow],
   templateUrl: './article.component.html',
@@ -83,8 +85,5 @@ export class ArticleComponent implements OnInit
       
   }
 
-  test(data: any) {
-    console.log(data);
-  }
 
 }

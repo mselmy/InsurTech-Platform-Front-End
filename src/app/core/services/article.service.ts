@@ -21,4 +21,8 @@ export class ArticleService {
   updateArticle(article: article) {
     return this.http.put(`${BASE_URL}/articles/${article.id}`, article)
   }
+
+  deleteArticle(id: number) {
+    return this.http.delete(`${BASE_URL}/articles/${id}`)
+  }
 }
