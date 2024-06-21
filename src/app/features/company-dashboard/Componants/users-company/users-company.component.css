@@ -1,0 +1,13 @@
+h2{
+    color:#0a3b1d;
+    padding: 10px;
+}
+.card
+{
+    padding: 15px;
+    width:28vw;
+    border: 2px soild green;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+} 

@@ -1,0 +1,29 @@
+.col {
+    background-color: #ffffff; 
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    height: 16vh;
+    margin-left: 21px;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+#nrequest {
+    border-left: 4px solid #0a3b1d;
+    color: #0a3b1d;
+}
+
+#nmotor {
+    border-left: 4px solid #187c3e;
+    color: #187c3e;
+}
+
+#nhome {
+    border-left: 4px solid #2cd46d;
+    color: #2cd46d;
+}
+
+#nhealth {
+    border-left: 4px solid #27c263;
+    color: #27c263;
+}
