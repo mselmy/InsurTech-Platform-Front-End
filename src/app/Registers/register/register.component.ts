@@ -11,17 +11,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { debounceTime, switchMap, catchError, map } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
-import { RegisterData } from '../services/iregistration.service'; // Adjust the path as necessary
-import { RegistrationService } from '../services/registration.service'; // Adjust the path as necessary
+import { RegisterData } from '../../services/iregistration.service'; // Adjust the path as necessary
+import { RegistrationService } from '../../services/registration.service'; // Adjust the path as necessary
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: [
-    './register.component.css',
-    './fonts/font-awesome-4.7.0/css/font-awesome.min.css',
-    './fonts/iconic/css/material-design-iconic-font.css',
-  ],
+  styleUrls: ['./register.component.css'],
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
   providers: [RegistrationService],

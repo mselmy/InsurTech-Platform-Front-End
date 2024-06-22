@@ -12,17 +12,13 @@ import { CalendarModule } from 'primeng/calendar';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
-import { registerUser } from '../services/iregistration-user.service'; // Adjust the path as necessary
-import { RegistrationUserService } from '../services/registration-user.service'; // Adjust the path as necessary
+import { registerUser } from '../../services/iregistration-user.service'; // Adjust the path as necessary
+import { RegistrationUserService } from '../../services/registration-user.service'; // Adjust the path as necessary
 
 @Component({
   selector: 'app-register',
   templateUrl: './register-user.component.html',
-  styleUrls: [
-    './register-user.component.css',
-    '../register/fonts/font-awesome-4.7.0/css/font-awesome.min.css',
-    '../register/fonts/iconic/css/material-design-iconic-font.css',
-  ],
+  styleUrls: ['./register-user.component.css'],
   standalone: true,
   imports: [
     CommonModule,
