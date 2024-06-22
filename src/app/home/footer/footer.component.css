@@ -1,8 +1,9 @@
 .footer {
-    background-color: #e5eaf2;
+    background-color:#10B981 ;
     padding-top: 20px;
     position: relative;
     overflow: hidden;
+    color: rgb(4, 37, 33);
 }
 
 .footer__logo a {
@@ -75,7 +76,7 @@
 }
 
 .footer__copyright {
-    display: block;
+    display: block; 
     font-size: 14px;
     color: #4e5d78;
     margin-top: 20px;
