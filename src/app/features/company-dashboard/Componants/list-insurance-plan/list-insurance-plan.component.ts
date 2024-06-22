@@ -49,7 +49,7 @@ export class ListInsurancePlanComponent implements OnInit, OnDestroy {
   visible: boolean = false;
   VisibleEdit: boolean = false;
   public flag: number = 1;
-  private Id: number = 1;
+  private Id = JSON.parse(localStorage.getItem('userData') || '{id: 1}').id;
   subscriptions: Subscription[] = [];
   selectedInsurance: EditMotorInsurance = new EditMotorInsurance(0, 0, 0, 0, "", 0, 0, 0, 0, 0);
 

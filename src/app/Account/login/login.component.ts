@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
   
       this.loginService.googlelog(googleObj).subscribe({
         next: (data) => {
-          sessionStorage.setItem('userData', JSON.stringify(data));
+          localStorage.setItem('userData', JSON.stringify(data));
           console.log('Login successful:', data);
           if(data.userType=="0"){
             console.log("customer")
@@ -87,18 +87,19 @@ export class LoginComponent implements OnInit {
 
       this.loginService.login(email, password).subscribe(
         {next:(data)=>{
-          sessionStorage.setItem('userData', JSON.stringify(data));
+          localStorage.setItem('userData', JSON.stringify(data));
+          localStorage.setItem('token', data.token);
           if(data.userType=="0"){
             console.log("customer")
-          //  this.router.navigate(['/dashboard']);  // Navigate to the desired route
+           this.router.navigate(['/dashboard']);  // Navigate to the desired route
           }
           else if(data.userType=="1"){
             console.log("company")
-          //  this.router.navigate(['/dashboard']);  // Navigate to the desired route
+           this.router.navigate(['/dashboard']);  // Navigate to the desired route
           }
           else if(data.userType=="2"){
             console.log("admin")
-            //  this.router.navigate(['/dashboard']);  // Navigate to the desired route
+             this.router.navigate(['/dashboard']);  // Navigate to the desired route
             
           }
          
