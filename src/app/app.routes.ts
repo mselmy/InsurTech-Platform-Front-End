@@ -3,7 +3,6 @@ import { companydashbordcomponant } from './features/company-dashboard/company-d
 import { EditHealthInsurancePlanComponent } from './features/company-dashboard/Componants/Helathinsurance/edithealthinsurance/edithealthinsurance.component';
 import { EdithomeinsuranceComponent } from './features/company-dashboard/Componants/Homeinsurance/edithomeinsurance/edithomeinsurance.component';
 import { EditmotorinsuranceComponent } from './features/company-dashboard/Componants/Motorinsurance/editmotorinsurance/editmotorinsurance.component';
-import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './Registers/register/register.component';
 import { RegisterUserComponent } from './Registers/register-user/register-user.component';
 import { ApplyForInsuranceComponent } from './features/apply-for-insurance/apply-for-insurance.component';
@@ -19,6 +18,7 @@ import{ResetpasswordComponent} from '../app/Account/resetpassword/resetpassword.
 import { ApplyForInsuranceV2Component } from './features/apply-for-insurance-v2/apply-for-insurance-v2.component';
 import { QuestionsListComponent } from './features/apply-for-insurance-v2/questions-list/questions-list.component';
 import { authAdminGuard } from './core/guards/authAdmin.guard';
+import { HomeComponent } from './features/home/home.component';
 
 
 export const routes: Routes = [

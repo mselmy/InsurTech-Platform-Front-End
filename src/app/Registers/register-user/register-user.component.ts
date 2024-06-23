@@ -19,11 +19,11 @@ import { ToastModule } from 'primeng/toast';
 import { InputMaskModule } from 'primeng/inputmask';
 import { CalendarModule } from 'primeng/calendar';
 import { MessageService } from 'primeng/api';
-import { RegistrationUserService } from '../../services/registration-user.service';
+import { RegistrationUserService } from '../../core/services/registration-user.service';
 import { debounceTime, switchMap, catchError, map } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
-import { registerUser } from '../../services/iregistration-user.service';
+import { registerUser } from '../../core/services/iregistration-user.service';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({

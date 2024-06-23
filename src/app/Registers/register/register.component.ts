@@ -12,8 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { debounceTime, switchMap, catchError, map } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
-import { RegisterData } from '../../services/iregistration.service'; // Adjust the path as necessary
-import { RegistrationService } from '../../services/registration.service'; // Adjust the path as necessary
+import { RegisterData } from '../../core/services/iregistration.service'; // Adjust the path as necessary
+import { RegistrationService } from '../../core/services/registration.service'; // Adjust the path as necessary
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { InputMaskModule } from 'primeng/inputmask';
