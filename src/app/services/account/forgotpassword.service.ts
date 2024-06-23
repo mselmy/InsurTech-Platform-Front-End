@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Forgotpassword } from '../../models/Account/forgotpassword';
-import{Resetpassword} from '../../models/Account/resetpassword'
+import { Forgotpassword } from '../../core/models/forgotpassword';
+import{Resetpassword} from '../../core/models/resetpassword'
 import { BASE_URL } from '../../core/base-url';
 
 @Injectable({

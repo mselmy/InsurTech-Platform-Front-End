@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import {LoginService} from '../../services/account/login.service'
 import { RouterLink ,Router } from '@angular/router';
-import { Googlelogin } from '../../models/Account/googlelogin';
+import { Googlelogin } from '../../core/models/googlelogin';
 import Swal from 'sweetalert2';
 
 
