@@ -32,7 +32,7 @@ export class HomeinsuranceComponent {
     attemptedTheft: new FormControl(null, [Validators.required, Validators.min(0), Validators.max(1.7976931348623157e+308)]),
     firesAndExplosion: new FormControl(null, [Validators.required, Validators.min(0), Validators.max(1.7976931348623157e+308)])
   });
-  userId: string = "1"; // Assuming this is set to a default value or retrieved from a service
+  userId = JSON.parse(localStorage.getItem('userData') || '{id: 1}').id;
 
   constructor(public homeinsuranceService: HomeinsuranceService,public route : ActivatedRoute,private messageService: MessageService,
   ) {}

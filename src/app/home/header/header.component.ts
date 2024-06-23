@@ -1,5 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener,Renderer2,ElementRef } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RippleModule } from 'primeng/ripple';
 
 @Component({
   selector: 'app-header',
@@ -10,10 +13,12 @@ import { Component, HostListener } from '@angular/core';
 })
 export class HeaderComponent {
   isScrolled = false;
+  constructor(private renderer: Renderer2, private elementRef: ElementRef) {}
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
     // Check if the scroll position is greater than 500 pixels
-    this.isScrolled = window.scrollY > 60;
+    this.isScrolled = window.scrollY > 20;
+    
   }
 }
