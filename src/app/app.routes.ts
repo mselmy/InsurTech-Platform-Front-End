@@ -3,8 +3,8 @@ import { companydashbordcomponant } from './features/company-dashboard/company-d
 import { EditHealthInsurancePlanComponent } from './features/company-dashboard/Componants/Helathinsurance/edithealthinsurance/edithealthinsurance.component';
 import { EdithomeinsuranceComponent } from './features/company-dashboard/Componants/Homeinsurance/edithomeinsurance/edithomeinsurance.component';
 import { EditmotorinsuranceComponent } from './features/company-dashboard/Componants/Motorinsurance/editmotorinsurance/editmotorinsurance.component';
-import { RegisterComponent } from './Registers/register/register.component';
-import { RegisterUserComponent } from './Registers/register-user/register-user.component';
+import { RegisterComponent } from './features/register/register.component';
+import { RegisterUserComponent } from './features/register-user/register-user.component';
 import { ApplyForInsuranceComponent } from './features/apply-for-insurance/apply-for-insurance.component';
 import { DisplayComponent } from './Categories/display/display.component';
 import { SubCategoryHealthComponent } from './Categories/sub-Healthcategory/sub-category.component';
