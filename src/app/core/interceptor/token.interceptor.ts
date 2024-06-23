@@ -8,5 +8,7 @@ export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
     });
     return next(clonedreq);
   }
-  return next(req);
+  else{
+    return next(req);
+  }
 };

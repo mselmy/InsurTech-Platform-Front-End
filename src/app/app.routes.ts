@@ -18,6 +18,7 @@ import {ForgetPasswordComponent} from '../app/Account/forget-password/forget-pas
 import{ResetpasswordComponent} from '../app/Account/resetpassword/resetpassword.component'
 import { ApplyForInsuranceV2Component } from './features/apply-for-insurance-v2/apply-for-insurance-v2.component';
 import { QuestionsListComponent } from './features/apply-for-insurance-v2/questions-list/questions-list.component';
+import { authAdminGuard } from './core/guards/authAdmin.guard';
 
 
 export const routes: Routes = [
@@ -27,11 +28,13 @@ export const routes: Routes = [
       import('./features/admin-dashboard/layout/app.layout.module').then(
         (m) => m.AppLayoutModule
       ),
+      canActivate: [authAdminGuard]
   },
   { path: 'apply-for-insurance', component: ApplyForInsuranceComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'register-user', component: RegisterUserComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'login/:authorization', component: LoginComponent },
   { path: 'forgetpassword', component: ForgetPasswordComponent },
   { path: 'resetpassword', component: ResetpasswordComponent },
   {
