@@ -1,3 +1,27 @@
+.container {
+  background: linear-gradient(to right, rgb(71, 255, 163), rgb(255, 255, 255));
+  border-radius: 15px;
+  padding: 30px;
+  width: 100%;
+}
+
+.card {
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(121, 228, 137, 0.2);
+}
+
+.card-body {
+  padding: 40px;
+}
+
+.logo {
+  width: 100px;
+  height: auto;
+}
+
+.error-message {
+  font-size: 0.875rem;
+}
 /* Animated background */
 body {
   background: linear-gradient(
