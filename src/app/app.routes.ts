@@ -17,6 +17,9 @@ import { AppComponent } from './app.component';
 import {LoginComponent} from '../app/Account/login/login.component'
 import {ForgetPasswordComponent} from '../app/Account/forget-password/forget-password.component'
 import{ResetpasswordComponent} from '../app/Account/resetpassword/resetpassword.component'
+import { ApplyForInsuranceV2Component } from './features/apply-for-insurance-v2/apply-for-insurance-v2.component';
+import { QuestionCardComponent } from './features/apply-for-insurance-v2/question-card/question-card.component';
+import { QuestionsListComponent } from './features/apply-for-insurance-v2/questions-list/questions-list.component';
 
 
 export const routes: Routes = [
@@ -53,4 +56,18 @@ export const routes: Routes = [
   { path: 'edithomeinsurance/:id', component:EdithomeinsuranceComponent},
   { path: 'editmotorinsurance/:id', component:EditmotorinsuranceComponent },
   {path:"HomePage",component:HomeComponent},
+  {
+    path:"apply-for-insuranceV2",
+    component:ApplyForInsuranceV2Component,
+    // children:[
+    //   {
+    //     path:"Question/:id",
+    //     component:QuestionCardComponent
+    //   }
+    // ]
+  },
+  {
+    path:"questions-list/:id",
+    component:QuestionsListComponent
+  }
 ];
