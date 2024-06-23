@@ -19,6 +19,7 @@ import { authAdminGuard } from './core/guards/authAdmin.guard';
 import { HomeComponent } from './features/home/home.component';
 import { CompanyInsurancePlanComponent } from './features/company/company-insurance-plan/company-insurance-plan.component';
 import { SubCategoryHomeComponent } from './features/categories/sub-Homecategory/sub-category.component';
+import { InsurancePlanCardComponent } from './features/apply-for-insurance-v2/insurance-plan-card/insurance-plan-card.component';
 
 
 export const routes: Routes = [
@@ -73,6 +74,10 @@ export const routes: Routes = [
   {
     path:"questions-list/:id",
     component:QuestionsListComponent
+  },
+  {
+    path:"insurancePlanCard",
+    component:InsurancePlanCardComponent
   },
   { path: '', component: HomeComponent, pathMatch: 'full' }
 ];

@@ -1,0 +1,83 @@
+<div class="pricing-card">
+    <div class="parent-card">
+      <div class="card">
+        <div class="title"><h2>Basic</h2></div>
+        <div class="price">
+          <h5>EGP 12,000 <span>/year</span></h5>
+          <span>EGP 1,000 /month</span>
+        </div>
+        <div class="options">
+          <!-- Always visible items -->
+          <li>
+            <p>Fires and Explosions</p>
+            <h3>EGP 12,000,000</h3>
+          </li>
+          <li>
+            <p>
+              Burglary or Attempted Theft
+              <i class="fa-solid fa-circle-question helpIcon"></i>
+            </p>
+            <h3>EGP 3,000,000</h3>
+          </li>
+          <li>
+            <p>
+              Water Damage
+              <i class="fa-solid fa-circle-question helpIcon"></i>
+            </p>
+            <h3>EGP 12,000,000</h3>
+          </li>
+  
+          <!-- Additional items that toggle visibility -->
+          @if(showMore){
+          <li>
+            <p>
+              Natural Hazard
+              <i class="fa-solid fa-circle-question helpIcon"></i>
+            </p>
+            <h3>EGP 6,000,000</h3>
+          </li>
+          <li>
+            <p>Glass Breakage</p>
+            <h3>EGP 75,000</h3>
+          </li>
+          <li>
+            <p>
+              Loss of Rent
+              <i class="fa-solid fa-circle-question helpIcon"></i>
+            </p>
+            <h3>EGP 30,000</h3>
+          </li>
+          <li>
+            <p>
+              Contents Temporary Removal
+              <i class="fa-solid fa-circle-question helpIcon"></i>
+            </p>
+            <h3>EGP 300,000</h3>
+          </li>
+          <li>
+            <p>
+              Debris Removal
+              <i class="fa-solid fa-circle-question helpIcon"></i>
+            </p>
+            <h3>EGP 600,000</h3>
+          </li>
+          <li>
+            <p>
+              Professional Interior Designer Fees
+              <i class="fa-solid fa-circle-question helpIcon"></i>
+            </p>
+            <h3>EGP 400,000</h3>
+          </li>
+          }
+          <!-- Toggle link -->
+          <li>
+            <h3 class="more" (click)="toggleMore()">
+              {{ showMore ? "See Less" : "See More" }}
+            </h3>
+          </li>
+        </div>
+        <button class="btn w-100" >Choose Insurance plan</button>
+      </div>
+    </div>
+  </div>
+  
