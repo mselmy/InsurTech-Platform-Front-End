@@ -20,6 +20,12 @@
 /* Import Prime Icon */
 @import "../node_modules/primeicons/primeicons.css" layer(primeng);
 
+/* Import font awesome Don't delete plz */
+@import "../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
+
+/* @import "primeicons/primeicons.css"; */
+
+
 /* Import Quill CSS */
 @import "../node_modules/quill/dist/quill.core.css" layer(primeng);
 @import "../node_modules/quill/dist/quill.snow.css" layer(primeng);

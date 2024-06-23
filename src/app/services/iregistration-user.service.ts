@@ -4,6 +4,6 @@ export interface registerUser {
   emailAddress: string;
   password: string;
   nationalId: string;
-  birthDate: Date;
+  birthDate: string;
   phoneNumber: string;
 }

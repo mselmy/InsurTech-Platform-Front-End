@@ -15,7 +15,7 @@ export class CardsComponent implements OnInit, OnDestroy {
   public HomeNumber: number = 0; 
   public MotorNumber: number = 0;
   public RequestNumber: number = 0;
-  private Id: number = 1;
+  private Id =JSON.parse(localStorage.getItem('userData') || '{id: 1}').id;  
   subscriptions: Subscription[] = []; 
 
   constructor(public CompanyServices: CompanyService) { }
