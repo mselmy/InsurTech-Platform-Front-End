@@ -1,0 +1,17 @@
+
+
+<div class="p-card-body">
+    <!-- Add question header here -->
+    <h1>{{ Question?.body }}</h1>
+    <div class="p-field">
+
+        <input  id="answer" type="text" [(ngModel)]="answer" class="p-inputtext w-50 inpAsh" />
+    </div>
+
+    <div class="p-field">
+      <button class="btn btn-info btnAsh" [disabled]="answer.length==0" type="button" label="Next" (click)="AddAnswer()">
+          {{this.questionService.questIndex == this.questionService.questionArr.length - 1? 'Submit': 'NextQuestion'}}
+      </button>
+    </div>
+
+  </div>
