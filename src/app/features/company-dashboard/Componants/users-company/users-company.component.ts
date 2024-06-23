@@ -22,7 +22,7 @@ export class UsersCompanyComponent implements OnInit {
   // ];
 
  public UsersList: CompanyUsers[] = [];
-  Id = 1;
+  Id = JSON.parse(localStorage.getItem('userData') || '{id: 1}').id; 
 
   constructor(public companyService: CompanyService) {}
 

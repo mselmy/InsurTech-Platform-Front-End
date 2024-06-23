@@ -17,6 +17,7 @@ import { EditorModule } from 'primeng/editor';
 import { MessagesModule } from 'primeng/messages';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DialogModule } from 'primeng/dialog';
 
 
 
@@ -38,7 +39,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     EditorModule,
     MessagesModule,
     ToolbarModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    DialogModule
   ],
   providers: [ConfirmationService, MessageService, EditableRow],
   templateUrl: './article.component.html',
@@ -51,6 +53,9 @@ export class ArticleComponent implements OnInit
   cols: any[] = [];
   loading: boolean = true;
   clonedarticle: article = { id: 0, title: '', content: '', articleImg: ''};
+  submitted: boolean = false;
+  statuses!: any[];
+  articleDialog: boolean = false;
 
   constructor(
     private service: ArticleService,
@@ -88,10 +93,6 @@ export class ArticleComponent implements OnInit
 
   onRowEditCancel(article: article, index: number) {}
 
-  openNew() {
-    this.clonedarticle = { id: 0, title: '', content: '', articleImg: ''};
-  }
-
   addArticle(article: article) {
     return this.service.addArticle(article).subscribe(() => {
       this.loadArticles();
@@ -120,5 +121,21 @@ export class ArticleComponent implements OnInit
             this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
         }
     });
+  }
+
+  openNew() {
+    this.clonedarticle = {id: 0, title: '', content: '', articleImg: ''};
+    this.submitted = false;
+    this.articleDialog = true;
+  }
+
+  closeDialog() {
+    this.articleDialog = false;
+    this.submitted = false;
+  }
+
+  SaveDialog(){
+    this.addArticle(this.clonedarticle);
+    this.articleDialog = false;
   }
 }

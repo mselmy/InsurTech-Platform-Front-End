@@ -19,7 +19,7 @@ export class EditHealthInsurancePlanComponent implements OnInit, OnDestroy {
   Edithealthform!: FormGroup;
   sub!: Subscription;
   InsurancePlanLevel = InsurancePlanLevel; 
-  comanyId:string="1";
+  comanyId:string="1cd5e747-279c-4c59-87a5-58773367181f";
 
   constructor(
     public healthService: HealthinsuranceService,
@@ -27,6 +27,7 @@ export class EditHealthInsurancePlanComponent implements OnInit, OnDestroy {
   public router:Router) {}
 
   ngOnInit(): void {
+    
     this.sub = this.activateRoute.params.subscribe(param => {
       this.healthService.getById(param['id']).subscribe(
         {
@@ -107,7 +108,7 @@ export class EditHealthInsurancePlanComponent implements OnInit, OnDestroy {
               showConfirmButton: false,
               timer: 1500
             });
-            this.router.navigate(['']);
+            this.router.navigate(['/dashboard']);
 
             
           },

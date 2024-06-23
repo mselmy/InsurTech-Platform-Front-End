@@ -104,7 +104,7 @@ ngOnInit(): void {
 
   SwitchRequestStatus(id: number){
     this.service.GetById(id).subscribe((data:any) => {
-      if(data === "approved"){
+      if(data.status === "approved"){
         this.RejectRequest(id);
       } else {
         this.AcceptRequest(id);

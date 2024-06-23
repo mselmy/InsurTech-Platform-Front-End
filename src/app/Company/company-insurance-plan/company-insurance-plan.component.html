@@ -5,26 +5,20 @@
         <!-- <h2 class="text-900 font-normal mb-2">Insurance Plan For</h2> -->
       </div>
 
-      <div
-        class="col-4 p-0 md:p-3"
-        *ngFor="let company of companies; let companyIndex = index"
-      >
+      <div class="col-4 p-0 md:p-3" *ngFor="let company of companies; let companyIndex = index">
         <div
           class="p-3 flex flex-column border-200 pricing-card cursor-pointer border-2 hover:border-primary transition-duration-300 transition-all"
-          style="border-radius: 10px"
-        >
+          style="border-radius: 10px">
           <h3 class="text-900 text-center my-5">{{ company.name }}</h3>
         </div>
       </div>
 
       <div class="grid justify-content-between mt-8 md:mt-0">
-        <div  class="col-12 lg:col-4 p-0 md:p-3 mt-4 md:mt-0"
-        *ngFor="let Insurance of insurancePlans; let insuranceIndex = index">
+        <div class="col-12 lg:col-4 p-0 md:p-3 mt-4 md:mt-0"
+          *ngFor="let Insurance of insurancePlans; let insuranceIndex = index">
           <div
             class="p-3 flex flex-column border-200 pricing-card cursor-pointer border-2 hover:border-primary transition-duration-300 transition-all"
-            style="border-radius: 10px"
-           
-          >
+            style="border-radius: 10px">
             <h3 class="text-900 text-center my-5">
               {{ Insurance.insurancePlan.categoryName }}
             </h3>
@@ -38,16 +32,11 @@
               <span class="text-600">Number Of Users:</span>
               <span class="text-5xl font-bold mr-2 text-900">{{
                 Insurance.usernames.length
-              }}</span>
+                }}</span>
               <!-- Assuming `index` here refers to the index of `insurancePlans` array -->
-              <button
-                pButton
-                pRipple
-                label="User Info"
+              <button pButton pRipple label="User Info"
                 class="buttonColor block mx-auto mt-4 p-button-rounded border-none ml-3 font-light line-height-2 bg-500 text-white"
-                style="background-color: #1b5e1f"
-                (click)="showUserInfo(insuranceIndex)"
-              ></button>
+                style="background-color: #1b5e1f" (click)="showUserInfo(insuranceIndex)"></button>
             </div>
           </div>
         </div>
@@ -58,41 +47,24 @@
 
 <p-dialog [(visible)]="visible">
   <ng-template pTemplate="headless">
-    <button
-      pButton
-      type="button"
-      icon="pi pi-times"
-      class="p-button-text"
-      style="color: #1b5e1f"
-
-      (click)="visible = false"
-    ></button>
+    <button pButton type="button" icon="pi pi-times" class="p-button-text" style="color: #1b5e1f"
+      (click)="visible = false"></button>
     <div class="p-d-flex p-ai-center p-jc-between">
-      <div
-        class="w-full surface-card py-8 px-5 sm:px-8 flex flex-column align-items-center"
-        style="border-radius: 53px"
-      >
+      <div class="w-full surface-card py-8 px-5 sm:px-8 flex flex-column align-items-center"
+        style="border-radius: 53px">
         <span class="text-700 font-bold text-3xl">Total Users:</span>
         <h1 class="font-bold text-3xl lg:text-3xl mb-2">{{ totalUsers }}</h1>
-        <div class="text-700 font-bold text-3xl lg:text-3xl mb-2"
-       >
+        <div class="text-700 font-bold text-3xl lg:text-3xl mb-2">
           Users:
         </div>
         <div *ngFor="let user of users">
-          <a
-            class="w-full flex align-items-center py-5 border-300 border-bottom-1"
-             
-          >
-            <span
-              class="flex justify-content-center align-items-center border-round"
-              style="background-color: #c8e6c9 ; height: 3.5rem; width: 3.5rem"
-            
-
-            ></span>
+          <a class="w-full flex align-items-center py-5 border-300 border-bottom-1">
+            <span class="flex justify-content-center align-items-center border-round"
+              style="background-color: #c8e6c9 ; height: 3.5rem; width: 3.5rem"></span>
             <span class="ml-4 flex flex-column">
               <span class="text-900 lg:text-xl font-medium mb-0 block">{{
                 user
-              }}</span>
+                }}</span>
             </span>
           </a>
         </div>
@@ -100,6 +72,3 @@
     </div>
   </ng-template>
 </p-dialog>
-
-
-
