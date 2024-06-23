@@ -22,9 +22,6 @@ export class LoginComponent implements OnInit {
     google.accounts.id.initialize({
       client_id:'720571637733-0dkqjkrolhqs2iq1vbbb4bigmacf4sje.apps.googleusercontent.com',
       callback:(res:any)=>this.handlelogin(res)
-      
-
-      
     })
 
     google.accounts.id.renderButton(document.getElementById("google-btn"),{
@@ -90,8 +87,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('userData', JSON.stringify(data));
           localStorage.setItem('token', data.token);
           if(data.userType=="0"){
-            console.log("customer")
-           this.router.navigate(['/dashboard']);  // Navigate to the desired route
+           this.router.navigate(['']);  // Navigate to the desired route
           }
           else if(data.userType=="1"){
             console.log("company")
@@ -99,11 +95,9 @@ export class LoginComponent implements OnInit {
           }
           else if(data.userType=="2"){
             console.log("admin")
-             this.router.navigate(['/dashboard']);  // Navigate to the desired route
+             this.router.navigate(['/admin']);  // Navigate to the desired route
             
           }
-         
-          console.log('Login successful:', data);
         },
         error:(error) => {
           Swal.fire({
