@@ -6,9 +6,10 @@ import { EditmotorinsuranceComponent } from './features/company-dashboard/Compon
 import { RegisterComponent } from './features/register/register.component';
 import { RegisterUserComponent } from './features/register-user/register-user.component';
 import { ApplyForInsuranceComponent } from './features/apply-for-insurance/apply-for-insurance.component';
-import { DisplayComponent } from './features/categories/display/display.component';
-import { SubCategoryHealthComponent } from './features/categories/sub-Healthcategory/sub-category.component';
-import { SubCategoryMotorComponent } from './features/categories/sub-Motorcategory/sub-category.component';
+import { DisplayComponent } from './features/Categories/display/display.component';
+import { SubCategoryHealthComponent } from './features/Categories/sub-Healthcategory/sub-category.component';
+import { SubCategoryHomeComponent } from './features/Categories/sub-Homecategory/sub-category.component';
+import { SubCategoryMotorComponent } from './features/Categories/sub-Motorcategory/sub-category.component';
 import { AppComponent } from './app.component';
 import {LoginComponent} from './features/Account/login/login.component'
 import {ForgetPasswordComponent} from './features/Account/forget-password/forget-password.component'
@@ -17,9 +18,9 @@ import { ApplyForInsuranceV2Component } from './features/apply-for-insurance-v2/
 import { QuestionsListComponent } from './features/apply-for-insurance-v2/questions-list/questions-list.component';
 import { authAdminGuard } from './core/guards/authAdmin.guard';
 import { HomeComponent } from './features/home/home.component';
-import { CompanyInsurancePlanComponent } from './features/company/company-insurance-plan/company-insurance-plan.component';
-import { SubCategoryHomeComponent } from './features/categories/sub-Homecategory/sub-category.component';
-
+//import { CompanyInsurancePlanComponent } from './features/company/company-insurance-plan/company-insurance-plan.component';
+import { CompanyInsurancePlanComponent } from './features/Company/company-insurance-plan/company-insurance-plan.component';
+import { FAQComponent } from './features/faq/faq.component';
 
 export const routes: Routes = [
   {
@@ -38,19 +39,27 @@ export const routes: Routes = [
   { path: 'forgetpassword', component: ForgetPasswordComponent },
   { path: 'resetpassword', component: ResetpasswordComponent },
   {
-    path: 'Insurance',
+    path: 'insurance',
     component: AppComponent,
     children: [
-      { path: 'Health', component: SubCategoryHealthComponent },
-      { path: 'Home', component: SubCategoryHomeComponent },
-      { path: 'Motor', component: SubCategoryMotorComponent },
       { path: '', component: DisplayComponent },
+      { path: 'health', component: SubCategoryHealthComponent },
+      { path: 'home', component: SubCategoryHomeComponent },
+      { path: 'motor', component: SubCategoryMotorComponent },
     ],
   },
   {
-    path: 'CompanyInsurance',
+    path: 'companyinsurance',
     component: AppComponent,
     children: [{ path: '', component: CompanyInsurancePlanComponent }],
+  },
+  {
+    path: 'faqs',
+    component: AppComponent,
+    children: [
+      { path: '', component: FAQComponent },
+     
+    ]
   },
   {
     path:'dashboard',component:companydashbordcomponant,
