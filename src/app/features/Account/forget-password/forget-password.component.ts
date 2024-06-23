@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ForgotpasswordService } from '../../core/services/account/forgotpassword.service';
+import { ForgotpasswordService } from '../../../core/services/account/forgotpassword.service';
 import { CommonModule } from '@angular/common';
 import { Router,ActivatedRoute } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';

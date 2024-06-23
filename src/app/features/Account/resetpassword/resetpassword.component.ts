@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router,ActivatedRoute } from '@angular/router';
-import { ForgotpasswordService } from '../../core/services/account/forgotpassword.service';
+import { ForgotpasswordService } from '../../../core/services/account/forgotpassword.service';
 import Swal from 'sweetalert2';
 
 @Component({

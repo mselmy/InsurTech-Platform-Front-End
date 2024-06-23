@@ -6,19 +6,19 @@ import { EditmotorinsuranceComponent } from './features/company-dashboard/Compon
 import { RegisterComponent } from './features/register/register.component';
 import { RegisterUserComponent } from './features/register-user/register-user.component';
 import { ApplyForInsuranceComponent } from './features/apply-for-insurance/apply-for-insurance.component';
-import { DisplayComponent } from './Categories/display/display.component';
-import { SubCategoryHealthComponent } from './Categories/sub-Healthcategory/sub-category.component';
-import { SubCategoryHomeComponent } from './Categories/sub-Homecategory/sub-category.component';
-import { SubCategoryMotorComponent } from './Categories/sub-Motorcategory/sub-category.component';
-import { CompanyInsurancePlanComponent } from './Company/company-insurance-plan/company-insurance-plan.component';
+import { DisplayComponent } from './features/categories/display/display.component';
+import { SubCategoryHealthComponent } from './features/categories/sub-Healthcategory/sub-category.component';
+import { SubCategoryMotorComponent } from './features/categories/sub-Motorcategory/sub-category.component';
 import { AppComponent } from './app.component';
-import {LoginComponent} from '../app/Account/login/login.component'
-import {ForgetPasswordComponent} from '../app/Account/forget-password/forget-password.component'
-import{ResetpasswordComponent} from '../app/Account/resetpassword/resetpassword.component'
+import {LoginComponent} from './features/Account/login/login.component'
+import {ForgetPasswordComponent} from './features/Account/forget-password/forget-password.component'
+import{ResetpasswordComponent} from './features/Account/resetpassword/resetpassword.component'
 import { ApplyForInsuranceV2Component } from './features/apply-for-insurance-v2/apply-for-insurance-v2.component';
 import { QuestionsListComponent } from './features/apply-for-insurance-v2/questions-list/questions-list.component';
 import { authAdminGuard } from './core/guards/authAdmin.guard';
 import { HomeComponent } from './features/home/home.component';
+import { CompanyInsurancePlanComponent } from './features/company/company-insurance-plan/company-insurance-plan.component';
+import { SubCategoryHomeComponent } from './features/categories/sub-Homecategory/sub-category.component';
 
 
 export const routes: Routes = [
