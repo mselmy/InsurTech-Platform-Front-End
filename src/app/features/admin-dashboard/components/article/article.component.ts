@@ -130,12 +130,30 @@ export class ArticleComponent implements OnInit
   }
 
   closeDialog() {
-    this.articleDialog = false;
-    this.submitted = false;
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to leave?',
+      header: 'Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      acceptButtonStyleClass:"p-button-danger p-button-text",
+      rejectButtonStyleClass:"p-button-text p-button-text",
+      acceptIcon:"none",
+      rejectIcon:"none",
+      accept: () => {
+        this.articleDialog = false;
+        this.submitted = false;
+        this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
+      }
+    });
   }
 
   SaveDialog(){
     this.addArticle(this.clonedarticle);
     this.articleDialog = false;
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Article is added' });
+  }
+
+  showFullContent: { [key: number]: boolean } = {};
+  toggleContent(index: number) {
+    this.showFullContent[index] = !this.showFullContent[index];
   }
 }
