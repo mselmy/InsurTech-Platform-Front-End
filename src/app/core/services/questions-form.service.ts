@@ -11,6 +11,7 @@ export class QuestionsFormService {
   questionArr: any = [];
   questIndex: number = 0;
   answers: { questionId: number; answer: string }[] = [];
+  currentCategory: number = 0;
 
   constructor(private http: HttpClient) {}
 

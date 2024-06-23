@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row  m-auto  ">
+        <div class=" d-flex gap-5  m-auto justify-content-center ">
+            @if(catId == 1){
+                <app-insurance-plan-card></app-insurance-plan-card>
+                <app-insurance-plan-card></app-insurance-plan-card>
+            }
+            @else if (catId == 2) {
+                <app-insurance-plan-card></app-insurance-plan-card>
+                <app-insurance-plan-card></app-insurance-plan-card>
+                <app-insurance-plan-card></app-insurance-plan-card>
+            }
+            @else{
+                <app-insurance-plan-card></app-insurance-plan-card>
+            }
+         
+        </div>
+    </div>
+
+</div>

@@ -20,6 +20,7 @@ import { HomeComponent } from './features/home/home.component';
 import { CompanyInsurancePlanComponent } from './features/company/company-insurance-plan/company-insurance-plan.component';
 import { SubCategoryHomeComponent } from './features/categories/sub-Homecategory/sub-category.component';
 import { InsurancePlanCardComponent } from './features/apply-for-insurance-v2/insurance-plan-card/insurance-plan-card.component';
+import { InsurancePlansComponent } from './features/apply-for-insurance-v2/insurance-plans/insurance-plans.component';
 
 
 export const routes: Routes = [
@@ -79,5 +80,6 @@ export const routes: Routes = [
     path:"insurancePlanCard",
     component:InsurancePlanCardComponent
   },
+  {path:"insurancePlans", component:InsurancePlansComponent},
   { path: '', component: HomeComponent, pathMatch: 'full' }
 ];

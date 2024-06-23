@@ -26,6 +26,7 @@ export class QuestionsListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.routeSub = this.route.params.subscribe((params) => {
       this.catId = params['id'];
+      sessionStorage.setItem('catId', this.catId.toString());
 
       this.dataSub = this.QuestionService.GetById(this.catId).subscribe(
         (data) => {
