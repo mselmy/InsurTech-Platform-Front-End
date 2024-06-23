@@ -3,7 +3,6 @@ import { companydashbordcomponant } from './features/company-dashboard/company-d
 import { EditHealthInsurancePlanComponent } from './features/company-dashboard/Componants/Helathinsurance/edithealthinsurance/edithealthinsurance.component';
 import { EdithomeinsuranceComponent } from './features/company-dashboard/Componants/Homeinsurance/edithomeinsurance/edithomeinsurance.component';
 import { EditmotorinsuranceComponent } from './features/company-dashboard/Componants/Motorinsurance/editmotorinsurance/editmotorinsurance.component';
-import { RegistrationRequestsComponent } from './features/admin-dashboard/components/registration-requests/registration-requests.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './Registers/register/register.component';
 import { RegisterUserComponent } from './Registers/register-user/register-user.component';
@@ -18,7 +17,6 @@ import {LoginComponent} from '../app/Account/login/login.component'
 import {ForgetPasswordComponent} from '../app/Account/forget-password/forget-password.component'
 import{ResetpasswordComponent} from '../app/Account/resetpassword/resetpassword.component'
 import { ApplyForInsuranceV2Component } from './features/apply-for-insurance-v2/apply-for-insurance-v2.component';
-import { QuestionCardComponent } from './features/apply-for-insurance-v2/question-card/question-card.component';
 import { QuestionsListComponent } from './features/apply-for-insurance-v2/questions-list/questions-list.component';
 
 

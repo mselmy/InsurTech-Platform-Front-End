@@ -14,7 +14,7 @@ import { tokenInterceptor } from './core/interceptor/token.interceptor';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
-    importProvidersFrom(HttpClientModule), provideAnimationsAsync(),provideHttpClient(withInterceptors([tokenInterceptor])), provideAnimations(),
+    importProvidersFrom(HttpClientModule),provideHttpClient(withInterceptors([tokenInterceptor])), provideAnimations(),
     { provide: 'BASE_URL', useValue: environment.baseUrl}, provideAnimationsAsync()
   ],
 };
