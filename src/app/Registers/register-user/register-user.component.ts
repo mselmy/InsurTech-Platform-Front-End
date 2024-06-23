@@ -9,22 +9,22 @@ import {
   AsyncValidatorFn,
   ReactiveFormsModule,
 } from '@angular/forms';
-
 import { HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { CalendarModule } from 'primeng/calendar';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { InputMaskModule } from 'primeng/inputmask';
+import { CalendarModule } from 'primeng/calendar';
 import { MessageService } from 'primeng/api';
-import { registerUser } from '../../services/iregistration-user.service';
 import { RegistrationUserService } from '../../services/registration-user.service';
-import { map, catchError, debounceTime, switchMap } from 'rxjs/operators';
-import { CookieService } from 'ngx-cookie-service'; // Import the CookieService
+import { debounceTime, switchMap, catchError, map } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
+import { registerUser } from '../../services/iregistration-user.service';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @Component({
   selector: 'app-register-user',
@@ -35,18 +35,18 @@ import { Observable, of } from 'rxjs';
     CommonModule,
     ReactiveFormsModule,
     HttpClientModule,
-    CalendarModule,
     InputTextModule,
     PasswordModule,
     ButtonModule,
     ToastModule,
     InputMaskModule,
+    CalendarModule,
   ],
   providers: [RegistrationUserService, MessageService, CookieService],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class RegisterUserComponent {
   registerForm: FormGroup;
-  processInProgress: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -63,14 +63,14 @@ export class RegisterUserComponent {
         [Validators.required, Validators.email],
         [this.emailAsyncValidator()],
       ],
-      password: [
-        '',
-        [Validators.required, Validators.minLength(8), this.passwordValidator],
-      ],
       nationalId: [
         '',
         [Validators.required, Validators.pattern(/^\d{14}$/)],
-        [this.nationalIdValidator()],
+        [this.nationalIdAsyncValidator()],
+      ],
+      password: [
+        '',
+        [Validators.required, Validators.minLength(8), this.passwordValidator],
       ],
       birthDate: ['', [Validators.required, this.birthDateValidator()]],
       phoneNumber: [
@@ -80,9 +80,7 @@ export class RegisterUserComponent {
     });
   }
 
-  passwordValidator(
-    control: AbstractControl
-  ): { [key: string]: boolean } | null {
+  passwordValidator(control: AbstractControl): ValidationErrors | null {
     const password = control.value;
     const hasUpperCase = /[A-Z]/.test(password);
     const hasNumber = /[0-9]/.test(password);
@@ -109,41 +107,44 @@ export class RegisterUserComponent {
     };
   }
 
-  usernameAsyncValidator(): AsyncValidatorFn {
-    return (control: AbstractControl): Observable<ValidationErrors | null> => {
-      return of(control.value).pipe(
-        debounceTime(300),
-        switchMap((username) =>
-          this.registrationService.checkUsernameAvailability(username)
-        ),
-        map((isAvailable) => (isAvailable ? null : { usernameTaken: true })),
-        catchError(() => of(null))
-      );
-    };
-  }
-
   emailAsyncValidator(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
       return of(control.value).pipe(
         debounceTime(300),
         switchMap((email) =>
-          this.registrationService.checkEmailAvailability(email)
-        ),
-        map((isAvailable) => (isAvailable ? null : { emailTaken: true })),
-        catchError(() => of(null))
+          this.registrationService.checkEmailAvailability(email).pipe(
+            map(() => null),
+            catchError(() => of({ emailTaken: true }))
+          )
+        )
       );
     };
   }
 
-  nationalIdValidator(): AsyncValidatorFn {
+  usernameAsyncValidator(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return of(control.value).pipe(
+        debounceTime(300),
+        switchMap((username) =>
+          this.registrationService.checkUsernameAvailability(username).pipe(
+            map(() => null),
+            catchError(() => of({ usernameTaken: true }))
+          )
+        )
+      );
+    };
+  }
+
+  nationalIdAsyncValidator(): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
       return of(control.value).pipe(
         debounceTime(300),
         switchMap((nationalId) =>
-          this.registrationService.checkNationalIdAvailability(nationalId)
-        ),
-        map((isAvailable) => (isAvailable ? null : { nationalIdTaken: true })),
-        catchError(() => of(null))
+          this.registrationService.checkNationalIdAvailability(nationalId).pipe(
+            map(() => null),
+            catchError(() => of({ nationalIdTaken: true }))
+          )
+        )
       );
     };
   }
@@ -152,29 +153,21 @@ export class RegisterUserComponent {
     if (this.registerForm.invalid) {
       return;
     }
-    this.processInProgress = 'registering';
-    const user: registerUser = {
-      name: this.registerForm.value.name,
-      userName: this.registerForm.value.userName,
-      emailAddress: this.registerForm.value.emailAddress,
-      password: this.registerForm.value.password,
-      nationalId: this.registerForm.value.nationalId,
+
+    const formData: registerUser = {
+      ...this.registerForm.value,
       birthDate: this.formatDate(this.registerForm.value.birthDate),
-      phoneNumber: this.registerForm.value.phoneNumber,
     };
 
-    this.registrationService.registerCustomer(user).subscribe({
-      next: () => {
+    this.registrationService.registerCustomer(formData).subscribe({
+      next: (response) => {
         this.messageService.add({
           severity: 'success',
           summary: 'Success',
           detail: 'Registration successful',
         });
-        this.cookieService.set('user', JSON.stringify(user)); // Set the cookie
-        this.processInProgress = 'success';
-        setTimeout(() => {
-          this.router.navigate(['/']);
-        }, 2000);
+        this.cookieService.set('user', JSON.stringify(response));
+        this.router.navigate(['/']); // Navigate to home page
       },
       error: (error) => {
         this.messageService.add({
@@ -182,11 +175,7 @@ export class RegisterUserComponent {
           summary: 'Error',
           detail: 'Registration failed',
         });
-        this.processInProgress = 'error';
         console.error('Registration failed', error);
-      },
-      complete: () => {
-        console.log('Request completed');
       },
     });
   }

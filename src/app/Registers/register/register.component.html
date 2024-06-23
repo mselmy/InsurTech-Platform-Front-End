@@ -2,15 +2,18 @@
   <div class="card">
     <div class="card-body p-5">
       <div class="text-center mb-4">
-        <img src="../../../assets/images/logo.png" alt="Logo" class="logo">
+        <img src="assets/images/logo.png" alt="Logo" class="logo">
       </div>
       <h1 class="mb-4 text-center">Register Form</h1>
       <p-toast></p-toast>
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="name" class="form-label">Name:</label>
-            <input id="name" type="text" pInputText formControlName="name" class="form-control" required>
+            <input id="name" type="text" pInputText formControlName="name" class="form-control" required
+              autocomplete="name">
             <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched" class="text-danger">
               Name is required.
             </div>
@@ -18,7 +21,8 @@
 
           <div class="col-md-6 mb-3">
             <label for="userName" class="form-label">User Name:</label>
-            <input id="userName" type="text" pInputText formControlName="userName" class="form-control" required>
+            <input id="userName" type="text" pInputText formControlName="userName" class="form-control" required
+              autocomplete="username">
             <div *ngIf="registerForm.get('userName')?.invalid && registerForm.get('userName')?.touched"
               class="text-danger">
               <div *ngIf="registerForm.get('userName')?.errors?.['required']">
@@ -35,7 +39,7 @@
           <div class="col-md-6 mb-3">
             <label for="emailAddress" class="form-label">Email Address:</label>
             <input id="emailAddress" type="email" pInputText formControlName="emailAddress" class="form-control"
-              required>
+              required autocomplete="email">
             <div *ngIf="registerForm.get('emailAddress')?.invalid && registerForm.get('emailAddress')?.touched"
               class="text-danger">
               <div *ngIf="registerForm.get('emailAddress')?.errors?.['required']">
@@ -52,7 +56,8 @@
 
           <div class="col-md-6 mb-3">
             <label for="location" class="form-label">Location:</label>
-            <input id="location" type="text" pInputText formControlName="location" class="form-control" required>
+            <input id="location" type="text" pInputText formControlName="location" class="form-control" required
+              autocomplete="address-level2">
             <div *ngIf="registerForm.get('location')?.invalid && registerForm.get('location')?.touched"
               class="text-danger">
               Location is required.
@@ -65,8 +70,8 @@
             <label for="password" class="form-label">
               <i class="pi pi-lock"></i> Password:
             </label>
-            <p-password id="password" formControlName="password" [toggleMask]="true" class="form-control"
-              required></p-password>
+            <p-password id="password" formControlName="password" [toggleMask]="true" class="form-control" required
+              autocomplete="new-password"></p-password>
             <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
               class="text-danger">
               <div *ngIf="registerForm.get('password')?.errors?.['required']">
@@ -85,8 +90,8 @@
             <label for="taxNumber" class="form-label">
               <i class="pi pi-id-card"></i> Tax Number:
             </label>
-            <p-inputMask id="taxNumber" formControlName="taxNumber" mask="999999999" class="form-control"
-              required></p-inputMask>
+            <p-inputMask id="taxNumber" formControlName="taxNumber" mask="999999999" class="form-control" required
+              autocomplete="off"></p-inputMask>
             <div *ngIf="registerForm.get('taxNumber')?.invalid && registerForm.get('taxNumber')?.touched"
               class="text-danger">
               <div *ngIf="registerForm.get('taxNumber')?.errors?.['required']">
@@ -104,8 +109,8 @@
             <label for="phoneNumber" class="form-label">
               <i class="pi pi-phone"></i> Phone Number:
             </label>
-            <p-inputMask id="phoneNumber" formControlName="phoneNumber" mask="99999999999" class="form-control"
-              required></p-inputMask>
+            <p-inputMask id="phoneNumber" formControlName="phoneNumber" mask="99999999999" class="form-control" required
+              autocomplete="tel"></p-inputMask>
             <div *ngIf="registerForm.get('phoneNumber')?.invalid && registerForm.get('phoneNumber')?.touched"
               class="text-danger">
               <div *ngIf="registerForm.get('phoneNumber')?.errors?.['required']">
