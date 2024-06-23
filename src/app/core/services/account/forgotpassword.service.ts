@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Forgotpassword } from '../../core/models/forgotpassword';
-import{Resetpassword} from '../../core/models/resetpassword'
-import { BASE_URL } from '../../core/base-url';
+import { Forgotpassword } from '../../models/forgotpassword';
+import { Resetpassword } from '../../models/resetpassword';
+import { BASE_URL } from '../../base-url';
 
 @Injectable({
   providedIn: 'root'

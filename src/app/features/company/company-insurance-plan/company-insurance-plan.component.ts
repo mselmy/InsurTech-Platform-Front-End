@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
-import { CategoriesService } from '../../core/services/categories.service';
+import { CategoriesService } from '../../../core/services/categories.service';
 
 
 export interface InsurancePlanAndUserNameDTO {

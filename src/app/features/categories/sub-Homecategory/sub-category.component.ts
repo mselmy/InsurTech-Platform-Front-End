@@ -5,8 +5,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { CategoriesService } from '../../core/services/categories.service';
 import { Router } from '@angular/router';
+import { CategoriesService } from '../../../core/services/categories.service';
 @Component({
   selector: 'Homecategory',
   standalone: true,

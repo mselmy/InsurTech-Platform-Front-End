@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import  { Userlogin } from '../../core/models/userlogin';
 import { text } from '@fortawesome/fontawesome-svg-core';
-import{Googlelogin} from '../../core/models/googlelogin'
-import { BASE_URL } from '../../core/base-url';
+import { BASE_URL } from '../../base-url';
+import { Userlogin } from '../../models/userlogin';
+import { Googlelogin } from '../../models/googlelogin';
 
 
 
