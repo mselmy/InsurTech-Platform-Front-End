@@ -44,11 +44,11 @@ export const routes: Routes = [
   { path:'homearticle',component:HomearticlesComponent},
   {
     path: 'insurance',
-    component: DisplayComponent,
+    component: AppComponent,
     children: [
       { path: '', component: DisplayComponent },
       { path: 'health', component: SubCategoryHealthComponent },
-      { path: 'home', component: SubCategoryHomeComponent },
+      { path: 'home', component: SubCategoryHomeComponent},
       { path: 'motor', component: SubCategoryMotorComponent },
     ],
   },
