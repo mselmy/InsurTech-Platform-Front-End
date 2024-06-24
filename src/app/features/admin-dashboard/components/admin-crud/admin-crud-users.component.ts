@@ -29,13 +29,14 @@ export class AdminCrudUsersComponent implements OnInit {
   filteredUsers: any[] = [];
   searchTerm: string = '';
   currentPage: number = 1;
+  activeTab: string = 'customers'; // Default active tab
 
   constructor(private userService: UserService) {}
 
   ngOnInit() {
     this.userService.getUsers().subscribe((data) => {
       this.users = data;
-      this.filteredUsers = data; // Initialize filteredUsers
+      this.filterUsers(); // Initialize filteredUsers
     });
   }
 
@@ -44,13 +45,25 @@ export class AdminCrudUsersComponent implements OnInit {
   }
 
   filterUsers() {
-    if (!this.searchTerm) {
-      this.filteredUsers = this.users;
-    } else {
-      this.filteredUsers = this.users.filter((user) =>
-        user.email.toLowerCase().includes(this.searchTerm.toLowerCase())
+    let filtered = this.users;
+    if (this.searchTerm) {
+      filtered = filtered.filter(
+        (user) =>
+          user.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+          user.userName.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+          user.email.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+          user.phoneNumber.toLowerCase().includes(this.searchTerm.toLowerCase())
       );
     }
+
+    this.filteredUsers = filtered.filter((user) =>
+      this.activeTab === 'customers' ? user.userType === 0 : user.userType === 1
+    );
+  }
+
+  setActiveTab(tab: string) {
+    this.activeTab = tab;
+    this.filterUsers();
   }
 
   editUser(user: any) {

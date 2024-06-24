@@ -1,10 +1,13 @@
 <div class="container">
   <div class="row flex-lg-nowrap">
     <div class="col">
-      <div class="e-tabs mb-3 px-3">
-        <ul class="nav nav-tabs">
-          <li class="nav-item"><a class="nav-link active" href="#">Users</a></li>
-        </ul>
+      <div class="mb-3 px-3">
+        <div class="d-flex justify-content-start">
+          <button pButton type="button" label="Customers" icon="pi pi-users" class="p-button-outlined"
+            [class.p-button-primary]="activeTab === 'customers'" (click)="setActiveTab('customers')"></button>
+          <button pButton type="button" label="Companies" icon="pi pi-building" class="p-button-outlined ml-2"
+            [class.p-button-primary]="activeTab === 'companies'" (click)="setActiveTab('companies')"></button>
+        </div>
       </div>
 
       <div class="row flex-lg-nowrap">
@@ -12,11 +15,13 @@
           <div class="e-panel card">
             <div class="card-body">
               <div class="card-title">
-                <h6 class="mr-2"><span>Users</span><small class="px-1">Be a wise leader</small></h6>
+                <h6 class="mr-2"><span>{{ activeTab | titlecase }}</span><small class="px-1">Be a wise leader</small>
+                </h6>
               </div>
               <div class="mb-3">
-                <input pInputText type="text" class="form-control" placeholder="Search by email"
-                  [(ngModel)]="searchTerm" (input)="filterUsers()" />
+                <input pInputText type="text" class="form-control"
+                  placeholder="Search by name, username, email, or phone number" [(ngModel)]="searchTerm"
+                  (input)="filterUsers()" />
               </div>
               <div class="e-table">
                 <p-table [value]="filteredUsers" [paginator]="true" [rows]="5" [responsiveLayout]="'scroll'">
@@ -31,7 +36,7 @@
                     </tr>
                   </ng-template>
                   <ng-template pTemplate="body" let-user>
-                    <tr>
+                    <tr *ngIf="user.userType === (activeTab === 'customers' ? 0 : 1)">
                       <td>{{ user.name }}</td>
                       <td>{{ user.userName }}</td>
                       <td>{{ user.email }}</td>
