@@ -45,4 +45,13 @@ export class RegistrationService {
       )
     );
   }
+
+  checkTaxNumberAvailability(taxNumber: string): Observable<boolean> {
+    return this.getCompanies().pipe(
+      map(
+        (companies) =>
+          !companies.some((company) => company.taxNumber === taxNumber)
+      )
+    );
+  }
 }
