@@ -6,17 +6,18 @@ import { InsurancePlanService } from '../../../core/services/insurancePlan.servi
 import { HomePlanCardComponent } from '../home-plan-card/home-plan-card.component';
 import { HealthPlanCardComponent } from '../health-plan-card/health-plan-card.component';
 import { MotorPlanCardComponent } from '../motor-plan-card/motor-plan-card.component';
+import { NoInsurancePlaneComponent } from '../../../core/components/no-insurance-plane/no-insurance-plane.component';
 
 @Component({
   selector: 'app-insurance-plans',
   standalone: true,
-  imports: [InsurancePlanCardComponent, HomePlanCardComponent, HealthPlanCardComponent, MotorPlanCardComponent],
+  imports: [InsurancePlanCardComponent, HomePlanCardComponent, HealthPlanCardComponent, MotorPlanCardComponent, NoInsurancePlaneComponent],
   templateUrl: './insurance-plans.component.html',
   styleUrl: './insurance-plans.component.css'
 })
 export class InsurancePlansComponent {
   catId: number = 0;
-  data:any=[]
+  data:any=null;
 
  constructor(private questionService: QuestionsFormService, private router: Router, private insurancePlanService: InsurancePlanService) {
   this.catId = parseInt(sessionStorage.getItem('catId') || '0');

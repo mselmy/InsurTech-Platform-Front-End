@@ -28,6 +28,7 @@ import { HomearticlesComponent } from '../app/features/homearticles/homearticles
 import { FAQComponent } from './features/faq/faq.component';
 import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found/page-not-found.component';
 import { authCompanyGuard } from './core/guards/authCompany.guard';
+import { NoInsurancePlaneComponent } from './core/components/no-insurance-plane/no-insurance-plane.component';
 
 export const routes: Routes = [
   {
