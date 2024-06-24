@@ -1,9 +1,7 @@
-
 # InsurTech Platform Front-End
 
 [![Angular](https://img.shields.io/badge/Angular-17-red?style=for-the-badge)](https://angular.io/)
 [![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)](LICENSE)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/mselmy/InsurTech-Platform-Front-End/ci.yml?branch=main)](https://github.com/mselmy/InsurTech-Platform-Front-End/actions)
 
 ## Description
 
@@ -54,27 +52,47 @@ The **InsurTech Platform** is an online marketplace designed to empower end-user
    - Integrate with insurance providers' systems to receive real-time data (quotations, pricing, discounts)
    - Integrate with CRM systems for enhanced recommendations
 
+## Project Structure
+
+This project consists of two main parts:
+
+1. **Frontend**: Built with Angular 17, which provides the user interface and interactions.
+   - Repository: [Frontend Repository](https://github.com/mselmy/InsurTech-Platform-Front-End)
+
+2. **Backend**: Built with Web API and SQL Server, which handles data processing and storage.
+   - Repository: [Backend Repository](https://github.com/AsmaaAlbhbity/InsurTechAPIs)
+
 ## Installation
 
 To run the project locally, follow these steps:
 
-1. Clone the repository:
-   \`\`\`bash
+### Frontend
+
+1. Clone the frontend repository:
+   ```bash
    git clone https://github.com/mselmy/InsurTech-Platform-Front-End.git
-   \`\`\`
+   ```
 2. Navigate to the project directory:
-   \`\`\`bash
+   ```bash
    cd InsurTech-Platform-Front-End
-   \`\`\`
+   ```
 3. Install dependencies:
-   \`\`\`bash
+   ```bash
    npm install
-   \`\`\`
+   ```
 4. Start the development server:
-   \`\`\`bash
+   ```bash
    ng serve
-   \`\`\`
-5. Open your browser and navigate to \`http://localhost:4200\`
+   ```
+5. Open your browser and navigate to `http://localhost:4200`
+
+### Backend
+
+1. Clone the backend repository:
+   ```bash
+   git clone https://github.com/AsmaaAlbhbity/InsurTechAPIs.git
+   ```
+2. Follow the instructions in the backend repository to set up and run the API.
 
 ## Usage
 
@@ -86,17 +104,17 @@ Contributions are welcome! Please follow these steps to contribute:
 
 1. Fork the repository.
 2. Create a new branch:
-   \`\`\`bash
+   ```bash
    git checkout -b feature/your-feature-name
-   \`\`\`
+   ```
 3. Make your changes and commit them:
-   \`\`\`bash
+   ```bash
    git commit -m 'Add some feature'
-   \`\`\`
+   ```
 4. Push to the branch:
-   \`\`\`bash
+   ```bash
    git push origin feature/your-feature-name
-   \`\`\`
+   ```
 5. Open a pull request.
 
 ## License
