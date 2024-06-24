@@ -49,8 +49,8 @@ body::before {
   border-radius: 15px;
   background: linear-gradient(
     to bottom,
-    #98ff98,
-    #ffffff
+    #68b368,
+    #99ecb5
   ); /* Linear gradient from mint green to white */
   padding: 20px; /* Add some padding inside the card */
   opacity: 0;
@@ -78,7 +78,7 @@ h1.text-center {
   margin-bottom: 20px; /* Add some margin below the heading */
   font-family: "Arial", sans-serif; /* Apply a clean sans-serif font */
   font-size: 2em;
-  color: #005500; /* Dark green color */
+  color: #ffffff; /* Dark green color */
 }
 
 /* Input styles */
@@ -100,10 +100,11 @@ button.btn-lg {
   padding: 10px 20px; /* Add some padding to the button */
   transition: background-color 0.3s, transform 0.3s;
   font-family: "Arial", sans-serif; /* Apply the same clean sans-serif font */
+  background-color: #083e08; /* Slightly darker mint green */
 }
 
 button.btn-lg:hover {
-  background-color: #85e085; /* Slightly darker mint green */
+  background-color: #93d293; /* Slightly darker mint green */
   transform: scale(1.05); /* Slightly enlarge the button */
 }
 
