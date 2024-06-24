@@ -14,13 +14,12 @@ import { SubCategoryHomeComponent } from './Categories/sub-Homecategory/sub-cate
 import { SubCategoryMotorComponent } from './Categories/sub-Motorcategory/sub-category.component';
 import { CompanyInsurancePlanComponent } from './Company/company-insurance-plan/company-insurance-plan.component';
 import { AppComponent } from './app.component';
-import {LoginComponent} from '../app/Account/login/login.component'
-import {ForgetPasswordComponent} from '../app/Account/forget-password/forget-password.component'
-import{ResetpasswordComponent} from '../app/Account/resetpassword/resetpassword.component'
+import { LoginComponent } from '../app/Account/login/login.component';
+import { ForgetPasswordComponent } from '../app/Account/forget-password/forget-password.component';
+import { ResetpasswordComponent } from '../app/Account/resetpassword/resetpassword.component';
 import { ApplyForInsuranceV2Component } from './features/apply-for-insurance-v2/apply-for-insurance-v2.component';
 import { QuestionCardComponent } from './features/apply-for-insurance-v2/question-card/question-card.component';
 import { QuestionsListComponent } from './features/apply-for-insurance-v2/questions-list/questions-list.component';
-
 
 export const routes: Routes = [
   {
@@ -51,7 +50,6 @@ export const routes: Routes = [
     component: AppComponent,
     children: [{ path: '', component: CompanyInsurancePlanComponent }],
   },
-  { path: 'dashboard', component: companydashbordcomponant },
   {
     path: 'edithealthinsurance/:id',
     component: EditHealthInsurancePlanComponent,
@@ -60,16 +58,20 @@ export const routes: Routes = [
   { path: 'editmotorinsurance/:id', component: EditmotorinsuranceComponent },
   { path: '', component: HomeComponent, pathMatch: 'full' },
   {
-    path:'dashboard',component:companydashbordcomponant,
+    path: 'dashboard',
+    component: companydashbordcomponant,
   },
 
-  { path: 'edithealthinsurance/:id', component:EditHealthInsurancePlanComponent},
-  { path: 'edithomeinsurance/:id', component:EdithomeinsuranceComponent},
-  { path: 'editmotorinsurance/:id', component:EditmotorinsuranceComponent },
-  {path:"HomePage",component:HomeComponent},
   {
-    path:"apply-for-insuranceV2",
-    component:ApplyForInsuranceV2Component,
+    path: 'edithealthinsurance/:id',
+    component: EditHealthInsurancePlanComponent,
+  },
+  { path: 'edithomeinsurance/:id', component: EdithomeinsuranceComponent },
+  { path: 'editmotorinsurance/:id', component: EditmotorinsuranceComponent },
+  { path: 'HomePage', component: HomeComponent },
+  {
+    path: 'apply-for-insuranceV2',
+    component: ApplyForInsuranceV2Component,
     // children:[
     //   {
     //     path:"Question/:id",
@@ -78,7 +80,7 @@ export const routes: Routes = [
     // ]
   },
   {
-    path:"questions-list/:id",
-    component:QuestionsListComponent
-  }
+    path: 'questions-list/:id',
+    component: QuestionsListComponent,
+  },
 ];
