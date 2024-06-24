@@ -22,9 +22,6 @@ import { SubCategoryHomeComponent } from './features/categories/sub-Homecategory
 import{AllarticlesComponent} from '../app/features/allarticles/allarticles.component'
 import{HomearticlesComponent}from '../app/features/homearticles/homearticles.component'
 import { FAQComponent } from './features/faq/faq.component';
-import { DisplayComponent } from './features/categories/display/display.component';
-import { SubCategoryHealthComponent } from './features/categories/sub-Healthcategory/sub-category.component';
-import { SubCategoryMotorComponent } from './features/categories/sub-Motorcategory/sub-category.component';
 
 
 export const routes: Routes = [
