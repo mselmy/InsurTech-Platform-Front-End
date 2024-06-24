@@ -1,0 +1,18 @@
+<div class="card" style="padding: 0px;">
+    <p-galleria 
+        [(value)]="images" 
+        [showIndicators]="true" 
+        [showThumbnails]="false" 
+        [changeItemOnIndicatorHover]="true" 
+        [responsiveOptions]="responsiveOptions" 
+        [containerStyle]="{ 'max-width': '100vw' }"> 
+            <ng-template pTemplate="item" let-item>
+                <div class="image-container">
+                    <img [src]="item" style="width: 100%; display: block; height:90vh" />
+                    <div class="overlay-text"><span >Insur</span>Tech  </div>
+                </div>
+            </ng-template>
+    </p-galleria>
+</div>
+
+
