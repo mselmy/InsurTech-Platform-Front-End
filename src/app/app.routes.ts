@@ -26,6 +26,7 @@ import { SuccessPageComponent } from './features/apply-for-insurance-v2/success-
 import{AllarticlesComponent} from '../app/features/allarticles/allarticles.component'
 import{HomearticlesComponent}from '../app/features/homearticles/homearticles.component'
 import { FAQComponent } from './features/faq/faq.component';
+import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found/page-not-found.component';
 
 export const routes: Routes = [
   {
@@ -105,5 +106,7 @@ export const routes: Routes = [
     path:"success",
     component:SuccessPageComponent
   },
+  { path: '404', component: PageNotFoundComponent},
   { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: '**', redirectTo: '/404'}
 ];
