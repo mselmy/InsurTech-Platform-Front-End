@@ -23,6 +23,9 @@ import { InsurancePlanCardComponent } from './features/apply-for-insurance-v2/in
 import { InsurancePlansComponent } from './features/apply-for-insurance-v2/insurance-plans/insurance-plans.component';
 import { authUserGuard } from './core/guards/authUser.guard';
 import { SuccessPageComponent } from './features/apply-for-insurance-v2/success-page/success-page.component';
+import{AllarticlesComponent} from '../app/features/allarticles/allarticles.component'
+import{HomearticlesComponent}from '../app/features/homearticles/homearticles.component'
+import { FAQComponent } from './features/faq/faq.component';
 
 export const routes: Routes = [
   {
@@ -40,22 +43,33 @@ export const routes: Routes = [
   { path: 'login/:authorization', component: LoginComponent },
   { path: 'forgetpassword', component: ForgetPasswordComponent },
   { path: 'resetpassword', component: ResetpasswordComponent },
+  { path:'allarticles',component:AllarticlesComponent},
+  { path:'homearticle',component:HomearticlesComponent},
   {
-    path: 'Insurance',
+    path: 'insurance',
     component: AppComponent,
     children: [
-      { path: 'Health', component: SubCategoryHealthComponent },
-      { path: 'Home', component: SubCategoryHomeComponent },
-      { path: 'Motor', component: SubCategoryMotorComponent },
       { path: '', component: DisplayComponent },
+      { path: 'health', component: SubCategoryHealthComponent },
+      { path: 'home', component: SubCategoryHomeComponent},
+      { path: 'motor', component: SubCategoryMotorComponent },
     ],
   },
   {
-    path: 'CompanyInsurance',
-    component: AppComponent,
+    path: 'companyinsurance',
+    component: CompanyInsurancePlanComponent,
     children: [{ path: '', component: CompanyInsurancePlanComponent }],
   },
   {
+    path: 'faqs',
+    component: FAQComponent,
+    children: [
+      { path: '', component: FAQComponent },
+     
+    ]
+  },
+  {
+
     path: 'dashboard',
     component: companydashbordcomponant,
   },
