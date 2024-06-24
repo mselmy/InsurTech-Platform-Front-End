@@ -19,12 +19,12 @@ import { authAdminGuard } from './core/guards/authAdmin.guard';
 import { HomeComponent } from './features/home/home.component';
 import { CompanyInsurancePlanComponent } from './features/company/company-insurance-plan/company-insurance-plan.component';
 import { SubCategoryHomeComponent } from './features/categories/sub-Homecategory/sub-category.component';
-<<<<<<< Hussien
-=======
 import{AllarticlesComponent} from '../app/features/allarticles/allarticles.component'
 import{HomearticlesComponent}from '../app/features/homearticles/homearticles.component'
->>>>>>> dev
 import { FAQComponent } from './features/faq/faq.component';
+import { DisplayComponent } from './features/categories/display/display.component';
+import { SubCategoryHealthComponent } from './features/categories/sub-Healthcategory/sub-category.component';
+import { SubCategoryMotorComponent } from './features/categories/sub-Motorcategory/sub-category.component';
 
 
 export const routes: Routes = [
@@ -43,11 +43,11 @@ export const routes: Routes = [
   { path: 'login/:authorization', component: LoginComponent },
   { path: 'forgetpassword', component: ForgetPasswordComponent },
   { path: 'resetpassword', component: ResetpasswordComponent },
-  {path:'allarticles',component:AllarticlesComponent},
-  {path:'homearticle',component:HomearticlesComponent},
+  { path:'allarticles',component:AllarticlesComponent},
+  { path:'homearticle',component:HomearticlesComponent},
   {
     path: 'insurance',
-    component: AppComponent,
+    component: DisplayComponent,
     children: [
       { path: '', component: DisplayComponent },
       { path: 'health', component: SubCategoryHealthComponent },
@@ -57,13 +57,16 @@ export const routes: Routes = [
   },
   {
     path: 'companyinsurance',
-    component: AppComponent,
+    component: CompanyInsurancePlanComponent,
     children: [{ path: '', component: CompanyInsurancePlanComponent }],
   },
   {
     path: 'faqs',
-    component: AppComponent,
-    children: [{ path: '', component: FAQComponent }],
+    component: FAQComponent,
+    children: [
+      { path: '', component: FAQComponent },
+     
+    ]
   },
   {
     path: 'dashboard',
