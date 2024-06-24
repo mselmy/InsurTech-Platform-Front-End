@@ -9,7 +9,7 @@
                             alt="sing up image"></figure>
                 </div>
 
-                <form class="form-border" [formGroup]="addmotorform" (ngSubmit)="addmotor()">
+                <form [formGroup]="addmotorform" (ngSubmit)="addmotor()">
                     <div class="mb-2">
                         <label for="yearlyCoverage">Yearly Coverage</label>
                         <input formControlName="yearlyCoverage" min="0" id="yearlyCoverage" type="number"
@@ -122,7 +122,7 @@
                         </div>
                     </div>
          
-                    <div [ngStyle]="addmotorform.invalid? {'cursor':' not-allowed'} :  {'cursor':'pointer'} ">
+                    <div [ngStyle]="addmotorform.invalid? {'cursor':' not-allowed'} :  {'cursor':'pointer'} " class="mt-4">
 
                         <button [disabled]="addmotorform.invalid" type="submit"
                            style="background-color: #17bd82 ; color:white ;font: bold;"

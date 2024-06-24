@@ -10,7 +10,7 @@
                             alt="sing up image"></figure>
                 </div>
 
-                <form class="form-border" [formGroup]="addhomeinsurance" (ngSubmit)="addhome()">
+                <form  [formGroup]="addhomeinsurance" (ngSubmit)="addhome()">
                     <div class="mb-2">
                         <label for="yearlyCoverage">Yearly Coverage</label>
                         <input min="0" id="yearlyCoverage" formControlName="yearlyCoverage" type="number"
@@ -145,7 +145,7 @@
 
                      <button [disabled]="addhomeinsurance.invalid" type="submit"
                         style="background-color: #17bd82 ; color:white ;font: bold;"
-                        class="btn d-block ms-auto w-25 btn-Add">Add</button>
+                        class="btn d-block ms-auto w-25 btn-Add mt-4" >Add</button>
                     </div>
                 </form>
             </div>

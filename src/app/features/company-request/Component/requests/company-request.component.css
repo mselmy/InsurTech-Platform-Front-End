@@ -1,0 +1,41 @@
+.question-label {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.answer-label {
+    font-size: 1rem;
+    color: #555;
+}
+
+.ques{
+ border-radius: 15px;  
+ background-color: #46484a; 
+}
+
+::ng-deep .custom-button .p-button {
+    background-color: #28a745 !important; /* Your desired background color */
+    border-color: #28a745 !important; /* Ensure the border color matches the background */
+    color: white !important; /* Ensure the text color is readable */
+}
+
+
+::ng-deep .custom-button-reject .p-button {
+    background-color: rgba(152, 8, 8, 0.764) !important; /* Your desired background color */
+    border-color: rgba(196, 11, 11, 0.688) !important; /* Ensure the border color matches the background */
+    color: white !important; /* Ensure the text color is readable */
+}
+
+::ng-deep .p-button{
+    border-radius: 20px !important ;
+}
+.containerInfo{
+    background-color: #efdadaba;
+    padding: 11px 24px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.containerInfo  span{
+    text-align: center;
+}
