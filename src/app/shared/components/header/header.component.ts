@@ -1,25 +1,48 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener,Renderer2,ElementRef } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  Component,
+  HostListener,
+  Renderer2,
+  ElementRef,
+  OnInit,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { RippleModule } from 'primeng/ripple';
+import { AuthService } from '../../../core/services/authantication.service';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule,RouterLink],
+  imports: [CommonModule, RouterLink],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   isScrolled = false;
-  constructor(private renderer: Renderer2, private elementRef: ElementRef) {}
+  isLoggedIn = false;
+  userRole: string | null = null;
+
+  constructor(
+    private renderer: Renderer2,
+    private elementRef: ElementRef,
+    private authService: AuthService
+  ) {}
+
+  ngOnInit(): void {
+    this.authService.checkLoginStatus();
+    this.authService.isLoggedIn().subscribe((status) => {
+      this.isLoggedIn = status;
+    });
+    this.authService.getUserRole().subscribe((role) => {
+      this.userRole = role;
+    });
+  }
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    // Check if the scroll position is greater than 500 pixels
     this.isScrolled = window.scrollY > 20;
-    
+  }
+
+  logout(): void {
+    this.authService.logout();
   }
 }
