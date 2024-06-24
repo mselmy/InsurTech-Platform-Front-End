@@ -19,8 +19,8 @@ import { authAdminGuard } from './core/guards/authAdmin.guard';
 import { HomeComponent } from './features/home/home.component';
 import { CompanyInsurancePlanComponent } from './features/company/company-insurance-plan/company-insurance-plan.component';
 import { SubCategoryHomeComponent } from './features/categories/sub-Homecategory/sub-category.component';
-
-
+import{AllarticlesComponent} from '../app/features/allarticles/allarticles.component'
+import{HomearticlesComponent}from '../app/features/homearticles/homearticles.component'
 export const routes: Routes = [
   {
     path: 'admin',
@@ -37,6 +37,8 @@ export const routes: Routes = [
   { path: 'login/:authorization', component: LoginComponent },
   { path: 'forgetpassword', component: ForgetPasswordComponent },
   { path: 'resetpassword', component: ResetpasswordComponent },
+  {path:'allarticles',component:AllarticlesComponent},
+  {path:'homearticle',component:HomearticlesComponent},
   {
     path: 'Insurance',
     component: AppComponent,

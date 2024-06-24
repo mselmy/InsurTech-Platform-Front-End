@@ -1,0 +1,121 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap");
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: "Quicksand", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to right, red, #86a8e7, #7f7fd5);
+    margin: 0; /* Ensure there's no default margin on body */
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1200px;
+    gap: 2rem;
+    margin: 40px auto;
+    padding: 2rem; /* Optional padding for better spacing */
+}
+
+img {
+    max-width: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    width: clamp(20rem, calc(20rem + 2vw), 22rem);
+    overflow: hidden;
+    box-shadow: 0 .1rem 1rem rgba(0, 0, 0, 0.1);
+    border-radius: 1em;
+    /* background: linear-gradient(to right,  #769494  , #ECE9E6);
+     */
+     background-color: #f3fafa    ;
+     transition: .5s;    ;
+}
+.card:hover{
+    transform: scale(.98);
+}
+
+.card__body {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.tag {
+    align-self: flex-start;
+    padding: .25em .75em;
+    border-radius: 1em;
+    font-size: .75rem;
+}
+
+.tag + .tag {
+    margin-left: .5em;
+}
+
+.tag-blue {
+    background: linear-gradient(to bottom,  #184b40 ,   #24c9aa  );
+    color: #fafafa;
+}
+
+.tag-brown {
+    background: linear-gradient(to bottom, #184b40,  #24c9aa);
+    color: #fafafa;
+}
+
+.tag-red {
+    background: linear-gradient(to bottom, #184b40,  #24c9aa);
+    color: #fafafa;
+}
+
+.card__body h4 {
+    font-size: 1.5rem;
+    text-transform: capitalize;
+}
+
+.card__footer {
+    display: flex;
+    padding: 1rem;
+    margin-top: auto;
+}
+
+.user {
+    display: flex;
+    gap: .5rem;
+}
+
+.user__image {
+    border-radius: 50%;
+}
+
+.user__info > small {
+    color: #666;
+}
+.show-more{
+    color:  #184b40  ;
+    border: 1px solid #184b40;
+    padding: 5px ;
+    border-radius: 7px;
+    transition: .5s;
+}
+.show-more:hover{
+    cursor: pointer;
+    background-color: #184b40;
+    color: white;
+    border-color: white;
+}
+/*-----------------------*/
