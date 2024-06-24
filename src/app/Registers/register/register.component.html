@@ -73,7 +73,7 @@
             <label for="password" class="form-label">
               <i class="pi pi-lock"></i> Password:
             </label>
-            <p-password id="password" formControlName="password" [toggleMask]="true" class="form-control" required
+            <p-password id="password" formControlName="password" [toggleMask]="true" style="display: flex; ;" required
               autocomplete="new-password"></p-password>
             <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
               class="text-danger">
@@ -92,7 +92,7 @@
             <label for="taxNumber" class="form-label">
               <i class="pi pi-id-card"></i> Tax Number:
             </label>
-            <p-inputMask id="taxNumber" formControlName="taxNumber" mask="999999999" class="form-control" required
+            <p-inputMask id="taxNumber" formControlName="taxNumber" mask="999999999" style="display: flex;" required
               autocomplete="off"></p-inputMask>
             <div *ngIf="registerForm.get('taxNumber')?.invalid && registerForm.get('taxNumber')?.touched"
               class="text-danger">
@@ -114,8 +114,8 @@
             <label for="phoneNumber" class="form-label">
               <i class="pi pi-phone"></i> Phone Number:
             </label>
-            <p-inputMask id="phoneNumber" formControlName="phoneNumber" mask="99999999999" class="form-control" required
-              autocomplete="tel"></p-inputMask>
+            <p-inputMask id="phoneNumber" formControlName="phoneNumber" mask="99999999999" style="display: flex;"
+              required autocomplete="tel"></p-inputMask>
             <div *ngIf="registerForm.get('phoneNumber')?.invalid && registerForm.get('phoneNumber')?.touched"
               class="text-danger">
               <div *ngIf="registerForm.get('phoneNumber')?.errors?.['required']">
