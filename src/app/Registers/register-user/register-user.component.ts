@@ -161,23 +161,37 @@ export class RegisterUserComponent {
 
     this.registrationService.registerCustomer(formData).subscribe({
       next: (response) => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
-          detail: 'Registration successful',
-        });
-        this.cookieService.set('user', JSON.stringify(response));
-        this.router.navigate(['/']); // Navigate to home page
+        this.handleSuccess(response);
       },
       error: (error) => {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'Registration failed',
-        });
-        console.error('Registration failed', error);
+        if (error.error.message === 'Error in sending confirmation email') {
+          this.handleSuccess();
+        } else {
+          this.handleError(error);
+        }
       },
     });
+  }
+
+  handleSuccess(response?: any): void {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: 'Registration successful',
+    });
+    if (response) {
+      this.cookieService.set('user', JSON.stringify(response)); // Save user data in a cookie
+    }
+    this.router.navigate(['/']); // Navigate to home page
+  }
+
+  handleError(error: any): void {
+    this.messageService.add({
+      severity: 'error',
+      summary: 'Error',
+      detail: 'Registration failed',
+    });
+    console.error('Registration failed', error);
   }
 
   formatDate(date: Date | string): string {
