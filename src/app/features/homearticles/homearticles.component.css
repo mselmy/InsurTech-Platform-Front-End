@@ -119,3 +119,26 @@ img {
     border-color: white;
 }
 /*-----------------------*/
+.title-container {
+    color: #1ba88e;
+    display: flex;
+    align-items: center;
+    font-size: 40px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ; /* Adjust the font size as needed */
+}
+
+.dot {
+    margin: 0 30px; /* Adjust the spacing as needed */
+}
+
+.title {
+    font-weight: bold; /* Adjust the font weight as needed */
+}
+.containerr {
+    height: auto; /* Full viewport height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
