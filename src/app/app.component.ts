@@ -16,5 +16,5 @@ import { AppLayoutModule } from './features/admin-dashboard/layout/app.layout.mo
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'InsurTech-Platform-Front-End';
+  title = 'InsurTech';
 }
