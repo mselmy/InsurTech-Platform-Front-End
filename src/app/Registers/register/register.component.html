@@ -31,6 +31,9 @@
               <div *ngIf="registerForm.get('userName')?.errors?.['usernameTaken']">
                 User Name must be unique.
               </div>
+              <div *ngIf="registerForm.get('userName')?.errors?.['invalidUsername']">
+                Username must contain only letters and numbers with no spaces.
+              </div>
             </div>
           </div>
         </div>
@@ -85,7 +88,6 @@
               </div>
             </div>
           </div>
-
           <div class="col-md-6 mb-3">
             <label for="taxNumber" class="form-label">
               <i class="pi pi-id-card"></i> Tax Number:
@@ -99,6 +101,9 @@
               </div>
               <div *ngIf="registerForm.get('taxNumber')?.errors?.['pattern']">
                 Tax Number must be exactly 9 digits.
+              </div>
+              <div *ngIf="registerForm.get('taxNumber')?.errors?.['taxNumberTaken']">
+                Tax Number must be unique.
               </div>
             </div>
           </div>

@@ -7,6 +7,7 @@ import {
   AsyncValidatorFn,
   ValidationErrors,
   ReactiveFormsModule,
+  ValidatorFn,
 } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
@@ -21,6 +22,8 @@ import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -37,7 +40,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     ButtonModule,
     ToastModule,
   ],
-  providers: [RegistrationService, MessageService],
+  providers: [RegistrationService, MessageService, CookieService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class RegisterComponent {
@@ -47,11 +50,17 @@ export class RegisterComponent {
   constructor(
     private fb: FormBuilder,
     private registrationService: RegistrationService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private router: Router,
+    private cookieService: CookieService
   ) {
     this.registerForm = this.fb.group({
       name: ['', Validators.required],
-      userName: ['', [Validators.required], [this.usernameAsyncValidator()]],
+      userName: [
+        '',
+        [Validators.required, this.usernameValidator()],
+        [this.usernameAsyncValidator()],
+      ],
       emailAddress: [
         '',
         [Validators.required, Validators.email],
@@ -59,9 +68,17 @@ export class RegisterComponent {
       ],
       password: [
         '',
-        [Validators.required, Validators.minLength(8), this.passwordValidator],
+        [
+          Validators.required,
+          Validators.minLength(8),
+          this.passwordValidator(),
+        ],
       ],
-      taxNumber: ['', [Validators.required, Validators.pattern(/^\d{9}$/)]],
+      taxNumber: [
+        '',
+        [Validators.required, Validators.pattern(/^\d{9}$/)],
+        [this.taxNumberAsyncValidator()],
+      ],
       location: ['', Validators.required],
       phoneNumber: [
         '',
@@ -70,16 +87,30 @@ export class RegisterComponent {
     });
   }
 
-  passwordValidator(control: AbstractControl): ValidationErrors | null {
-    const password = control.value;
-    const hasUpperCase = /[A-Z]/.test(password);
-    const hasNumber = /[0-9]/.test(password);
-    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+  passwordValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const password = control.value;
+      const hasUpperCase = /[A-Z]/.test(password);
+      const hasNumber = /[0-9]/.test(password);
+      const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
 
-    if (!hasUpperCase || !hasNumber || !hasSpecialChar) {
-      return { passwordStrength: true };
-    }
-    return null;
+      if (!hasUpperCase || !hasNumber || !hasSpecialChar) {
+        return { passwordStrength: true };
+      }
+      return null;
+    };
+  }
+
+  usernameValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const username = control.value;
+      const isValid = /^[a-zA-Z0-9]+$/.test(username);
+
+      if (!isValid) {
+        return { invalidUsername: true };
+      }
+      return null;
+    };
   }
 
   usernameAsyncValidator(): AsyncValidatorFn {
@@ -87,10 +118,13 @@ export class RegisterComponent {
       return of(control.value).pipe(
         debounceTime(300),
         switchMap((username) =>
-          this.registrationService.checkUsernameAvailability(username)
-        ),
-        map((isAvailable) => (isAvailable ? null : { usernameTaken: true })),
-        catchError(() => of(null))
+          this.registrationService.checkUsernameAvailability(username).pipe(
+            map((isAvailable) =>
+              isAvailable ? null : { usernameTaken: true }
+            ),
+            catchError(() => of(null))
+          )
+        )
       );
     };
   }
@@ -100,36 +134,106 @@ export class RegisterComponent {
       return of(control.value).pipe(
         debounceTime(300),
         switchMap((email) =>
-          this.registrationService.checkEmailAvailability(email)
-        ),
-        map((isAvailable) => (isAvailable ? null : { emailTaken: true })),
-        catchError(() => of(null))
+          this.registrationService.checkEmailAvailability(email).pipe(
+            map((isAvailable) => (isAvailable ? null : { emailTaken: true })),
+            catchError(() => of(null))
+          )
+        )
+      );
+    };
+  }
+
+  taxNumberAsyncValidator(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      return of(control.value).pipe(
+        debounceTime(300),
+        switchMap((taxNumber) =>
+          this.registrationService.checkTaxNumberAvailability(taxNumber).pipe(
+            map((isAvailable) =>
+              isAvailable ? null : { taxNumberTaken: true }
+            ),
+            catchError(() => of(null))
+          )
+        )
       );
     };
   }
 
   onSubmit() {
-    if (this.registerForm.valid) {
-      const email = this.registerForm.get('emailAddress')?.value;
-      this.processInProgress = `Processing your request. Please check your email (${email}) for further instructions.`;
+    if (this.registerForm.invalid) {
+      return;
+    }
 
-      const registerData: RegisterData = this.registerForm.value;
-      this.registrationService.registerUser(registerData).subscribe({
-        next: () => {
+    const formData: RegisterData = {
+      ...this.registerForm.value,
+    };
+
+    this.processInProgress = `Processing your request. Please check your email (${formData.emailAddress}) for further instructions.`;
+
+    this.registrationService.registerUser(formData).subscribe({
+      next: () => {
+        this.handleSuccess(formData);
+      },
+      error: (error) => {
+        this.handleSpecificErrors(error, formData);
+      },
+    });
+  }
+
+  handleSpecificErrors(error: any, formData: RegisterData): void {
+    if (error.status === 400) {
+      switch (error.error.message) {
+        case 'Error in sending confirmation email':
           this.messageService.add({
-            severity: 'success',
-            summary: 'Registration Successful',
-            detail: 'Please check your email to verify your account.',
+            severity: 'warn',
+            summary: 'Warning',
+            detail:
+              'Your account has been successfully created, but there was an error in sending the confirmation email. Please try to register again to receive your token.',
           });
-        },
-        error: () => {
+          this.handleSuccess(formData);
+          break;
+        case 'Username already exists':
           this.messageService.add({
             severity: 'error',
-            summary: 'Registration Failed',
-            detail: 'An error occurred during registration. Please try again.',
+            summary: 'Error',
+            detail: 'The username is already taken. Please choose another one.',
           });
-        },
-      });
+          break;
+        case 'Email already exists':
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail:
+              'The email address is already registered. Please use another one.',
+          });
+          break;
+
+        default:
+          this.handleError(error);
+          break;
+      }
+    } else {
+      this.handleError(error);
     }
+  }
+
+  handleSuccess(response?: any): void {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Registration Successful',
+      detail:
+        'Your account has been successfully created. Please check your email for further instructions to complete your registration.',
+    });
+    const userData = response || this.registerForm.value;
+    this.cookieService.set('user', JSON.stringify(userData)); // Save user data in a cookie
+  }
+
+  handleError(error: any): void {
+    this.messageService.add({
+      severity: 'error',
+      summary: 'Registration Failed',
+      detail: 'An error occurred during registration. Please try again.',
+    });
+    console.error('Registration failed', error);
   }
 }
