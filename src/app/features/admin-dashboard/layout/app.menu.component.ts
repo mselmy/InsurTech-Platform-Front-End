@@ -12,47 +12,26 @@ export class AppMenuComponent implements OnInit {
   constructor(public layoutService: LayoutService) {}
 
   ngOnInit() {
-    this.model = [
-      {
-        label: 'Home',
-        items: [
-          {
-            label: 'Dashboard',
-            icon: 'pi pi-fw pi-home',
-            routerLink: ['/'],
-          },
-        ],
-      },
-      {
-        label: 'Company',
-        items: [
-          {
-            label: 'Registration Request',
-            icon: 'pi pi-fw pi-user',
-            routerLink: ['/admin/registration-requests'],
-          },
-        ],
-      },
-      {
-        label: 'User',
-        items: [
-          {
-            label: 'Article',
-            icon: 'pi pi-fw pi-book',
-            routerLink: ['/admin/article'],
-          },
-        ],
-      },
-      {
-        label: 'Users Detailes',
-        items: [
-          {
-            label: 'DETAILES',
-            icon: 'pi pi-fw pi-database',
-            routerLink: ['/admin/crud'],
-          },
-        ],
-      },
-    ];
-  }
+        this.model = [
+            {
+                label: 'Home',
+                items: [
+                    { label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/'] }
+                ]
+            },
+            {
+                label: 'Company',
+                items: [
+                    { label: 'Registration Request', icon: 'pi pi-fw pi-user', routerLink: ['/admin/registration-requests'] }
+                ]
+            },
+            {
+                label: 'User',
+                items: [
+                    { label: 'Article', icon: 'pi pi-fw pi-book', routerLink: ['/admin/article'] },
+                    { label: 'Details', icon: 'pi pi-fw pi-database', routerLink: ['/admin/crud'] }
+                ]
+            }
+        ];
+    }
 }
