@@ -164,8 +164,11 @@ export class RegisterUserComponent {
         this.handleSuccess(response);
       },
       error: (error) => {
-        if (error.error.message === 'Error in sending confirmation email') {
-          this.handleSuccess();
+        if (
+          error.status === 400 &&
+          error.error.message === 'Error in sending confirmation email'
+        ) {
+          this.handleSuccess(formData);
         } else {
           this.handleError(error);
         }
@@ -180,9 +183,9 @@ export class RegisterUserComponent {
       detail: 'Registration successful',
     });
     if (response) {
-      this.cookieService.set('user', JSON.stringify(response)); // Save user data in a cookie
+      this.cookieService.set('user', JSON.stringify(response));
     }
-    this.router.navigate(['/']); // Navigate to home page
+    this.router.navigate(['/']);
   }
 
   handleError(error: any): void {
