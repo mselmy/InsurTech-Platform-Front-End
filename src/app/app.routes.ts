@@ -6,10 +6,13 @@ import { EditmotorinsuranceComponent } from './features/company-dashboard/Compon
 import { RegisterComponent } from './features/register/register.component';
 import { RegisterUserComponent } from './features/register-user/register-user.component';
 import { ApplyForInsuranceComponent } from './features/apply-for-insurance/apply-for-insurance.component';
+import { DisplayComponent } from './features/categories/display/display.component';
+import { SubCategoryHealthComponent } from './features/categories/sub-Healthcategory/sub-category.component';
+import { SubCategoryMotorComponent } from './features/categories/sub-Motorcategory/sub-category.component';
 import { AppComponent } from './app.component';
-import {LoginComponent} from './features/Account/login/login.component'
-import {ForgetPasswordComponent} from './features/Account/forget-password/forget-password.component'
-import{ResetpasswordComponent} from './features/Account/resetpassword/resetpassword.component'
+import { LoginComponent } from './features/Account/login/login.component';
+import { ForgetPasswordComponent } from './features/Account/forget-password/forget-password.component';
+import { ResetpasswordComponent } from './features/Account/resetpassword/resetpassword.component';
 import { ApplyForInsuranceV2Component } from './features/apply-for-insurance-v2/apply-for-insurance-v2.component';
 import { QuestionsListComponent } from './features/apply-for-insurance-v2/questions-list/questions-list.component';
 import { authAdminGuard } from './core/guards/authAdmin.guard';
@@ -19,9 +22,6 @@ import { SubCategoryHomeComponent } from './features/categories/sub-Homecategory
 import{AllarticlesComponent} from '../app/features/allarticles/allarticles.component'
 import{HomearticlesComponent}from '../app/features/homearticles/homearticles.component'
 import { FAQComponent } from './features/faq/faq.component';
-import { DisplayComponent } from './features/categories/display/display.component';
-import { SubCategoryHealthComponent } from './features/categories/sub-Healthcategory/sub-category.component';
-import { SubCategoryMotorComponent } from './features/categories/sub-Motorcategory/sub-category.component';
 
 
 export const routes: Routes = [
@@ -31,7 +31,7 @@ export const routes: Routes = [
       import('./features/admin-dashboard/layout/app.layout.module').then(
         (m) => m.AppLayoutModule
       ),
-      canActivate: [authAdminGuard]
+    canActivate: [authAdminGuard],
   },
   { path: 'apply-for-insurance', component: ApplyForInsuranceComponent },
   { path: 'register', component: RegisterComponent },
@@ -66,16 +66,20 @@ export const routes: Routes = [
     ]
   },
   {
-    path:'dashboard',component:companydashbordcomponant,
+    path: 'dashboard',
+    component: companydashbordcomponant,
   },
 
-  { path: 'edithealthinsurance/:id', component:EditHealthInsurancePlanComponent},
-  { path: 'edithomeinsurance/:id', component:EdithomeinsuranceComponent},
-  { path: 'editmotorinsurance/:id', component:EditmotorinsuranceComponent },
-  {path:"HomePage",component:HomeComponent},
   {
-    path:"apply-for-insuranceV2",
-    component:ApplyForInsuranceV2Component,
+    path: 'edithealthinsurance/:id',
+    component: EditHealthInsurancePlanComponent,
+  },
+  { path: 'edithomeinsurance/:id', component: EdithomeinsuranceComponent },
+  { path: 'editmotorinsurance/:id', component: EditmotorinsuranceComponent },
+  { path: 'HomePage', component: HomeComponent },
+  {
+    path: 'apply-for-insuranceV2',
+    component: ApplyForInsuranceV2Component,
     // children:[
     //   {
     //     path:"Question/:id",
@@ -84,8 +88,8 @@ export const routes: Routes = [
     // ]
   },
   {
-    path:"questions-list/:id",
-    component:QuestionsListComponent
+    path: 'questions-list/:id',
+    component: QuestionsListComponent,
   },
-  { path: '', component: HomeComponent, pathMatch: 'full' }
+  { path: '', component: HomeComponent, pathMatch: 'full' },
 ];

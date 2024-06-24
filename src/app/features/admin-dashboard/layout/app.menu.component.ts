@@ -3,16 +3,15 @@ import { Component } from '@angular/core';
 import { LayoutService } from './service/app.layout.service';
 
 @Component({
-    selector: 'app-menu',
-    templateUrl: './app.menu.component.html'
+  selector: 'app-menu',
+  templateUrl: './app.menu.component.html',
 })
 export class AppMenuComponent implements OnInit {
+  model: any[] = [];
 
-    model: any[] = [];
+  constructor(public layoutService: LayoutService) {}
 
-    constructor(public layoutService: LayoutService) { }
-
-    ngOnInit() {
+  ngOnInit() {
         this.model = [
             {
                 label: 'Home',
@@ -29,7 +28,8 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'User',
                 items: [
-                    { label: 'Article', icon: 'pi pi-fw pi-book', routerLink: ['/admin/article'] }
+                    { label: 'Article', icon: 'pi pi-fw pi-book', routerLink: ['/admin/article'] },
+                    { label: 'Details', icon: 'pi pi-fw pi-database', routerLink: ['/admin/crud'] }
                 ]
             }
         ];
