@@ -59,7 +59,7 @@
             <!-- National ID Field -->
             <div class="form-group mb-3">
               <label for="nationalId">National ID:</label>
-              <p-inputMask id="nationalId" formControlName="nationalId" mask="99999999999999" class="form-control"
+              <p-inputMask id="nationalId" formControlName="nationalId" mask="99999999999999" style="display: flex;"
                 required></p-inputMask>
               <div *ngIf="registerForm.get('nationalId')?.invalid && registerForm.get('nationalId')?.touched"
                 class="text-danger error-message">
@@ -78,7 +78,7 @@
             <!-- Password Field -->
             <div class="form-group mb-3">
               <label for="password">Password:</label>
-              <p-password id="password" formControlName="password" [toggleMask]="true" class="form-control"
+              <p-password id="password" formControlName="password" [toggleMask]="true" style="display: flex;"
                 required></p-password>
               <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
                 class="text-danger error-message">
@@ -98,7 +98,7 @@
             <div class="form-group mb-3">
               <label for="birthDate">Birth Date:</label>
               <p-calendar id="birthDate" formControlName="birthDate" [showIcon]="true" dateFormat="yy-mm-dd"
-                class="form-control"></p-calendar>
+                style="display: flex;"></p-calendar>
               <div *ngIf="registerForm.get('birthDate')?.invalid && registerForm.get('birthDate')?.touched"
                 class="text-danger error-message">
                 <div *ngIf="registerForm.get('birthDate')?.errors?.['required']">
@@ -113,7 +113,7 @@
             <!-- Phone Number Field -->
             <div class="form-group mb-3">
               <label for="phoneNumber">Phone Number:</label>
-              <p-inputMask id="phoneNumber" formControlName="phoneNumber" mask="99999999999" class="form-control"
+              <p-inputMask id="phoneNumber" formControlName="phoneNumber" mask="99999999999" style="display: flex;"
                 required autocomplete="tel"></p-inputMask>
               <div *ngIf="registerForm.get('phoneNumber')?.invalid && registerForm.get('phoneNumber')?.touched"
                 class="text-danger error-message">
