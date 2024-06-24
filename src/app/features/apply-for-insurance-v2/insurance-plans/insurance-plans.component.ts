@@ -2,17 +2,23 @@ import { Component } from '@angular/core';
 import { InsurancePlanCardComponent } from '../insurance-plan-card/insurance-plan-card.component';
 import { QuestionsFormService } from '../../../core/services/questions-form.service';
 import { Router } from '@angular/router';
+import { InsurancePlanService } from '../../../core/services/insurancePlan.service';
+import { HomePlanCardComponent } from '../home-plan-card/home-plan-card.component';
+import { HealthPlanCardComponent } from '../health-plan-card/health-plan-card.component';
+import { MotorPlanCardComponent } from '../motor-plan-card/motor-plan-card.component';
 
 @Component({
   selector: 'app-insurance-plans',
   standalone: true,
-  imports: [InsurancePlanCardComponent],
+  imports: [InsurancePlanCardComponent, HomePlanCardComponent, HealthPlanCardComponent, MotorPlanCardComponent],
   templateUrl: './insurance-plans.component.html',
   styleUrl: './insurance-plans.component.css'
 })
 export class InsurancePlansComponent {
   catId: number = 0;
- constructor(private questionService: QuestionsFormService, private router: Router) {
+  data:any=[]
+
+ constructor(private questionService: QuestionsFormService, private router: Router, private insurancePlanService: InsurancePlanService) {
   this.catId = parseInt(sessionStorage.getItem('catId') || '0');
   console.log('catId', this.catId);
  }  
@@ -21,6 +27,10 @@ export class InsurancePlansComponent {
     this.router.navigate(['apply-for-insuranceV2']);
     console.log('catId', this.catId);
   }
+  this.insurancePlanService.GetInsurancePlanByCategory(this.catId).subscribe((data) => {
+    console.log('data', data);
+    this.data = data;
+  });
 
   
  }

@@ -8,6 +8,7 @@
       type="text"
       [(ngModel)]="answer"
       class="p-inputtext w-50 inpAsh"
+      placeholder="{{ question?.body}}"
     />
   </div>
 
@@ -23,7 +24,7 @@
         this.questionService.questIndex ==
         this.questionService.questionArr.length - 1
           ? "Submit"
-          : "Nextq"
+          : "Next"
       }}
     </button>
   </div>
