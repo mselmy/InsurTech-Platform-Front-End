@@ -19,10 +19,16 @@ import { authAdminGuard } from './core/guards/authAdmin.guard';
 import { HomeComponent } from './features/home/home.component';
 import { CompanyInsurancePlanComponent } from './features/company/company-insurance-plan/company-insurance-plan.component';
 import { SubCategoryHomeComponent } from './features/categories/sub-Homecategory/sub-category.component';
-import{AllarticlesComponent} from '../app/features/allarticles/allarticles.component'
-import{HomearticlesComponent}from '../app/features/homearticles/homearticles.component'
+import { InsurancePlanCardComponent } from './features/apply-for-insurance-v2/insurance-plan-card/insurance-plan-card.component';
+import { InsurancePlansComponent } from './features/apply-for-insurance-v2/insurance-plans/insurance-plans.component';
+import { authUserGuard } from './core/guards/authUser.guard';
+import { SuccessPageComponent } from './features/apply-for-insurance-v2/success-page/success-page.component';
+import { AllarticlesComponent } from '../app/features/allarticles/allarticles.component'
+import { HomearticlesComponent } from '../app/features/homearticles/homearticles.component'
 import { FAQComponent } from './features/faq/faq.component';
-
+import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found/page-not-found.component';
+import { authCompanyGuard } from './core/guards/authCompany.guard';
+import { NoInsurancePlaneComponent } from './core/components/no-insurance-plane/no-insurance-plane.component';
 
 export const routes: Routes = [
   {
@@ -40,15 +46,15 @@ export const routes: Routes = [
   { path: 'login/:authorization', component: LoginComponent },
   { path: 'forgetpassword', component: ForgetPasswordComponent },
   { path: 'resetpassword', component: ResetpasswordComponent },
-  { path:'allarticles',component:AllarticlesComponent},
-  { path:'homearticle',component:HomearticlesComponent},
+  { path: 'allarticles', component: AllarticlesComponent },
+  { path: 'homearticle', component: HomearticlesComponent },
   {
     path: 'insurance',
     component: AppComponent,
     children: [
       { path: '', component: DisplayComponent },
       { path: 'health', component: SubCategoryHealthComponent },
-      { path: 'home', component: SubCategoryHomeComponent},
+      { path: 'home', component: SubCategoryHomeComponent },
       { path: 'motor', component: SubCategoryMotorComponent },
     ],
   },
@@ -62,34 +68,40 @@ export const routes: Routes = [
     component: FAQComponent,
     children: [
       { path: '', component: FAQComponent },
-     
+
     ]
   },
-  {
-    path: 'dashboard',
-    component: companydashbordcomponant,
-  },
+  { path: 'company', component: companydashbordcomponant, canActivate: [authCompanyGuard] },
 
-  {
-    path: 'edithealthinsurance/:id',
-    component: EditHealthInsurancePlanComponent,
-  },
+  { path: 'edithealthinsurance/:id', component: EditHealthInsurancePlanComponent },
   { path: 'edithomeinsurance/:id', component: EdithomeinsuranceComponent },
   { path: 'editmotorinsurance/:id', component: EditmotorinsuranceComponent },
   { path: 'HomePage', component: HomeComponent },
   {
     path: 'apply-for-insuranceV2',
     component: ApplyForInsuranceV2Component,
-    // children:[
-    //   {
-    //     path:"Question/:id",
-    //     component:QuestionCardComponent
-    //   }
-    // ]
+    canActivate: [authUserGuard],
   },
   {
     path: 'questions-list/:id',
     component: QuestionsListComponent,
+    canActivate: [authUserGuard],
   },
+  {
+    path: 'insurancePlanCard',
+    component: InsurancePlanCardComponent,
+    canActivate: [authUserGuard],
+  },
+  {
+    path: 'insurancePlans',
+    component: InsurancePlansComponent,
+    canActivate: [authUserGuard],
+  },
+  {
+    path: "success",
+    component: SuccessPageComponent
+  },
+  { path: '404', component: PageNotFoundComponent },
   { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: '**', redirectTo: '/404' }
 ];
