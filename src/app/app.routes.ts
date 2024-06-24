@@ -18,9 +18,12 @@ import { ApplyForInsuranceV2Component } from './features/apply-for-insurance-v2/
 import { QuestionsListComponent } from './features/apply-for-insurance-v2/questions-list/questions-list.component';
 import { authAdminGuard } from './core/guards/authAdmin.guard';
 import { HomeComponent } from './features/home/home.component';
-//import { CompanyInsurancePlanComponent } from './features/company/company-insurance-plan/company-insurance-plan.component';
-import { CompanyInsurancePlanComponent } from './features/Company/company-insurance-plan/company-insurance-plan.component';
+import { CompanyInsurancePlanComponent } from './features/company/company-insurance-plan/company-insurance-plan.component';
+import { SubCategoryHomeComponent } from './features/categories/sub-Homecategory/sub-category.component';
+import{AllarticlesComponent} from '../app/features/allarticles/allarticles.component'
+import{HomearticlesComponent}from '../app/features/homearticles/homearticles.component'
 import { FAQComponent } from './features/faq/faq.component';
+
 
 export const routes: Routes = [
   {
@@ -38,6 +41,8 @@ export const routes: Routes = [
   { path: 'login/:authorization', component: LoginComponent },
   { path: 'forgetpassword', component: ForgetPasswordComponent },
   { path: 'resetpassword', component: ResetpasswordComponent },
+  {path:'allarticles',component:AllarticlesComponent},
+  {path:'homearticle',component:HomearticlesComponent},
   {
     path: 'insurance',
     component: AppComponent,
