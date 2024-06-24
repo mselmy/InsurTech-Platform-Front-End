@@ -19,10 +19,13 @@ import { authAdminGuard } from './core/guards/authAdmin.guard';
 import { HomeComponent } from './features/home/home.component';
 import { CompanyInsurancePlanComponent } from './features/company/company-insurance-plan/company-insurance-plan.component';
 import { SubCategoryHomeComponent } from './features/categories/sub-Homecategory/sub-category.component';
+import { InsurancePlanCardComponent } from './features/apply-for-insurance-v2/insurance-plan-card/insurance-plan-card.component';
+import { InsurancePlansComponent } from './features/apply-for-insurance-v2/insurance-plans/insurance-plans.component';
+import { authUserGuard } from './core/guards/authUser.guard';
+import { SuccessPageComponent } from './features/apply-for-insurance-v2/success-page/success-page.component';
 import{AllarticlesComponent} from '../app/features/allarticles/allarticles.component'
 import{HomearticlesComponent}from '../app/features/homearticles/homearticles.component'
 import { FAQComponent } from './features/faq/faq.component';
-
 
 export const routes: Routes = [
   {
@@ -66,6 +69,7 @@ export const routes: Routes = [
     ]
   },
   {
+
     path: 'dashboard',
     component: companydashbordcomponant,
   },
@@ -80,16 +84,26 @@ export const routes: Routes = [
   {
     path: 'apply-for-insuranceV2',
     component: ApplyForInsuranceV2Component,
-    // children:[
-    //   {
-    //     path:"Question/:id",
-    //     component:QuestionCardComponent
-    //   }
-    // ]
+    canActivate: [authUserGuard],
   },
   {
     path: 'questions-list/:id',
     component: QuestionsListComponent,
+    canActivate: [authUserGuard],
+  },
+  {
+    path: 'insurancePlanCard',
+    component: InsurancePlanCardComponent,
+    canActivate: [authUserGuard],
+  },
+  {
+    path: 'insurancePlans',
+    component: InsurancePlansComponent,
+    canActivate: [authUserGuard],
+  },
+  {
+    path:"success",
+    component:SuccessPageComponent
   },
   { path: '', component: HomeComponent, pathMatch: 'full' },
 ];

@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row  m-auto  ">
+        <div class=" d-flex gap-5  m-auto justify-content-center ">
+            @if(catId == 2){
+                <app-home-plan-card [data]="data[0]"></app-home-plan-card>
+                <app-home-plan-card [data]="data[0]"></app-home-plan-card>
+            }
+            @else if (catId == 1) {
+                <app-health-plan-card [data]="data[0]"></app-health-plan-card>
+                <app-health-plan-card [data]="data[0]"></app-health-plan-card>
+                <app-health-plan-card [data]="data[0]"></app-health-plan-card>
+            }
+            @else{
+                <app-motor-plan-card [data]="data[0]"></app-motor-plan-card>
+            }
+         
+        </div>
+    </div>
+
+</div>
