@@ -23,10 +23,11 @@ import { InsurancePlanCardComponent } from './features/apply-for-insurance-v2/in
 import { InsurancePlansComponent } from './features/apply-for-insurance-v2/insurance-plans/insurance-plans.component';
 import { authUserGuard } from './core/guards/authUser.guard';
 import { SuccessPageComponent } from './features/apply-for-insurance-v2/success-page/success-page.component';
-import{AllarticlesComponent} from '../app/features/allarticles/allarticles.component'
-import{HomearticlesComponent}from '../app/features/homearticles/homearticles.component'
+import { AllarticlesComponent } from '../app/features/allarticles/allarticles.component'
+import { HomearticlesComponent } from '../app/features/homearticles/homearticles.component'
 import { FAQComponent } from './features/faq/faq.component';
 import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found/page-not-found.component';
+import { authCompanyGuard } from './core/guards/authCompany.guard';
 
 export const routes: Routes = [
   {
@@ -44,15 +45,15 @@ export const routes: Routes = [
   { path: 'login/:authorization', component: LoginComponent },
   { path: 'forgetpassword', component: ForgetPasswordComponent },
   { path: 'resetpassword', component: ResetpasswordComponent },
-  { path:'allarticles',component:AllarticlesComponent},
-  { path:'homearticle',component:HomearticlesComponent},
+  { path: 'allarticles', component: AllarticlesComponent },
+  { path: 'homearticle', component: HomearticlesComponent },
   {
     path: 'insurance',
     component: AppComponent,
     children: [
       { path: '', component: DisplayComponent },
       { path: 'health', component: SubCategoryHealthComponent },
-      { path: 'home', component: SubCategoryHomeComponent},
+      { path: 'home', component: SubCategoryHomeComponent },
       { path: 'motor', component: SubCategoryMotorComponent },
     ],
   },
@@ -66,19 +67,12 @@ export const routes: Routes = [
     component: FAQComponent,
     children: [
       { path: '', component: FAQComponent },
-     
+
     ]
   },
-  {
+  { path: 'company', component: companydashbordcomponant, canActivate: [authCompanyGuard] },
 
-    path: 'dashboard',
-    component: companydashbordcomponant,
-  },
-
-  {
-    path: 'edithealthinsurance/:id',
-    component: EditHealthInsurancePlanComponent,
-  },
+  { path: 'edithealthinsurance/:id', component: EditHealthInsurancePlanComponent },
   { path: 'edithomeinsurance/:id', component: EdithomeinsuranceComponent },
   { path: 'editmotorinsurance/:id', component: EditmotorinsuranceComponent },
   { path: 'HomePage', component: HomeComponent },
@@ -103,10 +97,10 @@ export const routes: Routes = [
     canActivate: [authUserGuard],
   },
   {
-    path:"success",
-    component:SuccessPageComponent
+    path: "success",
+    component: SuccessPageComponent
   },
-  { path: '404', component: PageNotFoundComponent},
+  { path: '404', component: PageNotFoundComponent },
   { path: '', component: HomeComponent, pathMatch: 'full' },
-  { path: '**', redirectTo: '/404'}
+  { path: '**', redirectTo: '/404' }
 ];
