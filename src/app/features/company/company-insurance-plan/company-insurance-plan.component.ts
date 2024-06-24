@@ -26,7 +26,7 @@ export interface InsurancePlanForCompanyDTO {
 })
 export class CompanyInsurancePlanComponent implements OnInit {
   visible: boolean = false;
-  
+  hoverIndex: number | null = null;
   companies: any[] = []; 
   insurancePlans: any[] = []; 
   users: string[] = [];
@@ -36,8 +36,10 @@ export class CompanyInsurancePlanComponent implements OnInit {
   constructor(private categoriesService: CategoriesService) {}
 
   ngOnInit() : void{
-    const staticCompanyId = '1';
-    this.getCompanyPlans(staticCompanyId);
+    const userData = JSON.parse(sessionStorage.getItem('userData') || '{}');
+    const companyId = userData.id ; 
+
+    this.getCompanyPlans(companyId);
   }
 
   getCompanyPlans(companyId: string) {
