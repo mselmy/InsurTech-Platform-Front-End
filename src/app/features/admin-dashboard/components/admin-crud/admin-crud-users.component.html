@@ -13,6 +13,11 @@
           <div class="e-panel card">
             <div class="card-body">
               <div class="card-title">
+                <h6 class="mr-2"><span>Users</span><small class="px-1">Be a wise leader</small></h6>
+              </div>
+              <div class="mb-3">
+                <input type="text" class="form-control" placeholder="Search by name, username, email, or phone number"
+                  [(ngModel)]="searchTerm" (input)="filterUsers()" />
               </div>
               <div class="e-table">
                 <div class="table-responsive table-lg mt-3">
@@ -27,7 +32,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let user of users">
+                      <tr *ngFor="let user of filteredUsers">
                         <td>{{ user.name }}</td>
                         <td>{{ user.userName }}</td>
                         <td>{{ user.email }}</td>
