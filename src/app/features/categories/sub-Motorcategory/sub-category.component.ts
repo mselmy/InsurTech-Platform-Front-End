@@ -1,34 +1,43 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router'; 
 import { CategoriesService } from '../../../core/services/categories.service';
-import { Router } from '@angular/router';
+
 @Component({
   selector: 'Motorcategory',
   standalone: true,
   imports: [TableModule, ButtonModule, CommonModule, FormsModule],
   templateUrl: './sub-category.component.html',
-  styleUrl: './sub-category.component.css',
+  styleUrls: ['./sub-category.component.css'], 
 })
-export class SubCategoryMotorComponent {
+export class SubCategoryMotorComponent implements OnInit {
+  data: any[] = [];
+  loading: boolean = false;
+
   constructor(private router: Router, private categoriesService: CategoriesService) {}
 
-  data: any;
-
   ngOnInit() {
-    this.categoriesService.getCategories('http://localhost:5028/api/MotorInsurance/GetMotorInsurance').subscribe((data) => {
-      this.data = data;
-      console.log(data);
-    });
-  }
- 
-  goBack(): void {
-    this.router.navigate(['/Insurance']); 
+    this.fetchData();
   }
 
-  
+  fetchData() {
+    this.loading = true;
+    this.categoriesService.getCategories('http://localhost:5028/api/MotorInsurance/GetMotorInsurance').subscribe(
+      (data) => {
+        this.data = data;
+        this.loading = false;
+      },
+      (error) => {
+        console.error('Error fetching data', error);
+        this.loading = false;
+      }
+    );
+  }
+
+  goBack(): void {
+    this.router.navigate(['/insurance']);
+  }
 }
