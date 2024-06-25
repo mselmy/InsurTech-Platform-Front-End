@@ -1,3 +1,4 @@
+<app-header/>
 @if (data == null || data.length == 0) {
     <app-no-insurance-plane/>
 }@else {
@@ -9,15 +10,11 @@
                 @for (insurance of data; track $index) {
                     @if(catId == 2){
                         <app-insurance-plan-card [plan]="insurance" [catId]="2"></app-insurance-plan-card>
-                        <app-insurance-plan-card [plan]="insurance" [catId]="2"></app-insurance-plan-card>
                     }
                     @else if (catId == 1) {
                         <app-insurance-plan-card [plan]="insurance" [catId]="1"></app-insurance-plan-card>
-                        <app-insurance-plan-card [plan]="insurance" [catId]="1"></app-insurance-plan-card>
                     }
                     @else{
-                        <app-insurance-plan-card [plan]="insurance" [catId]="3"></app-insurance-plan-card>
-                        <app-insurance-plan-card [plan]="insurance" [catId]="3"></app-insurance-plan-card>
                         <app-insurance-plan-card [plan]="insurance" [catId]="3"></app-insurance-plan-card>
                     }
                 }
