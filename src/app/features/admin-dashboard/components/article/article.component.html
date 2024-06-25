@@ -9,8 +9,7 @@
     <p-table #dt2 [value]="articles" [paginator]="true" [rows]="10" editMode="row" dataKey="id"
         [rowsPerPageOptions]="[5, 10, 20, 50, 100]" responsiveLayout="stack" [loading]="loading" [breakpoint]="'960px'"
         [globalFilterFields]="['id', 'title']" [tableStyle]="{ 'min-width': '50rem' }">
-    
-    
+
         <ng-template pTemplate="caption">
             <div class="d-flex align-items-center justify-content-between">
                 <h5 class="m-0">Manage Articles</h5>
@@ -23,8 +22,8 @@
                 </p-iconField>
             </div>
         </ng-template>
-    
-    
+
+
         <ng-template pTemplate="header">
             <tr>
                 <th pSortableColumn="id" style="width: 10%;">
@@ -72,7 +71,35 @@
                             <p-editor [(ngModel)]="article.content" required />
                         </ng-template>
                         <ng-template pTemplate="output">
-                            <div class="content-cell" [innerHTML]="article.content"></div>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="text-break">
+                                            @if(article.content.length > 150 && !showFullContent[ri])
+                                            {
+                                            <p [innerHTML]="article.content.substring(0, 150) + '...'"></p>
+                                            }@else{
+                                            <p [innerHTML]="article.content"></p>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col text-end">
+                                        @if(article.content.length > 150)
+                                        {
+                                        @if(!showFullContent[ri])
+                                        {
+                                        <p-button label="Show more" [text]="true" severity="success"
+                                            (click)="toggleContent(ri)" />
+                                        }@else{
+                                        <p-button label="Show less" [text]="true" severity="success"
+                                            (click)="toggleContent(ri)" />
+                                        }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
                         </ng-template>
                     </p-cellEditor>
                 </td>
@@ -92,13 +119,16 @@
                             (click)="onRowEditInit(article)" class="p-button-rounded p-button-text">
                         </button>
                         <button *ngIf="!editing" pButton type="button" icon="pi pi-trash"
-                            (click)="deleteProduct($event, article.id)" class="p-button-rounded p-button-text text-danger">
+                            (click)="deleteProduct($event, article.id)"
+                            class="p-button-rounded p-button-text text-danger">
                         </button>
                         <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check"
-                            (click)="onRowEditSave(article)" class="p-button-rounded p-button-text p-button-success mr-2">
+                            (click)="onRowEditSave(article)"
+                            class="p-button-rounded p-button-text p-button-success mr-2">
                         </button>
                         <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times"
-                            (click)="onRowEditCancel(article, ri)" class="p-button-rounded p-button-text p-button-danger">
+                            (click)="onRowEditCancel(article, ri)"
+                            class="p-button-rounded p-button-text p-button-danger">
                         </button>
                     </div>
                 </td>
@@ -130,8 +160,8 @@
             <input id="articleImg" type="text" pInputText [(ngModel)]="clonedarticle.articleImg" />
         </div>
     </div>
-    <p-footer>
-        <p-button label="Cancel" icon="pi pi-times" class="p-button-text" (click)="closeDialog()"></p-button>
+    <p-footer class="justify-content-between">
+        <p-button label="Cancel" icon="pi pi-times" class="p-button-text" severity="danger" (click)="closeDialog()"></p-button>
         <p-button label="Save" icon="pi pi-check" class="p-button-text" (click)="SaveDialog()"></p-button>
     </p-footer>
 </p-dialog>
