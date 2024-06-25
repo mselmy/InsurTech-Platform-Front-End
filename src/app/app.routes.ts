@@ -111,6 +111,26 @@ export const routes: Routes = [
     path: 'success',
     component: SuccessPageComponent,
   },
+  {
+    path: 'request', component: CompanyRequestComponent,
+  },
+  {
+    path: 'dashboard', redirectTo: 'company',
+  },
+  {
+    path: 'insurancecollection', component: InsurancecollectionComponent,
+    children: [
+      {
+        path: 'homeinsurance', component: HomeinsuranceComponent
+      },
+      {
+        path: 'healthinsurance', component: HealthinsuranceComponent
+      },
+      {
+        path: 'motorinsurance', component: MotorinsuranceComponent
+      }
+    ]
+  },
   { path: 'successpurchasing', component: SuccessPurchasingComponent },
   { path: '404', component: PageNotFoundComponent },
   { path: '', component: HomeComponent, pathMatch: 'full' },
