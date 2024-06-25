@@ -2,8 +2,6 @@ import { CommonModule } from '@angular/common';
 import {
   Component,
   HostListener,
-  Renderer2,
-  ElementRef,
   OnInit,
 } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
@@ -22,8 +20,6 @@ export class HeaderComponent implements OnInit {
   userData: any = null;
 
   constructor(
-    private renderer: Renderer2,
-    private elementRef: ElementRef,
     private authService: AuthService,
     private router: Router
   ) {}
