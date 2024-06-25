@@ -27,7 +27,7 @@ export class MotorinsuranceService {
   }
   
 
-  getById(id: number): Observable<any> {
+  getById(id: string): Observable<any> {
     return this.httpClient.get<any>(`${this.baseurl}${id}`);
   }
 }

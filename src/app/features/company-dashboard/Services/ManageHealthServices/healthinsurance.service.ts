@@ -27,7 +27,7 @@ export class HealthinsuranceService {
     return this.http.put<any>(`${this.baseurl}${healthinsurance.id}`, healthinsurance);
   }
 
-  getById(id: number): Observable<any> {
+  getById(id: string): Observable<any> {
     return this.http.get<any>(`${this.baseurl}${id}`);
   }
 }

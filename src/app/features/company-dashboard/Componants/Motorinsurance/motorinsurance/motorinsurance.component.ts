@@ -32,13 +32,16 @@ export class MotorinsuranceComponent {
     legalExpenses: new FormControl(null, [Validators.required, Validators.min(0), Validators.max(1.7976931348623157e+308)]),
     
   })
+  userId = JSON.parse(localStorage.getItem('userData') || '{id: 1}').id;
+
   constructor(public motorservce:MotorinsuranceService,
     public route : ActivatedRoute, 
     private messageService: MessageService,
     ){}
-  userId: string = "1"; 
+  // userId: string = "57164a6c-e3b4-4ab5-8fd6-18fe3d29e68a"; 
   ngOnInit(): void {
-  
+    console.log('User ID:', this.userId); // This will log the user ID to the console
+
   }
   addmotor(){
     if(this.addmotorform.valid){

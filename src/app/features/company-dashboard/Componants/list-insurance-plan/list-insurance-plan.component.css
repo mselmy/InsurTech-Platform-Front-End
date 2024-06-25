@@ -1,3 +1,67 @@
+/* Base font size */
+html {
+    font-size: 16px;
+}
+
+.holder {
+    margin-top: 30px;
+}
+
+.insurance-item {
+    cursor: pointer;
+}
+
+.insurance-item i {
+    font-size: 2rem; /* Adjust icon size */
+}
+
+.insurance-item h2 {
+    font-size: 1.5rem; /* Base font size for h2 */
+}
+
+/* Responsive font size for smaller screens */
+@media (max-width: 1200px) {
+    .insurance-item i {
+        font-size: 1.75rem;
+    }
+
+    .insurance-item h2 {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .insurance-item i {
+        font-size: 1.5rem;
+    }
+
+    .insurance-item h2 {
+        font-size: 1.125rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .insurance-item i {
+        font-size: 1.25rem;
+    }
+
+    .insurance-item h2 {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .insurance-item i {
+        font-size: 1rem;
+    }
+
+    .insurance-item h2 {
+        font-size: 0.875rem;
+    }
+}
+
+
+
 #Motor, #health, #home {
     width: 50px;
     height: 50px;
@@ -118,4 +182,65 @@ th{
     padding: 10px; 
     display: inline-block; 
   }
+
+  /* CSS for responsive tables */
+@media only screen and (max-width: 1024px) {
+    p-table {
+        font-size: 0.9rem;
+    }
+
+    p-table thead th, p-table tbody td {
+        padding: 0.5rem;
+    }
+
+    p-table thead {
+        display: none;
+    }
+
+    p-table tbody td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    p-table tbody tr {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid #ddd;
+    }
+
+    p-table tbody td::before {
+        content: attr(p-sortableColumn);
+        font-weight: bold;
+        display: block;
+        margin-bottom: 0.3rem;
+    }
+
+    .flex {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    p-table {
+        font-size: 0.8rem;
+    }
+
+    p-table tbody td::before {
+        font-size: 0.9rem;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    p-table {
+        font-size: 0.7rem;
+    }
+
+    p-table tbody td::before {
+        font-size: 0.8rem;
+    }
+}
+
   
