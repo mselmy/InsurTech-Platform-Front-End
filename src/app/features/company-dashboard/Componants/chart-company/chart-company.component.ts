@@ -21,7 +21,7 @@ export class ChartCompanyComponent implements OnInit, OnDestroy {
   public MotorNumberbasic: number = 0;
   public MotorNumberstandered: number = 0;
   public MotorNumberpremium: number = 0;
-  private Id: number = 1;
+  private Id: string = "57164a6c-e3b4-4ab5-8fd6-18fe3d29e68a";
   subscriptions: Subscription[] = []; 
   data: any;
   options: any;

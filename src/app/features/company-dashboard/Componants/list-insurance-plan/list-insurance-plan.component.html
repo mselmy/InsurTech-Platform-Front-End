@@ -1,26 +1,27 @@
+
 <br>
 <div class="container">
   <div class="row">
-    <div class="col d-flex align-items-center" id="Motor" (click)="click('Motor')">
-      <i class="fas fa-car"></i>
-      <div class="ms-3">
-        <h2>Motor Insurance</h2>
+      <div class="col d-flex align-items-center insurance-item" id="Motor" (click)="click('Motor')">
+          <i class="fas fa-car"></i>
+          <div class="ms-3">
+              <h2>Motor Insurance</h2>
+          </div>
       </div>
-    </div>
 
-    <div class="col d-flex align-items-center" id="health" (click)="click('health')">
-      <i class="fas fa-heartbeat"></i>
-      <div class="ms-3">
-        <h2>Health Insurance</h2>
+      <div class="col d-flex align-items-center insurance-item" id="health" (click)="click('health')">
+          <i class="fas fa-heartbeat"></i>
+          <div class="ms-3">
+              <h2>Health Insurance</h2>
+          </div>
       </div>
-    </div>
 
-    <div class="col d-flex align-items-center" id="home" (click)="click('home')">
-      <i class="fas fa-home"></i>
-      <div class="ms-3">
-        <h2>Home Insurance</h2>
+      <div class="col d-flex align-items-center insurance-item" id="home" (click)="click('home')">
+          <i class="fas fa-home"></i>
+          <div class="ms-3">
+              <h2>Home Insurance</h2>
+          </div>
       </div>
-    </div>
   </div>
 </div>
 <div style="width:1300px ;max-width:1300px;" class="container">
@@ -122,7 +123,7 @@
               {{ product.numberOfUsers }}
             </td>
             <td>
-              <button class="btn newprimary btn-sm"  routerLink="editmotorinsurance/{{product.id}}">
+              <button class="btn newprimary btn-sm"  routerLink="editmotorinsurance/{{product.id}}" (click)="showModal(1, selectedInsurance)">
                 <i class="fas fa-edit action"></i>
               </button>
               <button class="btn newdanger btn-sm" (click)="deleteInsurance(product.id)">
@@ -237,7 +238,7 @@
               {{ product.numberOfUsers }}
             </td>
             <td>
-              <button class="btn newprimary btn-sm" routerLink="/edithealthinsurance/{{product.id}}">
+              <button class="btn newprimary btn-sm" routerLink="/edithealthinsurance/{{product.id}}" (click)="showModal(2, dataToSend)">
                 <i class="fas fa-edit action"></i>
               </button>
               <button class="btn newdanger btn-sm" (click)="deleteInsurance(product.id)">
@@ -354,7 +355,7 @@
               {{ product.numberOfUsers }}
             </td>
             <td>
-              <button class="btn newprimary btn-sm" routerLink="edithomeinsurance/{{product.id}}">
+              <button class="btn newprimary btn-sm" routerLink="edithomeinsurance/{{product.id}}" (click)="showModal(2, dataToSend)">
                 <i class="fas fa-edit action"></i>
               </button>
               <button class="btn newdanger btn-sm" (click)="deleteInsurance(product.id)">
@@ -373,10 +374,10 @@
   </div>
 </div>
 
-
+<!-- add  -->
 <div class="card flex justify-content-center">
   <p-dialog header="New Insurance Plan" [(visible)]="visible" [modal]="true"
-    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '61rem' ,padding:'-10px'}" [draggable]="false"
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '80%' ,padding:'-10px'}" [draggable]="false"
     [resizable]="false">
     <app-motorinsurance *ngIf="flag==1" style="margin: 0px; padding: 0px"></app-motorinsurance>
     <app-healthinsurance *ngIf="flag==2" style="margin: 0px; padding: 0px"></app-healthinsurance>
@@ -385,14 +386,15 @@
 </div>
 
 
-<!-- 
+<!-- edit -->
 <div class="card flex justify-content-center">
   <p-dialog header="Edit Insurance Plan" [(visible)]="VisibleEdit" [modal]="true"
-    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '61rem' ,padding:'-10px'}" [draggable]="false"
-    [resizable]="false">
-    <app-editmotorinsurance *ngIf="flag==1" [EditObj]="selectedInsurance"></app-editmotorinsurance>
-    <app-edit-health-insurance-plan *ngIf="flag==2" [insuranceId]="dataToSend" style="margin: 0px; padding: 0px"></app-edit-health-insurance-plan>
-    <app-edithomeinsurance  *ngIf="flag==3" [insuranceId]="dataToSend" style="margin: 0px; padding: 0px"></app-edithomeinsurance >
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '80%', padding: '-10px' }"
+    [draggable]="false" [resizable]="false">
+    <app-editmotorinsurance *ngIf="flag === 1" [EditObj]="selectedInsurance"></app-editmotorinsurance>
+    <app-edit-health-insurance-plan *ngIf="flag === 2" [insuranceId]="dataToSend"></app-edit-health-insurance-plan>
+    <app-edithomeinsurance *ngIf="flag === 3" [insuranceId]="dataToSend"></app-edithomeinsurance>
   </p-dialog>
 </div>
- -->
+
+

@@ -1,5 +1,4 @@
-
-
+<app-header/>
 <section class="dark">
 
 
@@ -14,8 +13,8 @@
 				</a>
 				<div class="postcard__text">
 					<h1 class="postcard__title yellow"><a href="#">{{item.title}}</a></h1>
-					<div class="postcard__preview-txt">
-						{{item.content}}
+					<div class="postcard__preview-txt" [innerHTML]="item.content">
+					
 					</div>
 					<!-- <ul class="postcard__tagbox">
 						<li class="tag__item"><i class="fas fa-tag mr-2"></i>Podcast</li>

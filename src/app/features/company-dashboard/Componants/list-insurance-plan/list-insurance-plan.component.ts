@@ -52,7 +52,10 @@ export class ListInsurancePlanComponent implements OnInit, OnDestroy {
   private Id = JSON.parse(localStorage.getItem('userData') || '{id: 1}').id;
   subscriptions: Subscription[] = [];
   selectedInsurance: EditMotorInsurance = new EditMotorInsurance(0, 0, 0, 0, "", 0, 0, 0, 0, 0);
+  dataToSend: any; // Define your dataToSend object if needed
 
+
+///
   constructor(
     private CompanyServices: CompanyService,
     private renderer: Renderer2,
@@ -131,4 +134,17 @@ export class ListInsurancePlanComponent implements OnInit, OnDestroy {
   showDialog() {
     this.visible = true;
   }
+  // Function to show the modal with the selected component
+showModal(flag: number, data?: any) {
+  this.flag = flag;
+  if (data) {
+    this.dataToSend = data;
+  }
+  this.VisibleEdit = true; // Show the modal
+}
+
+// Function to hide the modal
+hideModal() {
+  this.VisibleEdit = false; // Hide the modal
+}
 }

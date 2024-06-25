@@ -20,7 +20,7 @@ export class EdithomeinsuranceComponent implements OnInit, OnDestroy {
   Edithomeform!: FormGroup;
   sub!: Subscription;
   InsurancePlanLevel = InsurancePlanLevel;
-  comanyId:string="1";
+  comanyId:string="57164a6c-e3b4-4ab5-8fd6-18fe3d29e68a";
 
 
   constructor(

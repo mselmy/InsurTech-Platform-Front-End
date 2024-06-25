@@ -19,7 +19,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 export class HealthinsuranceComponent implements OnInit {
   addhealthform!: FormGroup;
   InsurancePlanLevel = InsurancePlanLevel;
-  userId: string = "1";
+  userId: string = JSON.parse(localStorage.getItem('userData') || "{}").id ;
 
   constructor(public healthService: HealthinsuranceService, private messageService: MessageService,
   ) { }
