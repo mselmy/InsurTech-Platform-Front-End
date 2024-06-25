@@ -14,7 +14,7 @@
       <div class="card__body">
         <span class="tag tag-blue">Technology</span>
         <h4>{{item.title}}</h4>
-        <p>{{truncateContent(item.content)}}</p>
+        <p [innerHTML]="truncateContent(item.content)"></p>
       </div>
       <div class="card__footer">
         <a [routerLink]="['/allarticles']" class="show-more">Show More</a>
