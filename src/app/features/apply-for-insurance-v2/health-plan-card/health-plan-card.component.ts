@@ -22,8 +22,13 @@ export class HealthPlanCardComponent {
     console.log('data from health Plan', this.data);
   }
   createRequest() {
-    this.insurancePlanService.SendRequestInsurancePlan(this.data.id, this.questionService.GetAnswers());
-    this.router.navigate(['/success'])
-    console.log('answers', this.questionService.GetAnswers(), this.data.id, "kolo tmam")
+    this.insurancePlanService.SendRequestInsurancePlan(this.data.id, this.questionService.GetAnswers()).subscribe({
+      next: data => {
+        this.router.navigate(['success']);
+      },
+      error: error => {
+        console.error('There was an error!', error);
+      }
+    });
   }
 }

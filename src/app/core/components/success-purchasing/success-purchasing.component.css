@@ -1,0 +1,79 @@
+/*======================
+    Success page
+=======================*/
+
+.page_success {
+  padding: 20px 0;
+  background: #fff;
+  font-family: "Arvo", serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.page_success #bgImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: cover;
+  height: 50vh;
+}
+
+.success_bg {
+  height: 50vh; /* Match the GIF height */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.animated_text h1,
+.animated_text h3 {
+  color: green;
+  opacity: 0;
+  animation: fadeInScale 3s forwards, slideIn 3s forwards;
+}
+
+.animated_text h1 {
+  animation-delay: 0s, 0s;
+}
+
+.animated_text h3 {
+  animation-delay: 1s, 1s;
+}
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(-50px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.link_success {
+  color: #fff !important;
+  padding: 10px 20px;
+  background: #39ac31;
+  margin: 20px 0;
+  display: inline-block;
+}

@@ -4,11 +4,12 @@ import { QuestionsFormService } from '../../../core/services/questions-form.serv
 import { QuestionCardComponent } from '../question-card/question-card.component';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
+import { HeaderComponent } from '../../../shared/components/header/header.component';
 
 @Component({
   selector: 'app-questions-list',
   standalone: true,
-  imports: [QuestionCardComponent, CommonModule],
+  imports: [QuestionCardComponent, CommonModule, HeaderComponent],
   templateUrl: './questions-list.component.html',
   styleUrl: './questions-list.component.css',
 })
