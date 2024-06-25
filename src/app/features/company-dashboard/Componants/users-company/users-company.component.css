@@ -1,13 +1,77 @@
-h2{
-    color:#0a3b1d;
+.users-list-container {
     padding: 10px;
-}
-.card
-{
+  }
+  
+  h2 {
+    color: #0a3b1d;
+    padding: 10px;
+  }
+  
+  .card {
     padding: 15px;
-    width:28vw;
-    border: 2px soild green;
+    width: 100%;
+    max-width: 28vw;
+    border: 2px solid green;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-} 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: auto;
+  }
+  
+  .user-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .user-avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1rem;
+    background-color: #a0e6ba;
+    border: 1px solid green;
+  }
+  
+  .user-details {
+    margin-left: 1rem;
+  }
+  
+  .no-users {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30rem;
+  }
+  
+  .no-users img {
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 1200px) {
+    .card {
+      max-width: 40vw;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .card {
+      max-width: 50vw;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .card {
+      max-width: 80vw;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .card {
+      width: 90%;
+    }
+  }
+  

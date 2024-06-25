@@ -1,17 +1,30 @@
-.holder
-{
+.container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.row {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.holder {
     margin-top: 30px;
 }
-.holder-chart
-{
+
+.holder-chart {
     margin-top: 30px;
 }
-.holder-UserList
-{
+
+.holder-UserList {
     margin-top: 30px;
 }
-.row
-{
-    margin-left: 0px;
-    margin-right: 0px;
+
+/* Ensure box-sizing is set to border-box */
+*, *::before, *::after {
+    box-sizing: border-box;
 }

@@ -3,10 +3,10 @@
       <div class="container">
         <div class="signin-content" style="display: flex;">
           <div class="signin-image">
-            <figure style="margin-top: 50%; width:100%;"><img src="../../../../../../assets/images/Company/motor.jpeg" alt="sign up image"></figure>
+            <figure style=" width:100%;"><img src="../../../../../../assets/images/Company/motor.jpeg" alt="sign up image"></figure>
           </div>
   
-          <form class="form-border" [formGroup]="Editmotorform" (ngSubmit)="EditMotor()">
+          <form  [formGroup]="Editmotorform" (ngSubmit)="EditMotor()">
             <div class="mb-2">
               <label for="yearlyCoverage">Yearly Coverage</label>
               <input formControlName="yearlyCoverage" min="0" id="yearlyCoverage" type="number" class="form-control">

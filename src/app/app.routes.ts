@@ -10,26 +10,32 @@ import { DisplayComponent } from './features/categories/display/display.componen
 import { SubCategoryHealthComponent } from './features/categories/sub-Healthcategory/sub-category.component';
 import { SubCategoryMotorComponent } from './features/categories/sub-Motorcategory/sub-category.component';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './features/Account/login/login.component';
-import { ForgetPasswordComponent } from './features/Account/forget-password/forget-password.component';
-import { ResetpasswordComponent } from './features/Account/resetpassword/resetpassword.component';
+import { LoginComponent } from './features/Account/login/login.component'
+import { ForgetPasswordComponent } from './features/Account/forget-password/forget-password.component'
+import { ResetpasswordComponent } from './features/Account/resetpassword/resetpassword.component'
 import { ApplyForInsuranceV2Component } from './features/apply-for-insurance-v2/apply-for-insurance-v2.component';
 import { QuestionsListComponent } from './features/apply-for-insurance-v2/questions-list/questions-list.component';
 import { authAdminGuard } from './core/guards/authAdmin.guard';
 import { HomeComponent } from './features/home/home.component';
 import { CompanyInsurancePlanComponent } from './features/company/company-insurance-plan/company-insurance-plan.component';
 import { SubCategoryHomeComponent } from './features/categories/sub-Homecategory/sub-category.component';
-import { InsurancePlanCardComponent } from './features/apply-for-insurance-v2/insurance-plan-card/insurance-plan-card.component';
+import { CompanyRequestComponent } from './features/company-request/Component/requests/company-request.component';
+import { InsurancecollectionComponent } from './features/company-dashboard/Componants/insurancecollection/insurancecollection.component';
+import { HomeinsuranceComponent } from './features/company-dashboard/Componants/Homeinsurance/homeinsurance/homeinsurance.component';
+import { HealthinsuranceComponent } from './features/company-dashboard/Componants/Helathinsurance/healthinsurance/healthinsurance.component';
+import { MotorinsuranceComponent } from './features/company-dashboard/Componants/Motorinsurance/motorinsurance/motorinsurance.component';
 import { InsurancePlansComponent } from './features/apply-for-insurance-v2/insurance-plans/insurance-plans.component';
 import { authUserGuard } from './core/guards/authUser.guard';
-import { SuccessPageComponent } from './features/apply-for-insurance-v2/success-page/success-page.component';
-import { AllarticlesComponent } from '../app/features/allarticles/allarticles.component';
-import { HomearticlesComponent } from '../app/features/homearticles/homearticles.component';
-import { FAQComponent } from './features/faq/faq.component';
-import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found/page-not-found.component';
-import { authCompanyGuard } from './core/guards/authCompany.guard';
-import { NoInsurancePlaneComponent } from './core/components/no-insurance-plane/no-insurance-plane.component';
 import { SuccessPurchasingComponent } from './core/components/success-purchasing/success-purchasing.component';
+import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found/page-not-found.component';
+import { SuccessPageComponent } from './features/apply-for-insurance-v2/success-page/success-page.component';
+import { InsurancePlanCardComponent } from './features/apply-for-insurance-v2/insurance-plan-card/insurance-plan-card.component';
+import { authCompanyGuard } from './core/guards/authCompany.guard';
+import { FAQComponent } from './features/faq/faq.component';
+import { AllarticlesComponent } from './features/allarticles/allarticles.component';
+import { HomearticlesComponent } from './features/homearticles/homearticles.component';
+
+
 export const routes: Routes = [
   {
     path: 'admin',
@@ -104,6 +110,26 @@ export const routes: Routes = [
   {
     path: 'success',
     component: SuccessPageComponent,
+  },
+  {
+    path: 'request', component: CompanyRequestComponent,
+  },
+  {
+    path: 'dashboard', redirectTo: 'company',
+  },
+  {
+    path: 'insurancecollection', component: InsurancecollectionComponent,
+    children: [
+      {
+        path: 'homeinsurance', component: HomeinsuranceComponent
+      },
+      {
+        path: 'healthinsurance', component: HealthinsuranceComponent
+      },
+      {
+        path: 'motorinsurance', component: MotorinsuranceComponent
+      }
+    ]
   },
   { path: 'successpurchasing', component: SuccessPurchasingComponent },
   { path: '404', component: PageNotFoundComponent },

@@ -13,7 +13,7 @@ import { MotorinsuranceService } from '../ManageMotorServices/motorinsurance.ser
 export class CompanyService {
 
   private baseUrl: string = "http://localhost:5028/api/";
-  public companId:number=1;
+  public companId:string="57164a6c-e3b4-4ab5-8fd6-18fe3d29e68a";
   private insurancePlansSubject = new BehaviorSubject<ListInsurancePlan | null>(null);
   insurancePlans$ = this.insurancePlansSubject.asObservable();
 
@@ -28,7 +28,7 @@ export class CompanyService {
     
   }
 
-  GetAll(Id: number): void {
+  GetAll(Id: string): void {
     this.httpClient.get<ListInsurancePlan>(this.baseUrl + "InsurancePlan/InsurancePlansByCompanyId/" + Id)
       .subscribe(data => {
         this.insurancePlansSubject.next(data);
