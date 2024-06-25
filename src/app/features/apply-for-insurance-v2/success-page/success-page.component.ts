@@ -1,19 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Fireworks } from 'fireworks-js';
 
 @Component({
   selector: 'app-success-page',
-  standalone: true,
-  imports: [],
   templateUrl: './success-page.component.html',
-  styleUrl: './success-page.component.css'
+  styleUrls: ['./success-page.component.css']
 })
-export class SuccessPageComponent implements OnInit
-{
-  constructor(private router: Router) { }
+export class SuccessPageComponent implements OnInit {
+
+  constructor() { }
+
   ngOnInit(): void {
-    setTimeout(() => {
-      this.router.navigate(['/']);
-    }, 3000);
+    this.startFireworks();
+  }
+
+  startFireworks(): void {
+    const fireworkContainer = document.querySelector('.fireworks-container') as HTMLElement;
+
+    const fireworks = new Fireworks(fireworkContainer, {
+      // speed: 2, // Reduced speed
+      acceleration: 1.02, 
+      friction: 0.97, 
+      gravity: 1.5, 
+      particles: 100, 
+      explosion: 5 
+    });
+
+    fireworks.start();
   }
 }
