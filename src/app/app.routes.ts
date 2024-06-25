@@ -24,6 +24,16 @@ import { InsurancecollectionComponent } from './features/company-dashboard/Compo
 import { HomeinsuranceComponent } from './features/company-dashboard/Componants/Homeinsurance/homeinsurance/homeinsurance.component';
 import { HealthinsuranceComponent } from './features/company-dashboard/Componants/Helathinsurance/healthinsurance/healthinsurance.component';
 import { MotorinsuranceComponent } from './features/company-dashboard/Componants/Motorinsurance/motorinsurance/motorinsurance.component';
+import { InsurancePlansComponent } from './features/apply-for-insurance-v2/insurance-plans/insurance-plans.component';
+import { authUserGuard } from './core/guards/authUser.guard';
+import { SuccessPurchasingComponent } from './core/components/success-purchasing/success-purchasing.component';
+import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found/page-not-found.component';
+import { SuccessPageComponent } from './features/apply-for-insurance-v2/success-page/success-page.component';
+import { InsurancePlanCardComponent } from './features/apply-for-insurance-v2/insurance-plan-card/insurance-plan-card.component';
+import { authCompanyGuard } from './core/guards/authCompany.guard';
+import { FAQComponent } from './features/faq/faq.component';
+import { AllarticlesComponent } from './features/allarticles/allarticles.component';
+import { HomearticlesComponent } from './features/homearticles/homearticles.component';
 
 
 export const routes: Routes = [
@@ -33,7 +43,7 @@ export const routes: Routes = [
       import('./features/admin-dashboard/layout/app.layout.module').then(
         (m) => m.AppLayoutModule
       ),
-    canActivate: [authAdminGuard]
+    canActivate: [authAdminGuard],
   },
   { path: 'apply-for-insurance', component: ApplyForInsuranceComponent },
   { path: 'register', component: RegisterComponent },
@@ -42,60 +52,67 @@ export const routes: Routes = [
   { path: 'login/:authorization', component: LoginComponent },
   { path: 'forgetpassword', component: ForgetPasswordComponent },
   { path: 'resetpassword', component: ResetpasswordComponent },
+  { path: 'allarticles', component: AllarticlesComponent },
+  { path: 'homearticle', component: HomearticlesComponent },
   {
-    path: 'request', component: CompanyRequestComponent,
-  },
-  {
-    path: 'Insurance',
+    path: 'insurance',
     component: AppComponent,
     children: [
-      { path: 'Health', component: SubCategoryHealthComponent },
-      { path: 'Home', component: SubCategoryHomeComponent },
-      { path: 'Motor', component: SubCategoryMotorComponent },
       { path: '', component: DisplayComponent },
+      { path: 'health', component: SubCategoryHealthComponent },
+      { path: 'home', component: SubCategoryHomeComponent },
+      { path: 'motor', component: SubCategoryMotorComponent },
     ],
   },
   {
-    path: 'CompanyInsurance',
-    component: AppComponent,
+    path: 'companyinsurance',
+    component: CompanyInsurancePlanComponent,
     children: [{ path: '', component: CompanyInsurancePlanComponent }],
   },
   {
-    path: 'dashboard', component: companydashbordcomponant,
-
+    path: 'faqs',
+    component: FAQComponent,
+    children: [{ path: '', component: FAQComponent }],
   },
-  { path: 'edithealthinsurance/:id', component: EditHealthInsurancePlanComponent },
+  {
+    path: 'company',
+    component: companydashbordcomponant,
+    canActivate: [authCompanyGuard],
+  },
+
+  {
+    path: 'edithealthinsurance/:id',
+    component: EditHealthInsurancePlanComponent,
+  },
   { path: 'edithomeinsurance/:id', component: EdithomeinsuranceComponent },
   { path: 'editmotorinsurance/:id', component: EditmotorinsuranceComponent },
-  { path: "HomePage", component: HomeComponent },
+  { path: 'HomePage', component: HomeComponent },
   {
-    path: "apply-for-insuranceV2",
+    path: 'apply-for-insuranceV2',
     component: ApplyForInsuranceV2Component,
-    // children:[
-    //   {
-    //     path:"Question/:id",
-    //     component:QuestionCardComponent
-    //   }
-    // ]
+    canActivate: [authUserGuard],
   },
   {
-    path: "questions-list/:id",
-    component: QuestionsListComponent
+    path: 'questions-list/:id',
+    component: QuestionsListComponent,
+    canActivate: [authUserGuard],
   },
   {
-    path: 'insurancecollection', component: InsurancecollectionComponent,
-    children: [
-      {
-        path: 'homeinsurance', component: HomeinsuranceComponent
-      },
-      {
-        path: 'healthinsurance', component: HealthinsuranceComponent
-      },
-      {
-        path: 'motorinsurance', component: MotorinsuranceComponent
-      }
-    ]
+    path: 'insurancePlanCard',
+    component: InsurancePlanCardComponent,
+    canActivate: [authUserGuard],
   },
-  
-  { path: '', component: HomeComponent, pathMatch: 'full' }
+  {
+    path: 'insurancePlans',
+    component: InsurancePlansComponent,
+    canActivate: [authUserGuard],
+  },
+  {
+    path: 'success',
+    component: SuccessPageComponent,
+  },
+  { path: 'successpurchasing', component: SuccessPurchasingComponent },
+  { path: '404', component: PageNotFoundComponent },
+  { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: '**', redirectTo: '/404' },
 ];
