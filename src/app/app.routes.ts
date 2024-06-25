@@ -23,13 +23,13 @@ import { InsurancePlanCardComponent } from './features/apply-for-insurance-v2/in
 import { InsurancePlansComponent } from './features/apply-for-insurance-v2/insurance-plans/insurance-plans.component';
 import { authUserGuard } from './core/guards/authUser.guard';
 import { SuccessPageComponent } from './features/apply-for-insurance-v2/success-page/success-page.component';
-import { AllarticlesComponent } from '../app/features/allarticles/allarticles.component'
-import { HomearticlesComponent } from '../app/features/homearticles/homearticles.component'
+import { AllarticlesComponent } from '../app/features/allarticles/allarticles.component';
+import { HomearticlesComponent } from '../app/features/homearticles/homearticles.component';
 import { FAQComponent } from './features/faq/faq.component';
 import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found/page-not-found.component';
 import { authCompanyGuard } from './core/guards/authCompany.guard';
 import { NoInsurancePlaneComponent } from './core/components/no-insurance-plane/no-insurance-plane.component';
-
+import { SuccessPurchasingComponent } from './core/components/success-purchasing/success-purchasing.component';
 export const routes: Routes = [
   {
     path: 'admin',
@@ -66,14 +66,18 @@ export const routes: Routes = [
   {
     path: 'faqs',
     component: FAQComponent,
-    children: [
-      { path: '', component: FAQComponent },
-
-    ]
+    children: [{ path: '', component: FAQComponent }],
   },
-  { path: 'company', component: companydashbordcomponant, canActivate: [authCompanyGuard] },
+  {
+    path: 'company',
+    component: companydashbordcomponant,
+    canActivate: [authCompanyGuard],
+  },
 
-  { path: 'edithealthinsurance/:id', component: EditHealthInsurancePlanComponent },
+  {
+    path: 'edithealthinsurance/:id',
+    component: EditHealthInsurancePlanComponent,
+  },
   { path: 'edithomeinsurance/:id', component: EdithomeinsuranceComponent },
   { path: 'editmotorinsurance/:id', component: EditmotorinsuranceComponent },
   { path: 'HomePage', component: HomeComponent },
@@ -98,10 +102,11 @@ export const routes: Routes = [
     canActivate: [authUserGuard],
   },
   {
-    path: "success",
-    component: SuccessPageComponent
+    path: 'success',
+    component: SuccessPageComponent,
   },
+  { path: 'successpurchasing', component: SuccessPurchasingComponent },
   { path: '404', component: PageNotFoundComponent },
   { path: '', component: HomeComponent, pathMatch: 'full' },
-  { path: '**', redirectTo: '/404' }
+  { path: '**', redirectTo: '/404' },
 ];
