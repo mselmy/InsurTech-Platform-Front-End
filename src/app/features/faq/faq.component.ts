@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { AccordionModule } from 'primeng/accordion';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
+import { HeaderComponent } from '../../shared/components/header/header.component';
 
 interface FAQ {
   id: number;
@@ -13,7 +14,7 @@ interface FAQ {
 @Component({
   selector: 'app-faq',
   standalone: true,
-  imports: [AccordionModule ,CommonModule,ButtonModule],
+  imports: [AccordionModule ,CommonModule,ButtonModule, HeaderComponent],
   templateUrl: './faq.component.html',
   styleUrl: './faq.component.css'
 })
