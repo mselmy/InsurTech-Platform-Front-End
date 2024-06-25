@@ -1,34 +1,50 @@
-<nav class="navbar navbar-expand-lg sticky-top" [ngClass]="{scrolled: isScrolled}">
+<nav class="navbar navbar-expand-lg sticky-top" [ngClass]="{ scrolled: isScrolled }">
   <div class="container-fluid">
-    <img src="../../../assets/icons/logo.png"><a class="navbar-brand" href="#">InsurTech</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <img src="../../../assets/icons/logo.png" alt="Logo"><a class="navbar-brand" href="#">InsurTech</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" routerLink="/home">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link" routerLink="/Insurance/Home">Home Insurance</a>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/Insurance/Health">Health Insurance</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/Insurance/Motor">Motor Insurance</a>
+        </li>
+        <li class="nav-item dropdown" *ngIf="!isLoggedIn">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
+            Register
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item" routerLink="/register-user">User Register</a></li>
+            <li><a class="dropdown-item" routerLink="/register">Company Register</a></li>
           </ul>
         </li>
-        <li class="nav-item">
-          <a class="nav-link disabled">Disabled</a>
+        <li class="nav-item" *ngIf="!isLoggedIn">
+          <a class="nav-link" routerLink="/login">Log In</a>
+        </li>
+        <li class="nav-item" *ngIf="isLoggedIn">
+          <a class="">Hello, {{ userData?.name }}</a>
+          <a class="nav-link btn" (click)="logout()">Log Out</a>
+        </li>
+        <li class="nav-item" *ngIf="isLoggedIn && userData?.userType === 1">
+          <a class="nav-link" routerLink="/admin-dashboard">Admin Dashboard</a>
+        </li>
+        <li class="nav-item" *ngIf="isLoggedIn && userData?.userType === 2">
+          <a class="nav-link" routerLink="/company-dashboard">Company Dashboard</a>
         </li>
       </ul>
       <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" style="border-radius: 50px;">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+          style="border-radius: 50px;">
         <button class="btn btn-outline-success" type="submit" style="border-radius: 50px;">Search</button>
       </form>
     </div>

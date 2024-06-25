@@ -1,16 +1,15 @@
-.navbar{  
+.navbar {  
   border-radius: 50px;
   margin: 25px;
-  
+}
 
+.navbar-toggler-icon {
+  color: #10B981;
 }
-.navbar-toggler-icon{
-  color: #10B981 ;
-}
+
 .navbar-nav {
   flex: 1;
   justify-content: center;
-  
 }
 
 .navbar .navbar-collapse {
@@ -25,22 +24,22 @@
   margin-left: auto;
 }
 
-/* Apply border-radius to individual nav links */
 .navbar-nav .nav-item .nav-link {
-  
   border-radius: 30px;
-  padding: 8px 16px; /* Adjust padding for better look */
-  margin-right: 40px; /* Adjust margin between links */
-  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  padding: 8px 16px;
+  margin-right: 40px;
+  transition: background-color 0.3s ease;
 }
 
-/* Optional: Add hover effect for nav links */
 .navbar-nav .nav-item .nav-link:hover {
-  background-color: rgba(0, 0, 0, 0.1); /* Example hover background color */
+  background-color: rgba(0, 0, 0, 0.1);
 }
-  .navbar.scrolled {
-    background-color: rgb(4, 37, 33); 
-   
-  }
-  
-  
+
+.navbar.scrolled {
+  background-color: rgb(4, 37, 33);
+}
+
+.navbar-text {
+  color: var(--txt-color);
+  margin-right: 1rem;
+}
