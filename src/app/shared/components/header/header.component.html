@@ -7,17 +7,17 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+        <!-- <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
+        </li> -->
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/home">Home</a>
+          <a class="nav-link" routerLink="/insurance/home">Home Insurance</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/Insurance/Home">Home Insurance</a>
+          <a class="nav-link" routerLink="/insurance/health">Health Insurance</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/Insurance/Health">Health Insurance</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/Insurance/Motor">Motor Insurance</a>
+          <a class="nav-link" routerLink="/insurance/motor">Motor Insurance</a>
         </li>
         <li class="nav-item dropdown" *ngIf="!isLoggedIn">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -31,22 +31,24 @@
         <li class="nav-item" *ngIf="!isLoggedIn">
           <a class="nav-link" routerLink="/login">Log In</a>
         </li>
+        <li class="nav-item" *ngIf="isLoggedIn && userData?.userType === 2">
+          <a class="nav-link" routerLink="/admin">Admin Dashboard</a>
+        </li>
+        <li class="nav-item" *ngIf="isLoggedIn && userData?.userType === 0">
+          <a class="nav-link" routerLink="/company">Company Dashboard</a>
+        </li>
         <li class="nav-item" *ngIf="isLoggedIn">
-          <a class="">Hello, {{ userData?.name }}</a>
+          <a class="nav-link">Hello, {{ userData?.name }}</a>
+        </li>
+        <li class="nav-item" *ngIf="isLoggedIn">
           <a class="nav-link btn" (click)="logout()">Log Out</a>
         </li>
-        <li class="nav-item" *ngIf="isLoggedIn && userData?.userType === 1">
-          <a class="nav-link" routerLink="/admin-dashboard">Admin Dashboard</a>
-        </li>
-        <li class="nav-item" *ngIf="isLoggedIn && userData?.userType === 2">
-          <a class="nav-link" routerLink="/company-dashboard">Company Dashboard</a>
-        </li>
       </ul>
-      <form class="d-flex" role="search">
+      <!-- <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
           style="border-radius: 50px;">
         <button class="btn btn-outline-success" type="submit" style="border-radius: 50px;">Search</button>
-      </form>
+      </form> -->
     </div>
   </div>
 </nav>
