@@ -9,23 +9,24 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [DialogModule, ButtonModule],
   templateUrl: './display.component.html',
-  styleUrl: './display.component.css',
+  styleUrls: ['./display.component.css'],
 })
 export class DisplayComponent {
-  visible: any;
-  
+  visible: boolean = false; 
+  hoverIndex: number | null = null;
 
   constructor(private router: Router) {}
 
   showHealthInsurance() {
-    this.router.navigate(['/Insurance/Health']);
+    this.router.navigate(['/insurance/health']);
   }
 
   showHomeInsurance() {
-    this.router.navigate(['/Insurance/Home']);
+    this.router.navigate(['/insurance/home']);
   }
+
   showMotorInsurance() {
-    this.router.navigate(['/Insurance/Motor']);
+    this.router.navigate(['/insurance/motor']);
   }
 
   

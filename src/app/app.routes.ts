@@ -46,18 +46,18 @@ export const routes: Routes = [
     path: 'request', component: CompanyRequestComponent,
   },
   {
-    path: 'Insurance',
+    path: 'insurance',
     component: AppComponent,
     children: [
-      { path: 'Health', component: SubCategoryHealthComponent },
-      { path: 'Home', component: SubCategoryHomeComponent },
-      { path: 'Motor', component: SubCategoryMotorComponent },
       { path: '', component: DisplayComponent },
+      { path: 'health', component: SubCategoryHealthComponent },
+      { path: 'home', component: SubCategoryHomeComponent },
+      { path: 'motor', component: SubCategoryMotorComponent },
     ],
   },
   {
-    path: 'CompanyInsurance',
-    component: AppComponent,
+    path: 'companyinsurance',
+    component: CompanyInsurancePlanComponent,
     children: [{ path: '', component: CompanyInsurancePlanComponent }],
   },
   {

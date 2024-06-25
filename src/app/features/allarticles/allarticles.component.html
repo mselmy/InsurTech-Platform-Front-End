@@ -1,0 +1,30 @@
+
+
+<section class="dark">
+
+
+	<h1 class="h1 text-center" id="pageHeaderTitle">Articles</h1>
+	@for (item of articles; track $index) {
+	<div class="container py-4">
+		
+		
+			<article class="postcard dark yellow">
+				<a class="postcard__img_link" href="#">
+					<img style="height: 150px;" class="postcard__img" src={{item.articleImg}} alt="Image Title" />
+				</a>
+				<div class="postcard__text">
+					<h1 class="postcard__title yellow"><a href="#">{{item.title}}</a></h1>
+					<div class="postcard__preview-txt">
+						{{item.content}}
+					</div>
+					<!-- <ul class="postcard__tagbox">
+						<li class="tag__item"><i class="fas fa-tag mr-2"></i>Podcast</li>
+					</ul> -->
+				</div>
+			</article>
+
+		
+	</div>
+}
+</section>
+
