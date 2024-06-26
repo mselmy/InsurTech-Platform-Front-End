@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { map, switchMap } from 'rxjs';
+import { BASE_URL } from '../base-url';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +19,7 @@ export class CategoriesService {
   }
 
   getInsurancePlans(companyId: string): Observable<any> {
-    const plansUrl = `http://localhost:5028/api/InsurancePlan/SoldInsuranceByCompanyId/${companyId}`;
+    const plansUrl = `${BASE_URL}/InsurancePlan/SoldInsuranceByCompanyId/${companyId}`;
     return this.http.get<any>(plansUrl, { headers: { accept: '*/*' } });
   }
 
@@ -30,7 +31,7 @@ export class CategoriesService {
   }
   getInsuranceUsers(insuranceId: string): Observable<any> {
     
-    const usersUrl = `http://localhost:5028/api/InsurancePlan/SoldInsuranceByCompanyId/1`;
+    const usersUrl = `${BASE_URL}/InsurancePlan/SoldInsuranceByCompanyId/1`;
     return this.http.get<any>(usersUrl, { headers: { accept: '*/*' } });
   }
 
