@@ -37,6 +37,16 @@
 
 /* Custom styles to resolve conflicts and override defaults */
 @layer custom {
+    
+    /* Chatbot css */
+    /* .bpFabContainer{
+        width: 100%;
+        height: 100%;
+    }
+    .bpMessageBlocksBubble{
+        word-break: break-word;
+    } */
+
     /* Example of custom form border styles */
     .form-border {
         border: 3px solid #5d7571;
