@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { RegisterData } from './iregistration.service'; // Adjust the path as necessary
 import { Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
+import { BASE_URL } from '../base-url';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RegistrationService {
-  private createUserUrl = 'http://localhost:5028/api/Account/RegisterCompany';
-  private companiesUrl = 'http://localhost:5028/api/companies';
+  private createUserUrl = `${BASE_URL}/Account/RegisterCompany`;
+  private companiesUrl = `${BASE_URL}/companies`;
 
   constructor(private http: HttpClient) {}
 
