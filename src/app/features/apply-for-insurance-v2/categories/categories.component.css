@@ -1,15 +1,11 @@
-/* .buttonColor{
-background-color: #1b5e1f;
-} */
-
 .pricing-card {
     transition: all 0.3s ease-in-out;
     border-width: 1px;
     border-style: solid;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   }
   
   .pricing-card:hover {
-    transform: scale(1.05); 
     border-color: #1b5e1f; 
     border-width: 2px; 
   }
@@ -41,3 +37,109 @@ background-color: #1b5e1f;
     transition: filter 0.3s ease-in-out;
   }
   
+  .effect {
+  position: relative;
+  height: 100%;
+  background: white;
+  border-radius: 15px;
+  transition: 1s box-shadow;
+}
+
+.effect:hover {
+  box-shadow: 0 5px 35px 0px rgba(0,0,0,.1);
+}
+
+.effect:hover::before, .effect:hover::after {
+  display: block;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #FDA8CF;
+  border-radius: 15px;
+  z-index: -1;
+  animation: 1s clockwise infinite;
+}
+
+.effect:hover:after {
+  background: #F3CE5E;
+  animation: 2s counterclockwise infinite;
+}
+
+@keyframes clockwise {
+  0% {
+    top: -5px;
+    left: 0;
+  }
+  12% {
+    top: -2px;
+    left: 2px;
+  }
+  25% {
+    top: 0;
+    left: 5px;    
+  }
+  37% {
+    top: 2px;
+    left: 2px;
+  }
+  50% {
+    top: 5px;
+    left: 0;    
+  }
+  62% {
+    top: 2px;
+    left: -2px;
+  }
+  75% {
+    top: 0;
+    left: -5px;
+  }
+  87% {
+    top: -2px;
+    left: -2px;
+  }
+  100% {
+    top: -5px;
+    left: 0;    
+  }
+}
+
+@keyframes counterclockwise {
+  0% {
+    top: -5px;
+    right: 0;
+  }
+  12% {
+    top: -2px;
+    right: 2px;
+  }
+  25% {
+    top: 0;
+    right: 5px;    
+  }
+  37% {
+    top: 2px;
+    right: 2px;
+  }
+  50% {
+    top: 5px;
+    right: 0;    
+  }
+  62% {
+    top: 2px;
+    right: -2px;
+  }
+  75% {
+    top: 0;
+    right: -5px;
+  }
+  87% {
+    top: -2px;
+    right: -2px;
+  }
+  100% {
+    top: -5px;
+    right: 0;    
+  }
+}
