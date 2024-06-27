@@ -28,7 +28,7 @@ export class QuestionCardComponent {
       this.questionService.questionArr.length - 1
     ) {
       this.route.navigate(['insurancePlans']);
-      // console.log('answers', this.questionService.GetAnswers());
+      console.log('answers', this.questionService.GetAnswers());
     }
     this.questionService.NextQuestion();
     this.answer = '';

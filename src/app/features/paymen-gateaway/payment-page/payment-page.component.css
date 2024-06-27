@@ -202,3 +202,37 @@ form .btn.btn-primary:hover {
         font-size: 12px
     }
 }
+/* Additional CSS for request-call-card */
+.request-call-card {
+    align-items: center;
+    /* background-color: #f8f8f8; */
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: center;
+    /* padding: 20px; */
+    margin-top: 5px; 
+}
+
+.request-call-card p {
+    margin: 0;
+    text-align: left;
+    font-weight: 600;
+    width: 100%;
+    color: #ffffff;
+}
+
+.request-call-card .btn-call {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    color: #00cd04;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+/* add some style for hover and clicking to act more modern */
+.request-call-card .btn-call:hover {
+    background-color: #00cd04;
+    color: #ffffff;
+}

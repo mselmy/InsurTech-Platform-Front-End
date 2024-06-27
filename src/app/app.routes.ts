@@ -35,6 +35,8 @@ import { FAQComponent } from './features/faq/faq.component';
 import { AllarticlesComponent } from './features/allarticles/allarticles.component';
 import { HomearticlesComponent } from './features/homearticles/homearticles.component';
 import { PaymentPageComponent } from './features/paymen-gateaway/payment-page/payment-page.component';
+import { PaymentSelectionComponent } from './features/paymen-gateaway/payment-selection/payment-selection.component';
+import { PaymentComponent } from './features/paymen-gateaway/payment/payment.component';
 
 
 export const routes: Routes = [
@@ -133,6 +135,8 @@ export const routes: Routes = [
     ]
   },
   {path: 'payment', component: PaymentPageComponent},
+  { path: 'payment-selection', component: PaymentSelectionComponent },
+  { path: 'payments', component: PaymentComponent },
   { path: 'successpurchasing', component: SuccessPurchasingComponent },
   { path: '404', component: PageNotFoundComponent },
   { path: '', component: HomeComponent, pathMatch: 'full' },

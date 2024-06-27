@@ -1,9 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { ExpirationDateMaskDirective } from '../../../shared/directives/expiration-date-mask.directive';
 import { CreditCardMaskDirective } from '../../../shared/directives/credit-card-mask.directive';
 import { CvvMaskDirective } from '../../../shared/directives/cvv-mask.directive';
 import { LocalStorageService } from '../../../core/services/localStorageService/LocalStorageService ';
+import { InsurancePlanService } from '../../../core/services/insurancePlan.service';
+import { QuestionsFormService } from '../../../core/services/questions-form.service';
+import { CardValidationService } from '../../../core/services/CardValidator/card-validation.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-payment-page',
@@ -13,7 +19,6 @@ import { LocalStorageService } from '../../../core/services/localStorageService/
     ReactiveFormsModule,
     CreditCardMaskDirective,
     ExpirationDateMaskDirective,
-    
   ],
   templateUrl: './payment-page.component.html',
   styleUrls: ['./payment-page.component.css']
@@ -21,8 +26,27 @@ import { LocalStorageService } from '../../../core/services/localStorageService/
 export class PaymentPageComponent implements OnInit {
   paymentForm: FormGroup = new FormGroup({});
   savedCardLastFour: string = '';
+  plan: any;
+  answers: any;
 
-  constructor(private fb: FormBuilder, private localStorageService: LocalStorageService) {}
+  constructor(
+    private fb: FormBuilder, 
+    private localStorageService: LocalStorageService, 
+    private router: Router, 
+    private insurancePlanService: InsurancePlanService, 
+    private questionService: QuestionsFormService,
+    private cardValidationService: CardValidationService
+  ) {
+    const navigation = this.router.getCurrentNavigation();
+    console.log('navigation', navigation)
+    if (navigation && navigation.extras.state) {
+      const state = navigation.extras.state as { plan: any; answers: any };
+      this.plan = state.plan;
+      this.answers = state.answers;
+      console.log('plan', this.plan);
+      console.log('answers', this.answers);
+    }
+  }
 
   ngOnInit(): void {
     this.initForm();
@@ -47,18 +71,82 @@ export class PaymentPageComponent implements OnInit {
   }
 
   saveCard() {
-    const cardNumber = this.paymentForm.get('cardNumber')?.value;
+    const cardNumber = this.paymentForm.get('cardNumber')?.value.replace(/\s+/g, ''); // Remove spaces
     const lastFour = cardNumber.slice(-4);
-    this.localStorageService.saveCardInfo(this.paymentForm.value);
+    this.localStorageService.saveCardInfo({ ...this.paymentForm.value, cardNumber }); // Save without spaces
     this.localStorageService.saveCardLastFour(lastFour);
+  }
+
+  validateCardDetails() {
+    const cardNumber = this.paymentForm.get('cardNumber')?.value.replace(/\s+/g, ''); // Remove spaces
+    const cardHolderName = this.paymentForm.get('name')?.value;
+    const expiryDate = this.paymentForm.get('expirationDate')?.value;
+    const cvv = this.paymentForm.get('cvv')?.value;
+
+    forkJoin({
+      isCardNumberValid: this.cardValidationService.validateCardNumber(cardNumber),
+      isCardHolderNameValid: this.cardValidationService.validateCardHolderName(cardHolderName),
+      isExpiryDateValid: this.cardValidationService.validateExpiryDate(expiryDate),
+      isCvvValid: this.cardValidationService.validateCvv(cvv)
+    }).subscribe(results => {
+      if (results.isCardNumberValid && results.isCardHolderNameValid && results.isExpiryDateValid && results.isCvvValid) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Payment Successful',
+          text: 'Your payment has been processed successfully!'
+        }).then(() => {
+          this.createRequest();
+        });
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Validation Error',
+          text: 'Invalid card details. Please check your information and try again.'
+        });
+      }
+    }, error => {
+      console.error('Validation error:', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Validation Error',
+        text: 'An error occurred during validation. Please try again.'
+      });
+    });
   }
 
   onSubmit() {
     if (this.paymentForm.valid) {
-      alert('Payment successful!');
+      this.validateCardDetails();
     } else {
       this.paymentForm.markAllAsTouched();
-      alert('Please fill out the form correctly.');
+      Swal.fire({
+        icon: 'error',
+        title: 'Form Error',
+        text: 'Please fill out the form correctly.',
+      });
     }
+  }
+  createRequest() {
+    if (!this.plan || this.answers.length === 0) {
+      console.error('Plan and answers are required');
+      this.router.navigate(['apply-for-insurancev2']);
+      return;
+    }
+
+    this.insurancePlanService.SendRequestInsurancePlan(this.plan.id, this.questionService.GetAnswers()).subscribe({
+      next: data => {
+        this.router.navigate(['successpurchasing']);
+      },
+      error: error => {
+        console.error('There was an error!', error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Request Failed',
+          text: 'There was an error processing your request. Please try again.',
+        }).then(() => {
+          this.router.navigate(['apply-for-insurancev2']);
+        });
+      }
+    });
   }
 }
