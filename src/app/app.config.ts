@@ -16,5 +16,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     importProvidersFrom(HttpClientModule), provideHttpClient(withInterceptors([tokenInterceptor])), provideAnimations(),
     { provide: 'BASE_URL', useValue: environment.apiUrl }, provideAnimationsAsync()
+  
   ],
 };

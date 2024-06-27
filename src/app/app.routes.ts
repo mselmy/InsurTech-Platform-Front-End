@@ -34,6 +34,7 @@ import { authCompanyGuard } from './core/guards/authCompany.guard';
 import { FAQComponent } from './features/faq/faq.component';
 import { AllarticlesComponent } from './features/allarticles/allarticles.component';
 import { HomearticlesComponent } from './features/homearticles/homearticles.component';
+import { PaymentPageComponent } from './features/paymen-gateaway/payment-page/payment-page.component';
 
 
 export const routes: Routes = [
@@ -131,6 +132,7 @@ export const routes: Routes = [
       }
     ]
   },
+  {path: 'payment', component: PaymentPageComponent},
   { path: 'successpurchasing', component: SuccessPurchasingComponent },
   { path: '404', component: PageNotFoundComponent },
   { path: '', component: HomeComponent, pathMatch: 'full' },
