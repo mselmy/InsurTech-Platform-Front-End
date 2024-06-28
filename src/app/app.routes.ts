@@ -34,6 +34,7 @@ import { authCompanyGuard } from './core/guards/authCompany.guard';
 import { FAQComponent } from './features/faq/faq.component';
 import { AllarticlesComponent } from './features/allarticles/allarticles.component';
 import { HomearticlesComponent } from './features/homearticles/homearticles.component';
+import { ElementTestComponent } from './features/element-test/element-test.component';
 
 
 export const routes: Routes = [
@@ -133,6 +134,7 @@ export const routes: Routes = [
   },
   { path: 'successpurchasing', component: SuccessPurchasingComponent },
   { path: '404', component: PageNotFoundComponent },
+  { path: 'test', component: ElementTestComponent},
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: '**', redirectTo: '/404' },
 ];
