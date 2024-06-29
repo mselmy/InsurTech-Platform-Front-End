@@ -36,6 +36,7 @@ import { AllarticlesComponent } from './features/allarticles/allarticles.compone
 import { HomearticlesComponent } from './features/homearticles/homearticles.component';
 import { PaymentPageComponent } from './features/paymen-gateaway/payment-page/payment-page.component';
 import { PaymentSelectionComponent } from './features/paymen-gateaway/payment-selection/payment-selection.component';
+import { ElementTestComponent } from './features/element-test/element-test.component';
 
 
 export const routes: Routes = [
@@ -138,6 +139,7 @@ export const routes: Routes = [
   // { path: 'payments', component: PaymentComponent },
   { path: 'successpurchasing', component: SuccessPurchasingComponent },
   { path: '404', component: PageNotFoundComponent },
+  { path: 'test', component: ElementTestComponent},
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: '**', redirectTo: '/404' },
 ];
