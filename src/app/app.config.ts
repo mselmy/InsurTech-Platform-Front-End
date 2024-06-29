@@ -18,5 +18,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes), provideLottieOptions({player: () => player,}),
     importProvidersFrom(HttpClientModule), provideHttpClient(withInterceptors([tokenInterceptor])), provideAnimations(),
     { provide: 'BASE_URL', useValue: environment.apiUrl }, provideAnimationsAsync()
+  
   ],
 };
