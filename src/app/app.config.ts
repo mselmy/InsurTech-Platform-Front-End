@@ -7,6 +7,7 @@ import { HttpClientModule, withInterceptors } from '@angular/common/http';
 import { environment } from '../environment';
 import {  provideAnimations } from '@angular/platform-browser/animations';
 import { tokenInterceptor } from './core/interceptor/token.interceptor';
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
 
 
@@ -15,6 +16,6 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     importProvidersFrom(HttpClientModule),provideHttpClient(withInterceptors([tokenInterceptor])), provideAnimations(),
-    { provide: 'BASE_URL', useValue: environment.baseUrl}, provideAnimationsAsync()
+    { provide: 'BASE_URL', useValue: environment.baseUrl}, provideAnimationsAsync(), provideCharts(withDefaultRegisterables())
   ],
 };
