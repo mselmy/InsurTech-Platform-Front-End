@@ -1,25 +1,45 @@
-<div class="containerr">
-    <div class="title-container">
-        <span class="dot">●</span>
-        <span class="title">Categories</span>
-        <span class="dot">●</span>
+ <!-- Service section -->
+ <section  id="services">
+  <div class="about">
+    <h2>Our Services</h2>
+  </div>
+
+  <div class="services">
+    <div class="service-card">
+      <div class="number">01</div>
+      <div class="service-text">
+        <h3>First Service</h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Blanditiis asperiores repudiandae, tenetur voluptatibus nobis
+          dolores.
+        </p>
+        <a href="#">Read More</a>
+      </div>
     </div>
-</div>
-
-
-<div class="container bootstrap snippets bootdeys">
-    <div class="row">
-      <div *ngFor="let category of categories; let i = index" class="col-md-4 col-sm-6 content-card">
-        <div class="card-big-shadow" >
-          <div class="card card-just-text"style="width:30vw" [attr.data-background]="'color'" [attr.data-color]="getCardColor(i)" data-radius="none">
-            <div class="content">
-              <h6 class="category">{{ category.name }}</h6>
-              <br>
-              <p class="description">{{ category.description }}</p>
-            </div>
-          </div> <!-- end card -->
-        </div>
+    <div class="service-card">
+      <div class="number">02</div>
+      <div class="service-text">
+        <h3>Second Service</h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Blanditiis asperiores repudiandae, tenetur voluptatibus nobis
+          dolores.
+        </p>
+        <a href="#">Read More</a>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="number">03</div>
+      <div class="service-text">
+        <h3>Third Service</h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Blanditiis asperiores repudiandae, tenetur voluptatibus nobis
+          dolores.
+        </p>
+        <a href="#">Read More</a>
       </div>
     </div>
   </div>
-  
+</section>
