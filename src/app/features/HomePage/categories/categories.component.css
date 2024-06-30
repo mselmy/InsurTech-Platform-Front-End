@@ -57,32 +57,32 @@
 }
 .service-card:nth-child(1) a,
 .service-card:nth-child(1) .number{
-    background: #e91e61;
-    box-shadow: 0 0 0 #e91e61;
+    background: #82f8d1;
+    box-shadow: 0 0 0 #82f8d1;
 }
 
 .service-card:nth-child(1):hover .number{
-    box-shadow: 0 0 0 400px #e91e61;
+    box-shadow: 0 0 0 400px #82f8d1;
 }
 
 .service-card:nth-child(2) a,
 .service-card:nth-child(2) .number{
-    background: #23e627;
-    box-shadow: 0 0 0 #23e627;
+    background: #33b98d;
+    box-shadow: 0 0 0 #33b98d;
 }
 
 .service-card:nth-child(2):hover .number{
-    box-shadow: 0 0 0 400px #23e627;
+    box-shadow: 0 0 0 400px #33b98d;
 }
 
 .service-card:nth-child(3) a,
 .service-card:nth-child(3) .number{
-    background: #2196f4;
-    box-shadow: 0 0 0 #2196f4;
+    background: #0d6447;
+    box-shadow: 0 0 0 #0d6447;
 }
 
 .service-card:nth-child(3):hover .number{
-    box-shadow: 0 0 0 400px #2196f4;
+    box-shadow: 0 0 0 400px #0d6447;
 }
 
 .service-card .service-text{
