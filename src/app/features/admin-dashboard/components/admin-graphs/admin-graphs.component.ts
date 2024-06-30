@@ -4,12 +4,13 @@ import { ChartModule } from 'primeng/chart';
 import { InsuranceChartService } from '../../../../core/services/insurance-chart.service';
 import { InsuranceChartComponent } from './insurance-chart/insurance-chart.component';
 import { UsersChartComponent } from './users-chart/users-chart.component';
+import { InsuranceRevenueChartComponent } from './insurance-revenue-chart/insurance-revenue-chart.component';
 
 @Component({
     selector: 'admin-graphs',
     templateUrl: './admin-graphs.component.html',
     standalone: true,
-    imports: [ChartModule,HttpClientModule,InsuranceChartComponent,UsersChartComponent]
+    imports: [ChartModule,HttpClientModule,InsuranceChartComponent,UsersChartComponent,InsuranceRevenueChartComponent]
 })
 export class ChartPieDemo  {
     // data: any;
