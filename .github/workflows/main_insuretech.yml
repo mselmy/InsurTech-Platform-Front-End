@@ -1,3 +1,6 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
 name: Build and deploy Node.js app to Azure Web App - InsureTech
 
 on:
@@ -13,57 +16,50 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Cache Node.js modules
-        uses: actions/cache@v3
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
       - name: Set up Node.js version
         uses: actions/setup-node@v3
         with:
           node-version: '18.x'
 
-      - name: npm install and build
+      - name: npm install, build, and test
         run: |
           npm install
           npm run build --if-present
-
-      - name: Upload build artifact for deployment job
+          npm run test --if-present
+      
+      - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
-          name: node-app-build
-          path: |
-            dist/insur-tech-platform-front-end
+          name: node-app
+          path: .
 
   deploy:
     runs-on: ubuntu-latest
     needs: build
     environment:
-      name: 'production'
+      name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-      id-token: write # This is required for requesting the JWT
+      id-token: write #This is required for requesting the JWT
 
     steps:
-      - name: Download build artifact from build job
+      - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
-          name: node-app-build
-
+          name: node-app
+      
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_9AE0C2DE0840490CACBD12C7BA9677B4 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_53071BBD9D4F448AABC5C5AFB6F89930 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_5547F7CEF89C410BA04D23485662B7D1 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_10A9AAEDEE684286B020A14921E4E173 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_8F4E34263DE8436C9012ADA056B1BD28 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_AA267C1C7FAF426F8BFF8F53D73DA3EA }}
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
         with:
           app-name: 'InsureTech'
-          slot-name: 'production'
-          package: ./dist/insur-tech-platform-front-end
+          slot-name: 'Production'
+          package: .
+          
