@@ -31,11 +31,11 @@ export class InsurancePlansComponent {
       console.log('catId', this.catId);
     }
     this.insurancePlanService.GetInsurancePlanByCategory(this.catId).subscribe((data) => {
-      console.log('data', data);
+      console.log('data FOR retrieving insuarnce plans', data);
       this.data = data;
     });
 
-
+      
   }
 
 }
