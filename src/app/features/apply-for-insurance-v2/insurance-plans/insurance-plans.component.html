@@ -1,0 +1,39 @@
+@if (data == null || data.length == 0) {
+<app-no-insurance-plane />
+}@else {
+<app-header />
+<div class="container">
+  <div class="row m-auto">
+    <div class="d-flex gap-5 m-auto justify-content-center flex-wrap">
+      @for (insurance of data; track $index) { @if(catId == 2){
+      <app-insurance-plan-card
+        [plan]="insurance"
+        [catId]="2"
+      ></app-insurance-plan-card>
+      } @else if (catId == 1) {
+      <app-insurance-plan-card
+        [plan]="insurance"
+        [catId]="1"
+      ></app-insurance-plan-card>
+      } @else{
+      <app-insurance-plan-card
+        [plan]="insurance"
+        [catId]="3"
+      ></app-insurance-plan-card>
+      <app-insurance-plan-card
+        [plan]="insurance"
+        [catId]="3"
+      ></app-insurance-plan-card>
+      <app-insurance-plan-card
+        [plan]="insurance"
+        [catId]="3"
+      ></app-insurance-plan-card>
+      } }
+    </div>
+    <div class="request-call-card">
+        <button class="btn-call">Request a call</button>
+        <p>One of our insurance experts will contact you within 1 working day</p>
+      </div>
+  </div>
+</div>
+}

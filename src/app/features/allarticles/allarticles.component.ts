@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import {ArticaldataService} from '../../core/services/articles/article.service'
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { HeaderComponent } from '../../shared/components/header/header.component';
 
 @Component({
   selector: 'app-allarticles',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule, HeaderComponent],
   templateUrl: './allarticles.component.html',
   styleUrl: './allarticles.component.css'
 })

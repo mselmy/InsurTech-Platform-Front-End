@@ -5,6 +5,8 @@
     overflow: hidden;
     color: rgb(4, 37, 33);
     border-radius: 50px;
+    padding: 20px;
+    
 }
 .footer__logo{
     display: flex;

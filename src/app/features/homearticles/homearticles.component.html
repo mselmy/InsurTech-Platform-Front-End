@@ -1,3 +1,10 @@
+<div class="containerr">
+	<div class="title-container">
+		<span class="dot">●</span>
+		<span class="title">Articles</span>
+		<span class="dot">●</span>
+	</div>
+</div>
 <div class="container">
   @for (item of limitedArticles; track $index) {
     <div class="card">
@@ -7,7 +14,7 @@
       <div class="card__body">
         <span class="tag tag-blue">Technology</span>
         <h4>{{item.title}}</h4>
-        <p>{{truncateContent(item.content)}}</p>
+        <p [innerHTML]="truncateContent(item.content)"></p>
       </div>
       <div class="card__footer">
         <a [routerLink]="['/allarticles']" class="show-more">Show More</a>

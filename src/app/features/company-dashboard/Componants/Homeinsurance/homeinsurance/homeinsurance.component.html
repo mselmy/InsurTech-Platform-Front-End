@@ -5,12 +5,12 @@
         <div class="container">
             <div class="signin-content " style="display: flex;">
                 <div class="signin-image ">
-                    <figure style="margin-top: 50%; width:100%;">
+                    <figure style=" width:100%;">
                         <img src="../../../../../../assets/images/Company/home.jpeg"
                             alt="sing up image"></figure>
                 </div>
 
-                <form class="form-border" [formGroup]="addhomeinsurance" (ngSubmit)="addhome()">
+                <form  [formGroup]="addhomeinsurance" (ngSubmit)="addhome()">
                     <div class="mb-2">
                         <label for="yearlyCoverage">Yearly Coverage</label>
                         <input min="0" id="yearlyCoverage" formControlName="yearlyCoverage" type="number"
@@ -145,7 +145,7 @@
 
                      <button [disabled]="addhomeinsurance.invalid" type="submit"
                         style="background-color: #17bd82 ; color:white ;font: bold;"
-                        class="btn d-block ms-auto w-25 btn-Add">Add</button>
+                        class="btn d-block ms-auto w-25 btn-Add mt-4" >Add</button>
                     </div>
                 </form>
             </div>

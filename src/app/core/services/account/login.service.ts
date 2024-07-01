@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { text } from '@fortawesome/fontawesome-svg-core';
+// import { text } from '@fortawesome/free-solid-svg-icons';
 import { BASE_URL } from '../../base-url';
 import { Userlogin } from '../../models/userlogin';
 import { Googlelogin } from '../../models/googlelogin';
