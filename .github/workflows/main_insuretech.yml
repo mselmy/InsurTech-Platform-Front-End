@@ -26,20 +26,17 @@ jobs:
         with:
           node-version: '18.x'
 
-      - name: Install graceful-fs
-        run: npm install graceful-fs --save-dev
-
       - name: npm install and build
         run: |
-          node -e "require('graceful-fs');"
           npm install
           npm run build --if-present
-      
-      - name: Upload artifact for deployment job
+
+      - name: Upload build artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
-          name: node-app
-          path: .
+          name: node-app-build
+          path: |
+            dist/insur-tech-platform-front-end
 
   deploy:
     runs-on: ubuntu-latest
@@ -48,14 +45,14 @@ jobs:
       name: 'production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-      id-token: write #This is required for requesting the JWT
+      id-token: write # This is required for requesting the JWT
 
     steps:
-      - name: Download artifact from build job
+      - name: Download build artifact from build job
         uses: actions/download-artifact@v4
         with:
-          name: node-app
-      
+          name: node-app-build
+
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -69,4 +66,4 @@ jobs:
         with:
           app-name: 'InsureTech'
           slot-name: 'production'
-          package: .
+          package: ./dist/insur-tech-platform-front-end
