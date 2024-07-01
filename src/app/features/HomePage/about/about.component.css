@@ -5,15 +5,21 @@
     text-align: center;
     width: 78%;
     margin: 0 auto;
+    color: white;
 }
-
-.about h2{
+#about
+{
+    background-color: #10b981;
+}
+h2{
     font-size: 2.5em;
+    color:white;
+
 }
 
 .about p, .right-side p{
     font-size: 1.2em;
-    color: rgb(59, 61, 62);
+    color:white;
     line-height: 1.67rem;
     padding-top: 20px;
 }
@@ -41,6 +47,20 @@
 .right-side .btn{
     margin-top: 20px;
 }
+.left-side
+{
+    background-image: url('../../../../assets/images/About\ us\ page.gif');
+    width: 450px;
+    height: 450px;
+    background-size: cover;
+    -webkit-background-position: center;
+    background-position: center center;
+    margin: 20px;
+    box-shadow: 0 5px 5px 5px rgba(14, 250, 104, 0.384);
+    transition: all 1s ease-in-out; 
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+
+}
 
 /* Media Quary */
 @media screen and (max-width: 576px) {
@@ -50,7 +70,11 @@
     .container{
         flex-direction: column;
     }
-    .left-side, .right-side{
+    .right-side{
         width: 100%;
+    }
+    .left-side{
+        width: 280px;
+        height: 280px;
     }
 }
