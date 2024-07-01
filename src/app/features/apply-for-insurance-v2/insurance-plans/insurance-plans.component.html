@@ -9,24 +9,34 @@
       <app-insurance-plan-card
         [plan]="insurance"
         [catId]="2"
+        [badgeColor]="getBadgeColor(insurance.company)"
+
       ></app-insurance-plan-card>
       } @else if (catId == 1) {
       <app-insurance-plan-card
         [plan]="insurance"
         [catId]="1"
+        [badgeColor]="getBadgeColor(insurance.company)"
+
       ></app-insurance-plan-card>
       } @else{
       <app-insurance-plan-card
         [plan]="insurance"
         [catId]="3"
+        [badgeColor]="getBadgeColor(insurance.company)"
+
       ></app-insurance-plan-card>
       <app-insurance-plan-card
         [plan]="insurance"
         [catId]="3"
+        [badgeColor]="getBadgeColor(insurance.company)"
+
       ></app-insurance-plan-card>
       <app-insurance-plan-card
         [plan]="insurance"
         [catId]="3"
+        [badgeColor]="getBadgeColor(insurance.company)"
+
       ></app-insurance-plan-card>
       } }
     </div>
