@@ -9,6 +9,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { tokenInterceptor } from './core/interceptor/token.interceptor';
 import { provideLottieOptions } from 'ngx-lottie';
 import player from 'lottie-web';
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
 
 
@@ -17,7 +18,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes), provideLottieOptions({player: () => player,}),
     importProvidersFrom(HttpClientModule), provideHttpClient(withInterceptors([tokenInterceptor])), provideAnimations(),
-    { provide: 'BASE_URL', useValue: environment.apiUrl }, provideAnimationsAsync()
+    { provide: 'BASE_URL', useValue: environment.apiUrl }, provideAnimationsAsync(), provideCharts(withDefaultRegisterables())
   
   ],
 };

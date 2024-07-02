@@ -25,6 +25,7 @@ import { Observable, of } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import { registerUser } from '../../core/services/iregistration-user.service';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { HeaderComponent } from '../../shared/components/header/header.component';
 
 @Component({
   selector: 'app-register-user',
@@ -41,6 +42,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     ToastModule,
     InputMaskModule,
     CalendarModule,
+    HeaderComponent
   ],
   providers: [RegistrationUserService, MessageService, CookieService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

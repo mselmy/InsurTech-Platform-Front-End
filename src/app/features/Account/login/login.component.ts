@@ -7,12 +7,13 @@ import { LoginService } from '../../../core/services/account/login.service'
 import { RouterLink ,Router } from '@angular/router';
 import { Googlelogin } from '../../../core/models/googlelogin';
 import Swal from 'sweetalert2';
+import { HeaderComponent } from '../../../shared/components/header/header.component';
 
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule ,CommonModule,RouterLink],
+  imports: [ReactiveFormsModule ,CommonModule,RouterLink, HeaderComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })

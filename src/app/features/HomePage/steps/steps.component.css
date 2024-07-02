@@ -6,8 +6,18 @@
     --button-secondary-hover-color: #5a6268; /* Secondary button hover background */
     --inactive-step-color: #ccc; /* Inactive step color */
   }
+  .about{
+    padding: 100px 0;
+    text-align: center;
+    width: 78%;
+    margin: 0 auto;
+}
+
+.about h2{
+    font-size: 2.5em;
+}
   .ImgStyle{
-    width: 20vw;
+    width: 100%;
     height: 40vh;
   }
   .card-wrapper {
@@ -16,18 +26,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #ffffff;
   }
   .button-spacing{
     padding: 25px;
   }
   
   .card {
-    width: 100%;
-    max-width:1000px; /* Adjust max-width as needed */
-    background-color: var(--grey-color);
+    width: 70vw;
     padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    border: none;
+    margin: auto;
+
   }
   
   .p-stepper {
@@ -69,19 +80,19 @@
   }
   
   .p-button-success {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
+    background-color: #10B981 ;
+    border-color: #10B981 ;
     color: #fff;
   }
   
   .p-button-success:hover {
-    background-color: var(--secondary-color);
-    border-color: var(--primary-color);
+    background-color:#1d805f ;
+    border-color: #1d805f ;
   }
   
   .p-button-secondary {
-    background-color: var(--button-secondary-color);
-    border-color: var(--button-secondary-color);
+    background-color:#10B981;
+    border-color: #10B981;
     color: #fff;
   }
   
@@ -150,8 +161,8 @@
   
   /* Ensure button hover color matches active step */
   .p-button-success:hover {
-    background-color: var(--secondary-color) !important;
-    border-color: var(--secondary-color) !important;
+    background-color:#10B981 !important;
+    border-color: #10B981 !important;
   }
   
   /* Ensure step icon hover color matches active step */
@@ -169,7 +180,7 @@
 }
 
 .title-container {
-    color: #1ba88e;
+    color: #10B981 ;
     display: flex;
     align-items: center;
     font-size: 40px;
@@ -183,3 +194,18 @@
 .title {
     font-weight: bold; /* Adjust the font weight as needed */
 }
+
+
+/* Media Quary */
+@media screen and (max-width: 576px) {
+
+  .card-wrapper{
+    flex-direction: column;
+    height: 100%;
+  }
+   .ImgStyle{
+    width:100%;
+    height: 40vh;
+  }
+}
+

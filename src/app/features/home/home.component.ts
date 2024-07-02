@@ -7,11 +7,12 @@ import { CategoriesComponent } from '../HomePage/categories/categories.component
 import { CompaniesComponent } from '../HomePage/companies/companies.component';
 import { StepsComponent } from '../HomePage/steps/steps.component';
 import { HomearticlesComponent } from '../homearticles/homearticles.component';
+import { AboutComponent } from '../HomePage/about/about.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HeaderComponent,FooterComponent,ImgHeaderComponent,RouterLink,CategoriesComponent,CompaniesComponent,StepsComponent,HomearticlesComponent],
+  imports: [HeaderComponent,AboutComponent,FooterComponent,ImgHeaderComponent,RouterLink,CategoriesComponent,CompaniesComponent,StepsComponent,HomearticlesComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
