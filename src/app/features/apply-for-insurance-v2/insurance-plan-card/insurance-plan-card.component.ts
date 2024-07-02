@@ -12,13 +12,19 @@ import { QuestionsFormService } from '../../../core/services/questions-form.serv
 export class InsurancePlanCardComponent {
   @Input() plan: any;
   @Input() catId: number = 0;
+  @Input() badgeColor: string= '';
   showMore = false;
 
   constructor(
     private questionService: QuestionsFormService,
     private router: Router
-  ) {}
+  ) {
+  }
+ ngOnChanges(): void {
+  console.log("plan", this.plan);
 
+  
+ }
   toggleMore() {
     this.showMore = !this.showMore;
   }
