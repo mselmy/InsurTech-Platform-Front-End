@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 })
 export class CategoriesComponent implements OnInit {
 
-  categories: Categories[]| undefined;
+  categories: Categories[]=[];
 
   constructor(private categoriesService: GetCategoriesService) { }
 
@@ -24,6 +24,8 @@ export class CategoriesComponent implements OnInit {
     this.categoriesService.getCategories().subscribe(
       (data) => {
         this.categories = data;
+        console.log(this.categories);
+        
       },
       (error) => {
         console.error('Error fetching categories: ', error);
