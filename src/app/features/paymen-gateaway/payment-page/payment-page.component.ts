@@ -129,7 +129,7 @@ export class PaymentPageComponent implements OnInit {
   createRequest() {
     if (!this.plan || this.answers.length === 0) {
       console.error('Plan and answers are required');
-      this.router.navigate(['apply-for-insurancev2']);
+      this.router.navigate(['successpurchasing']);
       return;
     }
 
@@ -144,7 +144,7 @@ export class PaymentPageComponent implements OnInit {
           title: 'Request Failed',
           text: 'There was an error processing your request. Please try again.',
         }).then(() => {
-          this.router.navigate(['apply-for-insurancev2']);
+          this.router.navigate(['successpurchasing']);
         });
       }
     });

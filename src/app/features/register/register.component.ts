@@ -24,6 +24,7 @@ import { MessageService } from 'primeng/api';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import { HeaderComponent } from '../../shared/components/header/header.component';
 
 @Component({
   selector: 'app-register',
@@ -39,6 +40,7 @@ import { Router } from '@angular/router';
     InputMaskModule,
     ButtonModule,
     ToastModule,
+    HeaderComponent
   ],
   providers: [RegistrationService, MessageService, CookieService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
