@@ -10,9 +10,9 @@ import { DisplayComponent } from './features/categories/display/display.componen
 import { SubCategoryHealthComponent } from './features/categories/sub-Healthcategory/sub-category.component';
 import { SubCategoryMotorComponent } from './features/categories/sub-Motorcategory/sub-category.component';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './features/Account/login/login.component'
-import { ForgetPasswordComponent } from './features/Account/forget-password/forget-password.component'
-import { ResetpasswordComponent } from './features/Account/resetpassword/resetpassword.component'
+import { LoginComponent } from './features/Account/login/login.component';
+import { ForgetPasswordComponent } from './features/Account/forget-password/forget-password.component';
+import { ResetpasswordComponent } from './features/Account/resetpassword/resetpassword.component';
 import { ApplyForInsuranceV2Component } from './features/apply-for-insurance-v2/apply-for-insurance-v2.component';
 import { QuestionsListComponent } from './features/apply-for-insurance-v2/questions-list/questions-list.component';
 import { authAdminGuard } from './core/guards/authAdmin.guard';
@@ -37,7 +37,6 @@ import { HomearticlesComponent } from './features/homearticles/homearticles.comp
 import { PaymentPageComponent } from './features/paymen-gateaway/payment-page/payment-page.component';
 import { PaymentSelectionComponent } from './features/paymen-gateaway/payment-selection/payment-selection.component';
 import { ElementTestComponent } from './features/element-test/element-test.component';
-
 
 export const routes: Routes = [
   {
@@ -115,31 +114,37 @@ export const routes: Routes = [
     component: SuccessPageComponent,
   },
   {
-    path: 'request', component: CompanyRequestComponent,
+    path: 'request',
+    component: CompanyRequestComponent,
   },
   {
-    path: 'dashboard', redirectTo: 'company',
+    path: 'dashboard',
+    redirectTo: 'company',
   },
   {
-    path: 'insurancecollection', component: InsurancecollectionComponent,
+    path: 'insurancecollection',
+    component: InsurancecollectionComponent,
     children: [
       {
-        path: 'homeinsurance', component: HomeinsuranceComponent
+        path: 'homeinsurance',
+        component: HomeinsuranceComponent,
       },
       {
-        path: 'healthinsurance', component: HealthinsuranceComponent
+        path: 'healthinsurance',
+        component: HealthinsuranceComponent,
       },
       {
-        path: 'motorinsurance', component: MotorinsuranceComponent
-      }
-    ]
+        path: 'motorinsurance',
+        component: MotorinsuranceComponent,
+      },
+    ],
   },
-  {path: 'payment', component: PaymentPageComponent},
+  { path: 'payment', component: PaymentPageComponent },
   { path: 'payment-selection', component: PaymentSelectionComponent },
   // { path: 'payments', component: PaymentComponent },
   { path: 'successpurchasing', component: SuccessPurchasingComponent },
   { path: '404', component: PageNotFoundComponent },
-  { path: 'test', component: ElementTestComponent},
+  { path: 'test', component: ElementTestComponent },
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: '**', redirectTo: '/404' },
 ];

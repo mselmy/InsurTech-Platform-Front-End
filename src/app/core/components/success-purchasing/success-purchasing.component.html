@@ -1,23 +1,25 @@
-<app-header />
+<app-header></app-header>
 <section class="page_success">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="col-sm-12 text-center">
-          <div class="success_bg">
-            <img src="../../../../assets/images/successvideo-ezgif.com-effects.gif" alt="Success Animation"
-              id="bgImage">
-          </div>
-          <div class="animated_text">
-            <h1>Congratulation</h1>
-            <h3>Your operation was successful</h3>
-          </div>
-          <div class="content_box_success">
-
-            <p-button routerLink="/">Go to Home</p-button>
+  <div class="container d-flex flex-column align-items-center">
+    <div class="row justify-content-center">
+      <div class="col-sm-12 d-flex justify-content-center align-items-center">
+        <div class="success_bg">
+          <img src="../../../../assets/images/successvideo-ezgif.com-effects.gif" alt="Success Animation" id="bgImage">
+        </div>
+        <div class="blob">
+          <div class="col-12 text-center success_rating_box">
+            <div class="rating_prompt">
+              <h2>Can you rate the process?</h2>
+              <!-- Rating component -->
+              <rating [(ngModel)]="val" [max]="5" [readonly]="false"></rating>
+            </div>
+            <div class="content_box_success">
+              <button pButton type="button" label="Go to Home" (click)="navigateToHome()"></button>
+            </div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>

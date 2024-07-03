@@ -15,14 +15,12 @@
   justify-content: center;
   align-items: center;
   object-fit: cover;
-  height: 50vh;
+  height: 450px; /* Adjusted to match the blob height */
+  margin-right: 20px; /* Add margin between image and blob */
 }
 
 .success_bg {
-  height: 50vh; /* Match the GIF height */
-  width: 100%;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   color: #fff;
@@ -31,19 +29,74 @@
   z-index: 1;
 }
 
-.animated_text h1,
-.animated_text h3 {
+.blob {
+  width: 450px;
+  height: 450px;
+  background-size: cover;
+  -webkit-background-position: center;
+  background-position: center center;
+  box-shadow: 0 5px 5px 5px rgba(14, 250, 104, 0.384);
+  animation: animate 5s ease-in-out infinite;
+  transition: all 1s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes animate {
+  0%,
+  100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  50% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+}
+
+.rating_prompt {
+  padding: 1rem;
+  font-weight: bold;
+  color: #000;
+  text-align: center;
+}
+
+.rating_prompt h2 {
   color: green;
+  font-weight: bold;
   opacity: 0;
   animation: fadeInScale 3s forwards, slideIn 3s forwards;
 }
 
-.animated_text h1 {
+.rating_prompt h1 {
   animation-delay: 0s, 0s;
 }
 
-.animated_text h3 {
+.rating_prompt h3 {
   animation-delay: 1s, 1s;
+}
+
+.success_rating_box {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rating_prompt {
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.rating_prompt h2 {
+  margin-bottom: 0.5rem;
+  color: green; /* Make the text green */
+  font-weight: bold; /* Make the text bold */
+}
+
+.rating_prompt rating {
+  color: gold;
+  font-size: 3rem; /* Adjust the size of the stars here */
+  margin-top: 0.5rem;
 }
 
 @keyframes fadeInScale {
