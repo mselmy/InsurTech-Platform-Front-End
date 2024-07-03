@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Fireworks } from 'fireworks-js';
 
+
 @Component({
   selector: 'app-success-page',
   templateUrl: './success-page.component.html',
@@ -28,4 +29,6 @@ export class SuccessPageComponent implements OnInit {
 
     fireworks.start();
   }
+
+  
 }

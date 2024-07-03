@@ -25,10 +25,12 @@ export class HomePlanCardComponent {
     this.insurancePlanService.SendRequestInsurancePlan(this.data.id, this.questionService.GetAnswers()).subscribe({
       next: data => {
         this.router.navigate(['success']);
+        console.log(this.data.id);
       },
       error: error => {
         console.error('There was an error!', error);
       }
     });
   }
+  
 }

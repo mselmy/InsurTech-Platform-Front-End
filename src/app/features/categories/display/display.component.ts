@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { Router } from '@angular/router';
+import { HeaderComponent } from '../../../shared/components/header/header.component';
 
 @Component({
   selector: 'app-display',
   standalone: true,
-  imports: [DialogModule, ButtonModule],
+  imports: [DialogModule, ButtonModule,HeaderComponent],
   templateUrl: './display.component.html',
   styleUrls: ['./display.component.css'],
 })

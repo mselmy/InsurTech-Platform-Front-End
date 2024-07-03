@@ -132,7 +132,7 @@ export const routes: Routes = [
       }
     ]
   },
-  { path: 'successpurchasing', component: SuccessPurchasingComponent },
+  { path: 'successpurchasing/:id/:catId', component: SuccessPurchasingComponent },
   { path: '404', component: PageNotFoundComponent },
   { path: 'test', component: ElementTestComponent},
   { path: '', component: HomeComponent, pathMatch: 'full' },

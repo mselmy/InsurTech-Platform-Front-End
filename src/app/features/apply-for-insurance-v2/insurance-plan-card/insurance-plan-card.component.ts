@@ -27,7 +27,12 @@ export class InsurancePlanCardComponent {
   createRequest() {
     this.insurancePlanService.SendRequestInsurancePlan(this.plan.id, this.questionService.GetAnswers()).subscribe({
       next: data => {
-        this.router.navigate(['successpurchasing']);
+        this.router.navigate([
+          'successpurchasing',
+          this.plan.id,
+          this.catId,
+        ]);
+        console.log(this.plan.id, this.catId);
       },
       error: error => {
         console.error('There was an error!', error);
