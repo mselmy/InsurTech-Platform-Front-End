@@ -1,25 +1,40 @@
-<div class="containerr">
-    <div class="title-container">
-        <span class="dot">●</span>
-        <span class="title">Categories</span>
-        <span class="dot">●</span>
+ <!-- Service section -->
+ <section  id="services">
+  <div class="about">
+    <h2>Our Services</h2>
+  </div>
+
+  <div class="services">
+    <div class="service-card">
+      <div class="number"> <i class="fas fa-home"></i></div>
+      <div class="service-text">
+        <h3>Home Insurance</h3>
+        <p>
+          {{categories[1].description}}
+
+        </p>
+        <a href="#">Read More</a>
+      </div>
     </div>
-</div>
-
-
-<div class="container bootstrap snippets bootdeys">
-    <div class="row">
-      <div *ngFor="let category of categories; let i = index" class="col-md-4 col-sm-6 content-card">
-        <div class="card-big-shadow" >
-          <div class="card card-just-text"style="width:30vw" [attr.data-background]="'color'" [attr.data-color]="getCardColor(i)" data-radius="none">
-            <div class="content">
-              <h6 class="category">{{ category.name }}</h6>
-              <br>
-              <p class="description">{{ category.description }}</p>
-            </div>
-          </div> <!-- end card -->
-        </div>
+    <div class="service-card">
+      <div class="number"><i class="fas fa-heartbeat"></i></div>
+      <div class="service-text">
+        <h3>Health Insurance</h3>
+        <p>
+          {{categories[0].description}}
+        </p>
+        <a href="#">Read More</a>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="number"><i class="fas fa-car"></i></div>
+      <div class="service-text">
+        <h3>Car Insurance</h3>
+        <p>
+          {{categories[2].description}}
+        </p>
+        <a href="#">Read More</a>
       </div>
     </div>
   </div>
-  
+</section>

@@ -13,15 +13,35 @@ import { FooterComponent } from '../../../shared/components/footer/footer.compon
 @Component({
   selector: 'app-insurance-plans',
   standalone: true,
-  imports: [InsurancePlanCardComponent, HomePlanCardComponent, HealthPlanCardComponent, MotorPlanCardComponent, NoInsurancePlaneComponent, HeaderComponent, FooterComponent],
+  imports: [
+    InsurancePlanCardComponent,
+    HomePlanCardComponent,
+    HealthPlanCardComponent,
+    MotorPlanCardComponent,
+    NoInsurancePlaneComponent,
+    HeaderComponent,
+    FooterComponent,
+  ],
   templateUrl: './insurance-plans.component.html',
-  styleUrl: './insurance-plans.component.css'
+  styleUrl: './insurance-plans.component.css',
 })
 export class InsurancePlansComponent {
   catId: number = 0;
   data: any = null;
-
-  constructor(private questionService: QuestionsFormService, private router: Router, private insurancePlanService: InsurancePlanService) {
+  colorMap: { [key: string]: string } = {};
+  colorIndex: number = 0;
+  colors: string[] = [
+    'badge-primary',
+    'badge-secondary',
+    'badge-success',
+    'badge-danger',
+    'badge-warning',
+  ];
+  constructor(
+    private questionService: QuestionsFormService,
+    private router: Router,
+    private insurancePlanService: InsurancePlanService
+  ) {
     this.catId = parseInt(sessionStorage.getItem('catId') || '0');
     console.log('catId', this.catId);
   }
@@ -30,12 +50,18 @@ export class InsurancePlansComponent {
       this.router.navigate(['apply-for-insuranceV2']);
       console.log('catId', this.catId);
     }
-    this.insurancePlanService.GetInsurancePlanByCategory(this.catId).subscribe((data) => {
-      console.log('data', data);
-      this.data = data;
-    });
-
-
+    this.insurancePlanService
+      .GetInsurancePlanByCategory(this.catId)
+      .subscribe((data) => {
+        console.log('data FOR retrieving insuarnce plans', data);
+        this.data = data;
+      });
   }
-
+  getBadgeColor(company: string): string {
+    if (!this.colorMap[company]) {
+      this.colorMap[company] = this.colors[this.colorIndex % this.colors.length];
+      this.colorIndex++;
+    }
+    return this.colorMap[company];
+  }
 }

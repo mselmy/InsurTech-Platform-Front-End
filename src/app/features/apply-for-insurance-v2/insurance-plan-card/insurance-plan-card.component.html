@@ -8,6 +8,11 @@
       <div class="title">
         <h3>{{ plan?.level == 0 ? 'Basic' : plan?.level == 1 ? 'Standard' : 'Premium' }}</h3>
       </div>
+      <div class="alert badge-color {{ badgeColor }} alert-dismissible fade show" role="alert">
+        <strong>Company:</strong> {{ plan?.company }}
+      </div>
+
+      
       <div class="price">
         <h5>EGP {{ plan?.yearlyCoverage }} <span>/year</span></h5>
         <span>EGP {{ plan?.quotation }} /month</span>
@@ -163,4 +168,6 @@
       <button class="btn w-100" (click)="createRequest()">Choose Insurance Plan</button>
     </div>
   </div>
+ 
 </div>
+
