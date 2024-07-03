@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { EditMotorInsurance } from '../../../Model/Motorinsurance/edit-motor-insurance';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -17,46 +17,35 @@ import Swal from 'sweetalert2';
   templateUrl: './editmotorinsurance.component.html',
   styleUrl: './editmotorinsurance.component.css'
 })
-export class EditmotorinsuranceComponent implements OnInit, OnDestroy {
-  public EditObj: EditMotorInsurance = new EditMotorInsurance(0, 0, 0, 0, "", 0, 0, 0, 0, 0);
+export class EditmotorinsuranceComponent implements  OnChanges, OnDestroy {
+  @Input() motorInsuranceData?: EditMotorInsurance;
   Editmotorform!: FormGroup;
   sub!: Subscription;
   InsurancePlanLevel = InsurancePlanLevel;
-  comanyId:string="57164a6c-e3b4-4ab5-8fd6-18fe3d29e68a";
+  comanyId: string = JSON.parse(localStorage.getItem('userData') || "{}").id;
+
   constructor(
-    public motorservices: MotorinsuranceService,
-    public activateRoute: ActivatedRoute,
+    private fb: FormBuilder,
+    private motorservices: MotorinsuranceService,
+    private activateRoute: ActivatedRoute,
     private router: Router) { }
 
-  ngOnInit(): void {
-    this.sub = this.activateRoute.params.subscribe(param => {
-      this.motorservices.getById(param['id']).subscribe(
-        {
-          next: (data) => {
-            debugger;
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['motorInsuranceData'] && this.motorInsuranceData) {
+      this.initializeForm();
+    }
+  }
 
-            this.EditObj = data;
-            console.log('Motor insurance fetched successfully', data);
-            this.updateFormWithData(data);
-          },
-          error: (error) => {
-            console.error('Error fetching Motor insurance', error);
-          }
-        }
-      );
-    });
-
-
-
-    this.Editmotorform = new FormGroup({
-      yearlyCoverage: new FormControl(this.EditObj.yearlyCoverage, [Validators.required, Validators.min(0), Validators.max(1.7976931348623157e+308)]),
-      level: new FormControl(this.EditObj.level, [Validators.required]),
-      quotation: new FormControl(this.EditObj.quotation, [Validators.required, Validators.min(0), Validators.max(1.7976931348623157e+308)]),
-      personalAccident: new FormControl(this.EditObj.personalAccident, [Validators.required, Validators.min(0), Validators.max(1.7976931348623157e+308)]),
-      theft: new FormControl(this.EditObj.theft, [Validators.required, Validators.min(0), Validators.max(1.7976931348623157e+308)]),
-      thirdPartyLiability: new FormControl(this.EditObj.thirdPartyLiability, [Validators.required, Validators.min(0), Validators.max(1.7976931348623157e+308)]),
-      ownDamage: new FormControl(this.EditObj.ownDamage, [Validators.required, Validators.min(0), Validators.max(1.7976931348623157e+308)]),
-      legalExpenses: new FormControl(this.EditObj.legalExpenses, [Validators.required, Validators.min(0), Validators.max(1.7976931348623157e+308)])
+  initializeForm(): void {
+    this.Editmotorform = this.fb.group({
+      yearlyCoverage: [this.motorInsuranceData?.yearlyCoverage || '', [Validators.required, Validators.min(0), Validators.max(Number.MAX_SAFE_INTEGER)]],
+      level: [this.motorInsuranceData?.level || InsurancePlanLevel.Basic, [Validators.required]],
+      quotation: [this.motorInsuranceData?.quotation || '', [Validators.required, Validators.min(0), Validators.max(Number.MAX_SAFE_INTEGER)]],
+      personalAccident: [this.motorInsuranceData?.personalAccident || '', [Validators.required, Validators.min(0), Validators.max(Number.MAX_SAFE_INTEGER)]],
+      theft: [this.motorInsuranceData?.theft || '', [Validators.required, Validators.min(0), Validators.max(Number.MAX_SAFE_INTEGER)]],
+      thirdPartyLiability: [this.motorInsuranceData?.thirdPartyLiability || '', [Validators.required, Validators.min(0), Validators.max(Number.MAX_SAFE_INTEGER)]],
+      ownDamage: [this.motorInsuranceData?.ownDamage || '', [Validators.required, Validators.min(0), Validators.max(Number.MAX_SAFE_INTEGER)]],
+      legalExpenses: [this.motorInsuranceData?.legalExpenses || '', [Validators.required, Validators.min(0), Validators.max(Number.MAX_SAFE_INTEGER)]]
     });
   }
 
@@ -66,26 +55,12 @@ export class EditmotorinsuranceComponent implements OnInit, OnDestroy {
     }
   }
 
-  updateFormWithData(data: any): void {
-    // Patch the form controls with the data
-    this.Editmotorform.patchValue({
-      yearlyCoverage: data.yearlyCoverage,
-      level: data.level,
-      quotation: data.quotation,
-      personalAccident: data.personalAccident,
-      theft: data.theft,
-      thirdPartyLiability: data.thirdPartyLiability,
-      ownDamage: data.ownDamage,
-      legalExpenses: data.legalExpenses
-    });
-  }
-
   EditMotor(): void {
     debugger;
     if (this.Editmotorform.valid) {
       const formValue = this.Editmotorform.value;
       const homeObj: EditMotorInsurance = new EditMotorInsurance(
-        this.EditObj.id,
+        this.motorInsuranceData?.id || 0,
         formValue.yearlyCoverage,
         formValue.level,
         formValue.quotation,
@@ -97,24 +72,26 @@ export class EditmotorinsuranceComponent implements OnInit, OnDestroy {
         formValue.legalExpenses
       );
 
-      console.log('Payload:', homeObj); // Log the payload to verify
       this.motorservices.edit(homeObj).subscribe(
         {
           next: (data) => {
-            console.log('Motor insurance updated successfully', data);
             this.Editmotorform.reset();
             Swal.fire({
               position: "top-end",
               icon: "success",
               title: "Motor insurance updated successfully",
               showConfirmButton: false,
-              timer: 1500
+              timer: 1000
             });
-            this.router.navigate(['']);
+            setTimeout(() => {
+              this.router.navigate(['company']).then(() => {
+                window.location.reload();
+              });
+            }, 1000);
+            // this.router.navigate(['company']);
 
           },
           error: (error) => {
-            console.error('Error updating Motor insurance', error);
             Swal.fire({
               position: "center",
               icon: "error",
@@ -130,4 +107,3 @@ export class EditmotorinsuranceComponent implements OnInit, OnDestroy {
     }
   }
 }
-

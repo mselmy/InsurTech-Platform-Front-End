@@ -1,18 +1,24 @@
 .navbar-brand {
-    font-weight: bold;
+  font-weight: bold;
+}
+
+.nav-link {
+  color: #fff;
+}
+
+@media (max-width: 992px) {
+ .navbar-nav.nav-link {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
   }
-  
-  .nav-link {
-    color: #fff;
-  }
-  
-  @media (max-width: 992px) {
-   .navbar-nav.nav-link {
-      padding-right: 0.5rem;
-      padding-left: 0.5rem;
-    }
-  }
-  .navbar
-  {
-    background-color: #042521;
-  }
+}
+.navbar
+{
+  background-color: #042521;
+}
+ul li{
+  padding: 24px 8px;
+}
+ul li:hover{
+  background-color: #dccece;
+}

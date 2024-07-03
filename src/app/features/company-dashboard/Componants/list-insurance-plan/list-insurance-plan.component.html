@@ -123,7 +123,8 @@
               {{ product.numberOfUsers }}
             </td>
             <td>
-              <button class="btn newprimary btn-sm"  routerLink="editmotorinsurance/{{product.id}}" (click)="showModal(1, selectedInsurance)">
+              <!-- routerLink="editmotorinsurance/{{product.id}}" -->
+              <button class="btn newprimary btn-sm"  (click)="showModal(1, product)">
                 <i class="fas fa-edit action"></i>
               </button>
               <button class="btn newdanger btn-sm" (click)="deleteInsurance(product.id)">
@@ -238,7 +239,8 @@
               {{ product.numberOfUsers }}
             </td>
             <td>
-              <button class="btn newprimary btn-sm" routerLink="/edithealthinsurance/{{product.id}}" (click)="showModal(2, dataToSend)">
+              <!-- routerLink="/edithealthinsurance/{{product.id}}"  -->
+              <button class="btn newprimary btn-sm" (click)="showModal(2, product)">
                 <i class="fas fa-edit action"></i>
               </button>
               <button class="btn newdanger btn-sm" (click)="deleteInsurance(product.id)">
@@ -355,7 +357,8 @@
               {{ product.numberOfUsers }}
             </td>
             <td>
-              <button class="btn newprimary btn-sm" routerLink="edithomeinsurance/{{product.id}}" (click)="showModal(2, dataToSend)">
+              <!-- routerLink="edithomeinsurance/{{product.id}}" -->
+              <button class="btn newprimary btn-sm"   (click)="showModal(3, product)">
                 <i class="fas fa-edit action"></i>
               </button>
               <button class="btn newdanger btn-sm" (click)="deleteInsurance(product.id)">
@@ -391,9 +394,9 @@
   <p-dialog header="Edit Insurance Plan" [(visible)]="VisibleEdit" [modal]="true"
     [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '80%', padding: '-10px' }"
     [draggable]="false" [resizable]="false">
-    <app-editmotorinsurance *ngIf="flag === 1" [EditObj]="selectedInsurance"></app-editmotorinsurance>
-    <app-edit-health-insurance-plan *ngIf="flag === 2" [insuranceId]="dataToSend"></app-edit-health-insurance-plan>
-    <app-edithomeinsurance *ngIf="flag === 3" [insuranceId]="dataToSend"></app-edithomeinsurance>
+    <app-editmotorinsurance *ngIf="showEditModal==1" [motorInsuranceData]="dataToSend"></app-editmotorinsurance>
+    <app-edit-health-insurance-plan *ngIf="showEditModal==2" [healthInsuranceData]="dataToSend"></app-edit-health-insurance-plan>
+    <app-edithomeinsurance *ngIf="showEditModal==3" [homeInsuranceData]="dataToSend"></app-edithomeinsurance>
   </p-dialog>
 </div>
 
