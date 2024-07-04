@@ -12,17 +12,19 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./users-company.component.css']
 })
 export class UsersCompanyComponent implements OnInit {
-  // UsersList: CompanyUsers[] = [
-  //   { name: "tamer", email: "t@email.com", phone: "01234567" },
-  //   { name: "tamer", email: "t@email.com", phone: "01234567" },
-  //   { name: "tasneime", email: "t@email.com", phone: "01234567" },
-  //   { name: "raniewm", email: "t@email.com", phone: "01234567" },
-  //   { name: "fawzy", email: "t@email.com", phone: "01234567" },
-  //   { name: "maysa", email: "t@email.com", phone: "01234567" }
-  // ];
 
  public UsersList: CompanyUsers[] = [];
-  Id = JSON.parse(localStorage.getItem('userData') || '{id: 1}').id; 
+  Id = JSON.parse(localStorage.getItem('userData') || '{id: 1}').id;
+  searchQuery = '';
+  filteredUsersList = this.UsersList;
+
+  filterUsers() {
+    this.filteredUsersList = this.UsersList.filter(user => 
+      user.name.toLowerCase().includes(this.searchQuery.toLowerCase()) || 
+      user.email.toLowerCase().includes(this.searchQuery.toLowerCase()) || 
+      user.phone.includes(this.searchQuery)
+    );
+  } 
 
   constructor(public companyService: CompanyService) {}
 
