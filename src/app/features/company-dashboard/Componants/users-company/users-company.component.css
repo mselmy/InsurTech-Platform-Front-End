@@ -10,19 +10,12 @@
   .card {
     padding: 15px;
     width: 100%;
-    border: 2px solid green;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* border: 2px solid green; */
+    /* border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px; */
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
   }
   
-  .user-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid #ccc;
-  }
   
   .user-avatar {
     width: 2.5rem;
@@ -48,7 +41,51 @@
     max-width: 400px;
   }
   
-  @media (max-width: 1200px) {
+
+  .search-input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .search-input:focus {
+    border-color: green;
+    box-shadow: 0 0 10px rgb(170, 231, 170);
+    outline: none;
+  }
+  
+  .user-item {
+    display: flex;
+    align-items: center;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: box-shadow 0.3s;
+    width: 100%;
+  }
+  
+  .user-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+
+  .user-avatar div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+  }
+  
+  .pi-download {
+    cursor: pointer;
+  }
+  /* @media (max-width: 1200px) {
     .card {
       max-width: 40vw;
     }
@@ -62,13 +99,13 @@
   
   @media (max-width: 768px) {
     .card {
-      max-width: 80vw;
+      max-width: 100%;
     }
   }
   
   @media (max-width: 576px) {
     .card {
-      width: 90%;
+      width: 100%;
     }
   }
-  
+   */
