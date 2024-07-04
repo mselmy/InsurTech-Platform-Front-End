@@ -24,7 +24,9 @@
         </div>
 
         <div class="col d-flex align-items-center justify-content-center">
-          <i class="pi pi-download" style="font-size: 1.5rem; color: green;" (click)="DownloadUserData(user.Id)"></i>
+          <i class="pi pi-file-pdf" style="font-size: 1.5rem; color: green;  margin-left: 7rem;" (click)="PrintUserData(user.id)"></i>
+
+          <i class="pi pi-download" style="font-size: 1.5rem; color: green; margin-left: 2rem;" (click)="DownloadUserData(user.id)"></i>
         </div>
       </div>
     </div>

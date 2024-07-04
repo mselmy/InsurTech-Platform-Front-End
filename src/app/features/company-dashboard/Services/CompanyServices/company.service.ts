@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ListInsurancePlan } from '../../Model/company/ListInsurancePlan';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -44,6 +44,10 @@ export class CompanyService {
   }
   GetUserArchive(Id:string)
   {
-    return this.httpClient.get(this.baseUrl+"/companies/UserPdf?id="+Id);
+   
+    return this.httpClient.get(this.baseUrl+"companies/UserPdf?id="+Id,{
+      responseType: 'blob',
+      observe: 'response' 
+    });
   }
 }
