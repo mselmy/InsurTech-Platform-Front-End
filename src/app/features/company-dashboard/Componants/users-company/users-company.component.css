@@ -10,12 +10,10 @@
   .card {
     padding: 15px;
     width: 100%;
-    max-width: 28vw;
     border: 2px solid green;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: auto;
   }
   
   .user-item {
@@ -50,7 +48,6 @@
     max-width: 400px;
   }
   
-  /* Responsive adjustments */
   @media (max-width: 1200px) {
     .card {
       max-width: 40vw;
