@@ -24,9 +24,9 @@
       </div>
   </div>
 </div>
-<div style="width:1300px ;max-width:1300px;" class="container">
+<div class="container" style=" background-color: white;">
   <!-- Motor Insurance Table -->
-  <div class="rounded p-3 bg-light" *ngIf="flag==1">
+  <div class="table-responsive rounded p-3"  style="background-color: white;" *ngIf="flag == 1">
     <div *ngIf="MotorList?.length; else noMotorInsurance">
       <p-table #dt [value]="MotorList" [rows]="10" [paginator]="true"
         [globalFilterFields]="['YearlyCoverag', 'level', 'category', 'quotation','personalAccident','theft','thirdPartyLiability','ownDamage','legalExpenses','numberOfUsers']"
@@ -34,14 +34,18 @@
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
         <ng-template pTemplate="caption">
           <div class="flex align-items-center justify-content-center">
-            <p-button label="+" (click)="showDialog()"
-              [style]="{'background-color': '#2acaac', 'color': 'white','border':'none'}"></p-button>
-            <span class="p-input-icon-left" [style]="{'margin-left':'65vw'}">
-              <i class="pi pi-search action"></i>
-              <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
-                placeholder="Search..." />
-            </span>
+            <p-button label="+ New Plan" (click)="showDialog()"
+                      [style]="{'background-color': '#2acaac', 'color': 'white','border':'none'}"></p-button>
+            
+            <div class="search-input-container ml-auto">
+              <span class="p-input-icon-left">
+                <i class="pi pi-search action"></i>
+                <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                       placeholder="Search..." />
+              </span>
+            </div>
           </div>
+          
         </ng-template>
         <ng-template pTemplate="header">
           <tr>
@@ -145,7 +149,7 @@
   
 
   <!-- Health Insurance Table -->
-  <div class="rounded p-3 bg-light mt-4" *ngIf="flag==2">
+  <div class="table-responsive rounded p-3" style="background-color: white;" *ngIf="flag == 2">
     <div *ngIf="HealthList?.length; else noHealthInsurance">
       <p-table #dt [value]="HealthList" [rows]="10" [paginator]="true"
         [globalFilterFields]="['yearlyCoverag', 'level', 'category', 'quotation','clinicsCoverage','dentalCoverage','hospitalizationAndSurgery','medicalNetwork','opticalCoverage','numberOfUsers']"
@@ -153,13 +157,18 @@
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
         <ng-template pTemplate="caption">
           <div class="flex align-items-center justify-content-center">
-            <p-button label="+" (click)="showDialog()" [style]="{'background-color': '#2acaac', 'color': 'white','border':'none'}"></p-button>
-            <span class="p-input-icon-left" [style]="{'margin-left':'65vw'}">
-              <i class="pi pi-search action"></i>
-              <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
-                placeholder="Search..." />
-            </span>
+            <p-button label="+ New Plan" (click)="showDialog()"
+                      [style]="{'background-color': '#2acaac', 'color': 'white','border':'none'}"></p-button>
+            
+            <div class="search-input-container ml-auto">
+              <span class="p-input-icon-left">
+                <i class="pi pi-search action"></i>
+                <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                       placeholder="Search..." />
+              </span>
+            </div>
           </div>
+          
         </ng-template>
         <ng-template pTemplate="header">
           <tr>
@@ -262,20 +271,24 @@
   </div>
 
   <!-- Home Insurance Table -->
-  <div class="rounded p-3 bg-light mt-4" *ngIf="flag==3">
+  <div class="table-responsive rounded p-3 "  style="background-color: white;" *ngIf="flag == 3">
     <div *ngIf="HomeList?.length; else noHomeInsurance">
       <p-table #dt [value]="HomeList" [rows]="10" [paginator]="true"
         [globalFilterFields]="['yearlyCoverag', 'level', 'category', 'quotation','waterDamage','glassBreakage','naturalHazard','attemptedTheft','firesAndExplosion','numberOfUsers']"
         [tableStyle]="{ 'min-width': '75rem' }" [rowHover]="true" dataKey="id"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
         <ng-template pTemplate="caption">
-          <div class="flex align-items-center justify-content-center">
-            <p-button label="+" (click)="showDialog()" [style]="{'background-color': '#2acaac', 'color': 'white','border':'none'}"></p-button>
-            <span class="p-input-icon-left" [style]="{'margin-left':'65vw'}">
-              <i class="pi pi-search action"></i>
-              <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
-                placeholder="Search..." />
-            </span>
+          <div class="flex">
+            <p-button label="+ New Plan" (click)="showDialog()"
+                      [style]="{'background-color': '#2acaac', 'color': 'white','border':'none'}"></p-button>
+            
+            <div class="search-input-container ml-auto">
+              <span class="p-input-icon-left">
+                <i class="pi pi-search action"></i>
+                <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                       placeholder="Search..." />
+              </span>
+            </div>
           </div>
         </ng-template>
         <ng-template pTemplate="header">
@@ -378,7 +391,7 @@
 </div>
 
 <!-- add  -->
-<div class="card flex justify-content-center">
+<div class="flex justify-content-center">
   <p-dialog header="New Insurance Plan" [(visible)]="visible" [modal]="true"
     [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '80%' ,padding:'-10px'}" [draggable]="false"
     [resizable]="false">
@@ -390,7 +403,7 @@
 
 
 <!-- edit -->
-<div class="card flex justify-content-center">
+<div class=" flex justify-content-center">
   <p-dialog header="Edit Insurance Plan" [(visible)]="VisibleEdit" [modal]="true"
     [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '80%', padding: '-10px' }"
     [draggable]="false" [resizable]="false">
