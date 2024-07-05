@@ -100,8 +100,8 @@ export class ListInsurancePlanComponent implements OnInit, OnDestroy {
       const elements = document.querySelectorAll(".col");
       elements.forEach(el => {
         this.renderer.removeStyle(el, 'background-color');
-      });
-      this.renderer.setStyle(element, 'background-color', '#f9f9f9');
+      });      
+      this.renderer.setStyle(element, 'background-color', '#ffff');
     } else {
       console.error(`Element with id ${name} not found`);
     }
