@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterOutlet , RouterModule } from '@angular/router';
 import { AppLayoutModule } from './features/admin-dashboard/layout/app.layout.module';
+import { NotificationService } from './core/services/notification/notification.service';
+import { HttpClient } from '@microsoft/signalr';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -15,6 +18,10 @@ import { AppLayoutModule } from './features/admin-dashboard/layout/app.layout.mo
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent  {
   title = 'InsurTech';
+  constructor(private notificationService: NotificationService,private http:HttpClient) { }
+  
+ 
+
 }
