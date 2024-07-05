@@ -37,7 +37,7 @@ import { HomearticlesComponent } from './features/homearticles/homearticles.comp
 import { PaymentPageComponent } from './features/paymen-gateaway/payment-page/payment-page.component';
 import { PaymentSelectionComponent } from './features/paymen-gateaway/payment-selection/payment-selection.component';
 import { ElementTestComponent } from './features/element-test/element-test.component';
-
+import { UserFeedBackComponent } from './features/user-feed-back/user-feed-back.component';
 export const routes: Routes = [
   {
     path: 'admin',
@@ -146,5 +146,10 @@ export const routes: Routes = [
   { path: '404', component: PageNotFoundComponent },
   { path: 'test', component: ElementTestComponent },
   { path: '', component: HomeComponent, pathMatch: 'full' },
+  {
+    path: 'feedback',
+    component: UserFeedBackComponent,
+    canActivate: [authUserGuard],
+  },
   { path: '**', redirectTo: '/404' },
 ];

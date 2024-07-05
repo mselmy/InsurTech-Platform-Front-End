@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { ExpirationDateMaskDirective } from '../../../shared/directives/expiration-date-mask.directive';
@@ -21,7 +27,7 @@ import { forkJoin } from 'rxjs';
     ExpirationDateMaskDirective,
   ],
   templateUrl: './payment-page.component.html',
-  styleUrls: ['./payment-page.component.css']
+  styleUrls: ['./payment-page.component.css'],
 })
 export class PaymentPageComponent implements OnInit {
   paymentForm: FormGroup = new FormGroup({});
@@ -30,15 +36,15 @@ export class PaymentPageComponent implements OnInit {
   answers: any;
 
   constructor(
-    private fb: FormBuilder, 
-    private localStorageService: LocalStorageService, 
-    private router: Router, 
-    private insurancePlanService: InsurancePlanService, 
+    private fb: FormBuilder,
+    private localStorageService: LocalStorageService,
+    private router: Router,
+    private insurancePlanService: InsurancePlanService,
     private questionService: QuestionsFormService,
     private cardValidationService: CardValidationService
   ) {
     const navigation = this.router.getCurrentNavigation();
-    console.log('navigation', navigation)
+    console.log('navigation', navigation);
     if (navigation && navigation.extras.state) {
       const state = navigation.extras.state as { plan: any; answers: any };
       this.plan = state.plan;
@@ -55,15 +61,22 @@ export class PaymentPageComponent implements OnInit {
 
   initForm() {
     this.paymentForm = this.fb.group({
-      cardNumber: ['', [Validators.required, Validators.pattern(/^\d{4} \d{4} \d{4} \d{4}$/)]],
-      expirationDate: ['', [Validators.required, Validators.pattern(/^(0[1-9]|1[0-2])\/\d{2}$/)]],
+      cardNumber: [
+        '',
+        [Validators.required, Validators.pattern(/^\d{4} \d{4} \d{4} \d{4}$/)],
+      ],
+      expirationDate: [
+        '',
+        [Validators.required, Validators.pattern(/^(0[1-9]|1[0-2])\/\d{2}$/)],
+      ],
       cvv: ['', [Validators.required, Validators.pattern(/^\d{3}$/)]],
-      name: ['', Validators.required]
+      name: ['', Validators.required],
     });
   }
 
   loadSavedCard() {
-    this.savedCardLastFour = this.localStorageService.getCardLastFour() || '5949';
+    this.savedCardLastFour =
+      this.localStorageService.getCardLastFour() || '5949';
     const savedCard = this.localStorageService.getCardInfo();
     if (savedCard) {
       this.paymentForm.patchValue(savedCard);
@@ -71,47 +84,65 @@ export class PaymentPageComponent implements OnInit {
   }
 
   saveCard() {
-    const cardNumber = this.paymentForm.get('cardNumber')?.value.replace(/\s+/g, ''); // Remove spaces
+    const cardNumber = this.paymentForm
+      .get('cardNumber')
+      ?.value.replace(/\s+/g, ''); // Remove spaces
     const lastFour = cardNumber.slice(-4);
-    this.localStorageService.saveCardInfo({ ...this.paymentForm.value, cardNumber }); // Save without spaces
+    this.localStorageService.saveCardInfo({
+      ...this.paymentForm.value,
+      cardNumber,
+    }); // Save without spaces
     this.localStorageService.saveCardLastFour(lastFour);
   }
 
   validateCardDetails() {
-    const cardNumber = this.paymentForm.get('cardNumber')?.value.replace(/\s+/g, ''); // Remove spaces
+    const cardNumber = this.paymentForm
+      .get('cardNumber')
+      ?.value.replace(/\s+/g, ''); // Remove spaces
     const cardHolderName = this.paymentForm.get('name')?.value;
     const expiryDate = this.paymentForm.get('expirationDate')?.value;
     const cvv = this.paymentForm.get('cvv')?.value;
 
     forkJoin({
-      isCardNumberValid: this.cardValidationService.validateCardNumber(cardNumber),
-      isCardHolderNameValid: this.cardValidationService.validateCardHolderName(cardHolderName),
-      isExpiryDateValid: this.cardValidationService.validateExpiryDate(expiryDate),
-      isCvvValid: this.cardValidationService.validateCvv(cvv)
-    }).subscribe(results => {
-      if (results.isCardNumberValid && results.isCardHolderNameValid && results.isExpiryDateValid && results.isCvvValid) {
-        Swal.fire({
-          icon: 'success',
-          title: 'Payment Successful',
-          text: 'Your payment has been processed successfully!'
-        }).then(() => {
-          this.createRequest();
-        });
-      } else {
+      isCardNumberValid:
+        this.cardValidationService.validateCardNumber(cardNumber),
+      isCardHolderNameValid:
+        this.cardValidationService.validateCardHolderName(cardHolderName),
+      isExpiryDateValid:
+        this.cardValidationService.validateExpiryDate(expiryDate),
+      isCvvValid: this.cardValidationService.validateCvv(cvv),
+    }).subscribe(
+      (results) => {
+        if (
+          results.isCardNumberValid &&
+          results.isCardHolderNameValid &&
+          results.isExpiryDateValid &&
+          results.isCvvValid
+        ) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Payment Successful',
+            text: 'Your payment has been processed successfully!',
+          }).then(() => {
+            this.createRequest();
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Validation Error',
+            text: 'Invalid card details. Please check your information and try again.',
+          });
+        }
+      },
+      (error) => {
+        console.error('Validation error:', error);
         Swal.fire({
           icon: 'error',
           title: 'Validation Error',
-          text: 'Invalid card details. Please check your information and try again.'
+          text: 'An error occurred during validation. Please try again.',
         });
       }
-    }, error => {
-      console.error('Validation error:', error);
-      Swal.fire({
-        icon: 'error',
-        title: 'Validation Error',
-        text: 'An error occurred during validation. Please try again.'
-      });
-    });
+    );
   }
 
   onSubmit() {
@@ -133,20 +164,22 @@ export class PaymentPageComponent implements OnInit {
       return;
     }
 
-    this.insurancePlanService.SendRequestInsurancePlan(this.plan.id, this.questionService.GetAnswers()).subscribe({
-      next: data => {
-        this.router.navigate(['successpurchasing']);
-      },
-      error: error => {
-        console.error('There was an error!', error);
-        Swal.fire({
-          icon: 'error',
-          title: 'Request Failed',
-          text: 'There was an error processing your request. Please try again.',
-        }).then(() => {
+    this.insurancePlanService
+      .SendRequestInsurancePlan(this.plan.id, this.questionService.GetAnswers())
+      .subscribe({
+        next: (data) => {
           this.router.navigate(['successpurchasing']);
-        });
-      }
-    });
+        },
+        error: (error) => {
+          console.error('There was an error!', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Request Failed',
+            text: 'There was an error processing your request. Please try again.',
+          }).then(() => {
+            this.router.navigate(['successpurchasing']);
+          });
+        },
+      });
   }
 }
