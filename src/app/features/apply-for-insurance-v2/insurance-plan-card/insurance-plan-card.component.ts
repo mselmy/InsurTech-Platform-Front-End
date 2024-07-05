@@ -29,7 +29,23 @@ export class InsurancePlanCardComponent {
     this.showMore = !this.showMore;
   }
 
+
   createRequest() {
-    this.router.navigate(['payment'], { state: { plan: this.plan, answers: this.questionService.GetAnswers() } });
-  }
-}
+
+    this.insurancePlanService.SendRequestInsurancePlan(this.plan.id, this.questionService.GetAnswers()).subscribe({
+      next: data => {
+        this.router.navigate([
+          'successpurchasing',
+          this.plan.id,
+          this.catId,
+        ]);
+        console.log(this.plan.id, this.catId);
+      },
+      error: error => {
+        console.error('There was an error!', error);
+      }
+    });
+     this.router.navigate(['payment'], { state: { plan: this.plan, answers: this.questionService.GetAnswers() } });
+  }}
+
+ 

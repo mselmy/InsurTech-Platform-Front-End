@@ -5,11 +5,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router'; 
 import { CategoriesService } from '../../../core/services/categories.service';
+import { HeaderComponent } from '../../../shared/components/header/header.component';
 
 @Component({
   selector: 'Motorcategory',
   standalone: true,
-  imports: [TableModule, ButtonModule, CommonModule, FormsModule],
+  imports: [TableModule, ButtonModule, CommonModule, FormsModule,HeaderComponent],
   templateUrl: './sub-category.component.html',
   styleUrls: ['./sub-category.component.css'], 
 })
