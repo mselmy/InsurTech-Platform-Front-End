@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiUrl: 'http://insurtechapis.runasp.net/api'
+    apiUrl: 'https://insurtechapis.runasp.net/api'
 };
