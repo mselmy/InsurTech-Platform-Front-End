@@ -140,9 +140,14 @@ export const routes: Routes = [
     ],
   },
   { path: 'payment', component: PaymentPageComponent },
+
+  { path: 'successpurchasing/:id/:catId', component: SuccessPurchasingComponent },
+
+  {path: 'payment', component: PaymentPageComponent},
   { path: 'payment-selection', component: PaymentSelectionComponent },
   // { path: 'payments', component: PaymentComponent },
-  { path: 'successpurchasing', component: SuccessPurchasingComponent },
+
+
   { path: '404', component: PageNotFoundComponent },
   { path: 'test', component: ElementTestComponent },
   { path: '', component: HomeComponent, pathMatch: 'full' },

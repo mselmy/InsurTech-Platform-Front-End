@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ListInsurancePlan } from '../../Model/company/ListInsurancePlan';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -13,7 +13,7 @@ import { MotorinsuranceService } from '../ManageMotorServices/motorinsurance.ser
 export class CompanyService {
 
   private baseUrl: string = "http://localhost:5028/api/";
-  public companId:string="57164a6c-e3b4-4ab5-8fd6-18fe3d29e68a";
+  public companId:string=JSON.parse(localStorage.getItem('userData') || "{}").id;
   private insurancePlansSubject = new BehaviorSubject<ListInsurancePlan | null>(null);
   insurancePlans$ = this.insurancePlansSubject.asObservable();
 
@@ -41,5 +41,13 @@ export class CompanyService {
 
   GetCompanyUsers(Id: number): Observable<CompanyUsers[]> {
     return this.httpClient.get<CompanyUsers[]>(this.baseUrl + "companies/Users/" + Id);
+  }
+  GetUserArchive(Id:string)
+  {
+   
+    return this.httpClient.get(this.baseUrl+"companies/UserPdf?id="+Id,{
+      responseType: 'blob',
+      observe: 'response' 
+    });
   }
 }
