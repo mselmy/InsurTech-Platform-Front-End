@@ -5,12 +5,13 @@ import { EditHealthInsurance } from '../../Model/Helathinsurance/edit-health-ins
 
 import { Observable, Subject } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { BASE_URL } from '../../../../core/base-url';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HealthinsuranceService {
-  private baseurl: string = "http://localhost:5028/api/HealthInsurance/";
+  private baseurl: string = `${BASE_URL}/HealthInsurance/`;
 
   private healthInsuranceChanges = new Subject<void>();
   public healthInsuranceChanges$ = this.healthInsuranceChanges.asObservable();

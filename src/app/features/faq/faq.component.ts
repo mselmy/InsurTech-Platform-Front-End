@@ -4,6 +4,7 @@ import { AccordionModule } from 'primeng/accordion';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { HeaderComponent } from '../../shared/components/header/header.component';
+import { BASE_URL } from '../../core/base-url';
 
 interface FAQ {
   id: number;
@@ -29,7 +30,7 @@ export class FAQComponent implements OnInit{
   }
 
   fetchFAQs() {
-    this.http.get<any[]>('http://localhost:5028/api/FAQs')
+    this.http.get<any[]>(`${BASE_URL}/FAQs`)
       .subscribe(
         data => {
           this.faqs = data;
