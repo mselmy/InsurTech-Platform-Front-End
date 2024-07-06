@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../../../core/services/authantication.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -9,5 +10,11 @@ import { RouterLink } from '@angular/router';
   styleUrl: './sidenav.component.css'
 })
 export class SidenavComponent {
-
+  constructor(private auth: AuthService, private route: Router)
+  {}
+  logout()
+  {
+      this.auth.logout();
+      this.route.navigate(['/']);
+  }
 }

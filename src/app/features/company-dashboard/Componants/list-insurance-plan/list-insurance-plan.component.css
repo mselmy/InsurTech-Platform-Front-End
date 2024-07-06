@@ -1,8 +1,12 @@
-/* Base font size */
 html {
     font-size: 16px;
 }
-
+.container
+{
+    margin: auto;
+    width: 90vw !important;
+    border-radius: 20px;
+}
 .holder {
     margin-top: 30px;
 }
@@ -95,11 +99,11 @@ tr:hover {
 }
 tr{
     border-bottom:1px solid;
-    font-size: 0.8rem;
+    font-size: 1.1rem;
 }
 th{
 
-    font-size: 0.8rem;
+    font-size: 1rem;
     padding:0.5rem 0.5rem;
     border-bottom:2px solid #2acaac;
     background-color: white;
