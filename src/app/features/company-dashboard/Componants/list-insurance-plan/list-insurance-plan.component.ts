@@ -49,13 +49,14 @@ export class ListInsurancePlanComponent implements OnInit, OnDestroy {
   visible: boolean = false;
   VisibleEdit: boolean = false;
   public flag: number = 1;
+
   private Id = JSON.parse(localStorage.getItem('userData') || '{id: 1}').id;
   subscriptions: Subscription[] = [];
   selectedInsurance: EditMotorInsurance = new EditMotorInsurance(0, 0, 0, 0, "", 0, 0, 0, 0, 0);
   dataToSend: any; // Define your dataToSend object if needed
+  showEditModal = 0;
 
-
-///
+  ///
   constructor(
     private CompanyServices: CompanyService,
     private renderer: Renderer2,
@@ -68,14 +69,14 @@ export class ListInsurancePlanComponent implements OnInit, OnDestroy {
     this.loadData();
     this.subscriptions.push(
       this.CompanyServices.insurancePlans$.subscribe({
-        next: (data: ListInsurancePlan | null) => { 
+        next: (data: ListInsurancePlan | null) => {
           if (data) {
             this.HealthList = data.healthInsurancePlans || [];
             this.HomeList = data.homeInsurancePlans || [];
             this.MotorList = data.motorInsurancePlans || [];
           }
         },
-        error: (error: any) => { console.log(error); } 
+        error: (error: any) => { console.log(error); }
       })
     );
   }
@@ -99,8 +100,8 @@ export class ListInsurancePlanComponent implements OnInit, OnDestroy {
       const elements = document.querySelectorAll(".col");
       elements.forEach(el => {
         this.renderer.removeStyle(el, 'background-color');
-      });
-      this.renderer.setStyle(element, 'background-color', '#f9f9f9');
+      });      
+      this.renderer.setStyle(element, 'background-color', '#ffff');
     } else {
       console.error(`Element with id ${name} not found`);
     }
@@ -117,11 +118,11 @@ export class ListInsurancePlanComponent implements OnInit, OnDestroy {
       rejectIcon: "none",
       accept: () => {
         this.CompanyServices.Delete(id).subscribe({
-          next: (data: any) => { 
+          next: (data: any) => {
             this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Insurance plan Deleted' });
-            this.loadData();  
+            this.loadData();
           },
-          error: (error: any) => { 
+          error: (error: any) => {
             this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'An Error occurred' });
           }
         })
@@ -135,16 +136,18 @@ export class ListInsurancePlanComponent implements OnInit, OnDestroy {
     this.visible = true;
   }
   // Function to show the modal with the selected component
-showModal(flag: number, data?: any) {
-  this.flag = flag;
-  if (data) {
-    this.dataToSend = data;
-  }
-  this.VisibleEdit = true; // Show the modal
-}
+  showModal(flag: number, data?: any) {
 
-// Function to hide the modal
-hideModal() {
-  this.VisibleEdit = false; // Hide the modal
-}
+    debugger;
+    if (data) {
+      this.dataToSend = data;
+      this.showEditModal = flag;
+    }
+    this.VisibleEdit = true; // Show the modal
+  }
+
+  // Function to hide the modal
+  hideModal() {
+    this.VisibleEdit = false; // Hide the modal
+  }
 }

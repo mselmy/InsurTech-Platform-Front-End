@@ -24,8 +24,7 @@ export class HealthPlanCardComponent {
   createRequest() {
     this.insurancePlanService.SendRequestInsurancePlan(this.data.id, this.questionService.GetAnswers()).subscribe({
       next: data => {
-        this.router.navigate(['success']);
-      },
+        this.router.navigate(['success'])  },
       error: error => {
         console.error('There was an error!', error);
       }
