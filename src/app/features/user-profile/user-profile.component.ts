@@ -1,18 +1,19 @@
-import { Component,OnInit,inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserProfileService } from '../../core/services/user-profile.service';
 import { UserProfile } from '../../core/models/userprofile';
-import { AbstractControl, FormBuilder,FormGroup,ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-user-profile',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
   templateUrl: './user-profile.component.html',
-  styleUrl: './user-profile.component.css'
+  styleUrls: ['./user-profile.component.css']
 })
-export class UserProfileComponent  implements OnInit{
+export class UserProfileComponent implements OnInit {
 
   userForm: FormGroup;
 
@@ -22,20 +23,18 @@ export class UserProfileComponent  implements OnInit{
   ) {
     this.userForm = this.fb.group({
       id: [{ value: '', disabled: true }, Validators.required],
-      name: ['', Validators.required,Validators.minLength(3)],
+      name: ['', [Validators.required, Validators.minLength(3)]],
       userName: ['', Validators.required],
       email: [{ value: '', disabled: true }, [Validators.required, Validators.email]],
       nationalId: [{ value: '', disabled: true }, Validators.required],
-      birthDate: ['', Validators.required,this.birthDateValidator()],
-      phoneNumber: ['', Validators.required,Validators.pattern(/^(011|012|010|015)\d{8}$/)]
+      birthDate: ['', [Validators.required, this.birthDateValidator()]],
+      phoneNumber: ['', [Validators.required, Validators.pattern(/^(011|012|010|015)\d{8}$/)]]
     });
   }
 
   ngOnInit(): void {
     this.userProfileService.getUserProfile().subscribe(user => {
-      
-      this.userForm.patchValue
-      ({
+      this.userForm.patchValue({
         id: user.id,
         name: user.name,
         userName: user.userName,
@@ -101,6 +100,7 @@ export class UserProfileComponent  implements OnInit{
 
     Swal.fire('Validation Error', errorMessage, 'warning');
   }
+
   birthDateValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const birthDate = new Date(control.value);
@@ -108,14 +108,10 @@ export class UserProfileComponent  implements OnInit{
       const maxDate = new Date();
       if (birthDate < minDate || birthDate > maxDate) {
         return {
-          invalidBirthDate:
-            'Please enter birth date between 1900 and the current year.',
+          invalidBirthDate: 'Please enter birth date between 1900 and the current year.',
         };
       }
       return null;
     };
   }
-
 }
-
-

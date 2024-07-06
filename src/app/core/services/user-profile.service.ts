@@ -8,7 +8,7 @@ import{BASE_URL} from '../base-url';
   providedIn: 'root'
 })
 export class UserProfileService {
-  private apiUrl = `${BASE_URL}/UserProfile`;
+  private apiUrl = `${BASE_URL}/Customers/GetCustomerById`;
   private mockUser: UserProfile = new UserProfile(
     '24cfc9cc-989d-4e04-a466-267fed269623',
     'hemabato',
