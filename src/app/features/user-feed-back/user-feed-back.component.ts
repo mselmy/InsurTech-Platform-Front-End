@@ -13,6 +13,8 @@ import { RatingModule } from 'primeng/rating';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InsuranceService } from '../../core/services/GetInsurancePlans.service';
 import { AuthService } from '../../core/services/authantication.service';
+import { ToastModule } from 'primeng/toast'; // Import ToastModule
+import { MessageService } from 'primeng/api'; // Import MessageService
 
 @Component({
   selector: 'app-user-feed-back',
@@ -25,7 +27,9 @@ import { AuthService } from '../../core/services/authantication.service';
     ButtonModule,
     RatingModule,
     FloatLabelModule,
+    ToastModule,
   ],
+  providers: [MessageService],
   templateUrl: './user-feed-back.component.html',
   styleUrls: ['./user-feed-back.component.css'],
   encapsulation: ViewEncapsulation.None, // Disable view encapsulation
@@ -39,7 +43,8 @@ export class UserFeedBackComponent implements OnInit {
   constructor(
     private insuranceService: InsuranceService,
     private authService: AuthService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -89,6 +94,11 @@ export class UserFeedBackComponent implements OnInit {
       this.insuranceService.postFeedback(feedbackData).subscribe({
         next: (response) => {
           console.log('Feedback submitted successfully', response);
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Your feedback has been sent',
+          }); // Display toast message
         },
         error: (error) => {
           console.error('Error submitting feedback', error);
