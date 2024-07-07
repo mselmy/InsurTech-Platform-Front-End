@@ -16,6 +16,7 @@ import { InsurancePlanService } from '../../../core/services/insurancePlan.servi
 import { QuestionsFormService } from '../../../core/services/questions-form.service';
 import { CardValidationService } from '../../../core/services/CardValidator/card-validation.service';
 import { forkJoin } from 'rxjs';
+import { HeaderComponent } from '../../../shared/components/header/header.component';
 
 @Component({
   selector: 'app-payment-page',
@@ -25,6 +26,7 @@ import { forkJoin } from 'rxjs';
     ReactiveFormsModule,
     CreditCardMaskDirective,
     ExpirationDateMaskDirective,
+    HeaderComponent
   ],
   templateUrl: './payment-page.component.html',
   styleUrls: ['./payment-page.component.css'],
@@ -160,7 +162,7 @@ export class PaymentPageComponent implements OnInit {
   createRequest() {
     if (!this.plan || this.answers.length === 0) {
       console.error('Plan and answers are required');
-      this.router.navigate(['successpurchasing']);
+      //this.router.navigate(['successpurchasing']);
       return;
     }
 

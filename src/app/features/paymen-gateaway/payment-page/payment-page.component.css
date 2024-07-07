@@ -18,10 +18,10 @@ body{
 }
 
 .card.box1 {
-    width: 350px;
+    width: 380px;
     height: 500px;
-    background-color: #3ecc6d;
-    color: #baf0c3;
+    background-color: #76ed9d;
+    color: #ffffff;
     border-radius: 0
 }
 
@@ -44,7 +44,7 @@ body{
 }
 
 .box2 .btn.btn-primary.bar:hover {
-    color: #baf0c3
+    color: #00e673
 }
 
 .box1 .btn.btn-primary {
@@ -59,7 +59,7 @@ body{
 
 .box1 .btn.btn-primary:hover {
     background-color: #f6f8f7;
-    color: #57c97d
+    color: #00e673
 }
 
 .btn.btn-success {
@@ -180,7 +180,7 @@ form .btn.btn-primary {
 }
 
 form .btn.btn-primary:hover {
-    background-color: #05cf48
+    background-color: #00e673
 }
 
 @media (max-width:750px) {
@@ -230,9 +230,10 @@ form .btn.btn-primary:hover {
     color: #00cd04;
     padding: 10px 20px;
     cursor: pointer;
+    margin-bottom: 5px;
 }
 /* add some style for hover and clicking to act more modern */
 .request-call-card .btn-call:hover {
-    background-color: #00cd04;
+    background-color: #00e673;
     color: #ffffff;
 }

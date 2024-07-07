@@ -154,7 +154,7 @@ export const routes: Routes = [
   { path: 'payment', component: PaymentPageComponent },
   { path: 'payment-selection', component: PaymentSelectionComponent },
   // { path: 'payments', component: PaymentComponent },
-  {
+    {
     path: 'userProfile',
     component: UserDashboardComponent,
     children: [

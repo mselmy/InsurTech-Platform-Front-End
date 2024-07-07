@@ -33,13 +33,13 @@
 
           @if(imageSrc){
           <img
-            class="img-account-profile rounded-circle mb-2 w-75"
+            class="img-account-profile rounded-circle mb-2 w-50"
             [src]="imageSrc"
             alt="avatar"
           />
           }@else{
           <img
-            class="img-account-profile rounded-circle mb-2 w-75"
+            class="img-account-profile rounded-circle mb-2 w-50"
             [src]="
               customerData?.image ||
               'http://bootdey.com/img/Content/avatar/avatar1.png'
@@ -60,7 +60,7 @@
           </label>
           @if(selectedFile){
           <button
-            class="btn btn-success mt-2 mx-2"
+            class=" upload-btn mt-2 mx-2"
             (click)="onUpload()"
             [disabled]="isLoading"
           >
@@ -176,7 +176,7 @@
                 />
               </div>
             </div>
-            <button class="btn btn-primary" type="button">Save changes</button>
+            <button class="btn upload-btn" type="button">Save changes</button>
           </form>
         </div>
       </div>
