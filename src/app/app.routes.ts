@@ -49,7 +49,7 @@ export const routes: Routes = [
       ),
     canActivate: [authAdminGuard],
   },
-
+  { path: 'noti', component: NotificationsComponent },
   { path: 'apply-for-insurance', component: ApplyForInsuranceComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'register-user', component: RegisterUserComponent },
