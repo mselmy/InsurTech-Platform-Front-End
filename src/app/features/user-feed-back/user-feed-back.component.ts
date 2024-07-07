@@ -60,7 +60,11 @@ export class UserFeedBackComponent implements OnInit {
     if (this.customerId) {
       this.insuranceService.getCustomerRequests(this.customerId).subscribe({
         next: (data: any) => {
-          this.insurancePlans = data;
+          // Filter plans based on status
+          this.insurancePlans = data.filter(
+            (plan: any) =>
+              plan.status === 'Approved' || plan.status === 'Rejected'
+          );
           this.insurancePlans.forEach(() => {
             this.feedbackForms.push(
               this.fb.group({

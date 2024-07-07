@@ -38,6 +38,7 @@ import { PaymentPageComponent } from './features/paymen-gateaway/payment-page/pa
 import { PaymentSelectionComponent } from './features/paymen-gateaway/payment-selection/payment-selection.component';
 import { ElementTestComponent } from './features/element-test/element-test.component';
 import { UserFeedBackComponent } from './features/user-feed-back/user-feed-back.component';
+import { ComparingInsuranceComponent } from './features/comparing-insurance/comparing-insurance.component';
 export const routes: Routes = [
   {
     path: 'admin',
@@ -158,5 +159,6 @@ export const routes: Routes = [
     component: UserFeedBackComponent,
     canActivate: [authUserGuard],
   },
+  { path: 'compare', component: ComparingInsuranceComponent },
   { path: '**', redirectTo: '/404' },
 ];
