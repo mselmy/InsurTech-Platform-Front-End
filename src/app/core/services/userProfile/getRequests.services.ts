@@ -24,5 +24,8 @@ export class getRequsestsService {
     getRequestsWithRejectedStatus(): Observable<any> {
       return this.http.get(`${BASE_URL}/Customers/getRequestsWtihRejectedStatus`);
     }
+    changePaidToFalse(insurancePlanId: number): Observable<any> {
+      return this.http.put(`${BASE_URL}/Customers/CancelPaid?insurancePlanId=${insurancePlanId}`, {});
+    }
  
 }

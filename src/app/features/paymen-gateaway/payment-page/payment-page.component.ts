@@ -42,7 +42,6 @@ export class PaymentPageComponent implements OnInit {
     private localStorageService: LocalStorageService,
     private router: Router,
     private insurancePlanService: InsurancePlanService,
-    private questionService: QuestionsFormService,
     private cardValidationService: CardValidationService
   ) {
     const navigation = this.router.getCurrentNavigation();
@@ -52,7 +51,6 @@ export class PaymentPageComponent implements OnInit {
       this.plan = state.plan;
       this.answers = state.answers;
       console.log('plan', this.plan);
-      console.log('answers', this.answers);
     }
   }
 
@@ -160,26 +158,28 @@ export class PaymentPageComponent implements OnInit {
     }
   }
   createRequest() {
-    if (!this.plan || this.answers.length === 0) {
-      console.error('Plan and answers are required');
+    if (!this.plan ) {
+      console.error('Plan  are required');
       //this.router.navigate(['successpurchasing']);
       return;
     }
 
     this.insurancePlanService
-      .SendRequestInsurancePlan(this.plan.id, this.questionService.GetAnswers())
+      .changePaidToTrue(this.plan.planId)
       .subscribe({
         next: (data) => {
-          this.router.navigate(['successpurchasing']);
+          this.router.navigate(['successpurchasing/'+this.plan.planId+'/'+this.plan.catId]);
         },
         error: (error) => {
+
           console.error('There was an error!', error);
+          console.log(this.plan)
           Swal.fire({
             icon: 'error',
             title: 'Request Failed',
             text: 'There was an error processing your request. Please try again.',
           }).then(() => {
-            this.router.navigate(['successpurchasing']);
+            // this.router.navigate(['successpurchasing']);
           });
         },
       });

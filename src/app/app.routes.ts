@@ -150,7 +150,10 @@ export const routes: Routes = [
     path: 'successpurchasing/:id/:catId',
     component: SuccessPurchasingComponent,
   },
-
+  {
+    path: 'successpurchasing',
+    component: SuccessPurchasingComponent,
+  },
   { path: 'payment', component: PaymentPageComponent },
   { path: 'payment-selection', component: PaymentSelectionComponent },
   // { path: 'payments', component: PaymentComponent },

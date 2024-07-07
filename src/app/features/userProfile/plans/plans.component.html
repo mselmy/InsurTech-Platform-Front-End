@@ -1,42 +1,100 @@
 <div class="plans-container">
-      <h2>Pending Requests</h2>
-      <div *ngIf="pendingRequests.length; else noPending">
-        <div *ngFor="let request of pendingRequests" class="card">
-          <app-insurance-plan-card [plan]="request"></app-insurance-plan-card>
-        </div>
-      </div>
-      <ng-template #noPending>
-        <p>No pending requests.</p>
-      </ng-template>
-    
-      <h2>Paid Requests</h2>
-      <div *ngIf="paidRequests.length; else noPaid">
-        <div *ngFor="let request of paidRequests" class="card">
-          <app-insurance-plan-card [plan]="request"></app-insurance-plan-card>
-        </div>
-      </div>
-      <ng-template #noPaid>
-        <p>No paid requests.</p>
-      </ng-template>
-    
-      <h2>Approved but Not Paid Requests</h2>
-      <div *ngIf="approvedButNotPaidRequests.length; else noApprovedButNotPaid">
-        <div *ngFor="let request of approvedButNotPaidRequests" class="card">
-          <app-insurance-plan-card [plan]="request"></app-insurance-plan-card>
-        </div>
-      </div>
-      <ng-template #noApprovedButNotPaid>
-        <p>No approved but not paid requests.</p>
-      </ng-template>
-    
-      <h2>Rejected Requests</h2>
-      <div *ngIf="rejectedRequests.length; else noRejected">
-        <div *ngFor="let request of rejectedRequests" class="card">
-          <app-insurance-plan-card [plan]="request"></app-insurance-plan-card>
-        </div>
-      </div>
-      <ng-template #noRejected>
-        <p>No rejected requests.</p>
-      </ng-template>
+  <h2>Pending Requests</h2>
+  @if(pendingRequests.length != 0){ @for (plan of pendingRequests; track $index)
+  {
+  <div class="card">
+    <!-- show Card Details for the above data not component  -->
+    <div class="card-body">
+      <h5 class="card-title">Insurance Plan</h5>
+      <p class="card-text">
+        Insurance Plan Level: {{ plan.insurancePlanLevel }}
+      </p>
+      <p class="card-text">Yearly Coverage: {{ plan.yearlyCoverage }}</p>
+      <p class="card-text">Quotation: {{ plan.quotation }}</p>
+      <p class="card-text">Status: {{ plan.status }}</p>
+      <p class="card-text">Paid: {{ plan.paid }}</p>
+      <p class="card-text">Company Name: {{ plan.companyName }}</p>
+      <!-- button for payment disabled -->
+      <button class="btn btn-success not-approved" [disabled]="!plan.paid">
+        Pay
+      </button>
     </div>
-    
+  </div>
+  } } @else {
+  <p>No pending requests.</p>
+  }
+
+  <h2>Paid Requests</h2>
+  @if(paidRequests.length != 0){ @for (plan of paidRequests; track $index) {
+  <div class="card">
+    <!-- show Card Details for the above data not component  -->
+    <div class="card-body">
+      <h5 class="card-title">Insurance Plan</h5>
+      <p class="card-text">
+        Insurance Plan Level: {{ plan.insurancePlanLevel }}
+      </p>
+      <p class="card-text">Yearly Coverage: {{ plan.yearlyCoverage }}</p>
+      <p class="card-text">Quotation: {{ plan.quotation }}</p>
+      <p class="card-text">Status: {{ plan.status }}</p>
+      <p class="card-text">Paid: {{ plan.paid }}</p>
+      <p class="card-text">Company Name: {{ plan.companyName }}</p>
+      <!-- button for payment disabled -->
+      <button class="btn btn-danger" [disabled]="!plan.paid" (click)="CancelSubscription(plan)">
+        Cancel Subscription ({{plan.yearlyCoverage/12}})
+      </button>
+    </div>
+  </div>
+  } } @else {
+  <p>No paid requests.</p>
+  }
+
+  <h2>Approved but Not Paid Requests</h2>
+  @if(approvedButNotPaidRequests.length != 0)
+  {
+     @for (plan of approvedButNotPaidRequests; track $index) {
+  <div class="card">
+    <!-- show Card Details for the above data not component  -->
+    <div class="card-body">
+      <h5 class="card-title">Insurance Plan</h5>
+      <p class="card-text">
+        Insurance Plan Level: {{ plan.insurancePlanLevel }}
+      </p>
+      <p class="card-text">Yearly Coverage: {{ plan.yearlyCoverage }}</p>
+      <p class="card-text">Quotation: {{ plan.quotation }}</p>
+      <p class="card-text">Status: {{ plan.status }}</p>
+      <p class="card-text">Paid: {{ plan.paid }}</p>
+      <p class="card-text">Company Name: {{ plan.companyName }}</p>
+      <!-- button for payment disabled, on Click add payment  -->
+       <button (click) = "Payment(plan)" class="btn btn-primary" [disabled]="plan.paid">Pay</button>
+       
+       
+
+    </div>
+  </div>
+  } } @else {
+  <p>No approved but not paid requests.</p>
+  }
+
+  <h2>Rejected Requests</h2>
+  @if(rejectedRequests.length != 0){ @for (plan of rejectedRequests; track
+  $index) {
+  <div class="card">
+    <!-- show Card Details for the above data not component  -->
+    <div class="card-body">
+      <h5 class="card-title">Insurance Plan</h5>
+      <p class="card-text">
+        Insurance Plan Level: {{ plan.insurancePlanLevel }}
+      </p>
+      <p class="card-text">Yearly Coverage: {{ plan.yearlyCoverage }}</p>
+      <p class="card-text">Quotation: {{ plan.quotation }}</p>
+      <p class="card-text">Status: {{ plan.status }}</p>
+      <p class="card-text">Paid: {{ plan.paid }}</p>
+      <p class="card-text">Company Name: {{ plan.companyName }}</p>
+      <!-- button for payment disabled -->
+      <button class="btn btn-primary" [disabled]="plan.paid">Pay</button>
+    </div>
+  </div>
+  } } @else {
+  <p>No rejected requests.</p>
+  }
+</div>

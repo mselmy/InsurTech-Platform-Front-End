@@ -10,4 +10,24 @@
       border-radius: 5px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
+    .not-approved {
+      position: relative;
+      color: #ffffff;
+    }
+    
+    .not-approved:disabled {
+      cursor: not-allowed;
+    }
+    
+    .not-approved:disabled::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #c4c1c1; /* Change to the color you want for the line */
+      transform: rotate(-45deg);
+      transform-origin: center;
+    }
     
