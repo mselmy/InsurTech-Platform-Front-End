@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CategoriesService } from '../../../core/services/categories.service';
 import { HeaderComponent } from '../../../shared/components/header/header.component';
+import { BASE_URL } from '../../../core/base-url';
 
 @Component({
   selector: 'Homecategory',
@@ -29,7 +30,7 @@ export class SubCategoryHomeComponent implements OnInit {
   fetchData() {
     this.loading = true;
     this.error = false;
-    this.categoriesService.getCategories('http://localhost:5028/api/HomeInsurance/GetHomeInsurance').subscribe(
+    this.categoriesService.getCategories(`${BASE_URL}/HomeInsurance/GetHomeInsurance`).subscribe(
       (data) => {
         this.data = data;
         this.loading = false;
