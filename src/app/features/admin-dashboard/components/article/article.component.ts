@@ -18,6 +18,7 @@ import { MessagesModule } from 'primeng/messages';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DialogModule } from 'primeng/dialog';
+import { NotificationsComponent } from '../../../Notifications/notifications/notifications.component';
 
 
 

@@ -19,6 +19,7 @@ import { AppSidebarComponent } from "./app.sidebar.component";
 import { AppLayoutComponent } from "./app.layout.component";
 import { CommonModule } from '@angular/common';
 import { adminDashboardRoutes } from '../admin-dashboard.routes';
+import { NotificationsComponent } from '../../Notifications/notifications/notifications.component';
 
 
 const routes: Routes = adminDashboardRoutes;
@@ -30,6 +31,7 @@ const routes: Routes = adminDashboardRoutes;
         AppMenuComponent,
         AppSidebarComponent,
         AppLayoutComponent,
+        
     ],
     imports: [
         CommonModule,
@@ -43,7 +45,8 @@ const routes: Routes = adminDashboardRoutes;
         RippleModule,
         RouterModule,
         AppConfigModule,
-        RouterModule.forChild(routes)
+        RouterModule.forChild(routes),
+        NotificationsComponent
     ],
     exports: [AppLayoutComponent]
 })

@@ -5,6 +5,7 @@ import { InsuranceChartService } from '../../../../core/services/insurance-chart
 import { InsuranceChartComponent } from './insurance-chart/insurance-chart.component';
 import { UsersChartComponent } from './users-chart/users-chart.component';
 import { InsuranceRevenueChartComponent } from './insurance-revenue-chart/insurance-revenue-chart.component';
+import { NotificationsComponent } from '../../../Notifications/notifications/notifications.component';
 
 @Component({
     selector: 'admin-graphs',

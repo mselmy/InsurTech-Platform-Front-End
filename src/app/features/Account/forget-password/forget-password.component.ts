@@ -16,7 +16,7 @@ import Swal from 'sweetalert2';
 export class ForgetPasswordComponent {
   forgotpass: FormGroup;
 
-  constructor(private forgotpasswordService: ForgotpasswordService,private route: ActivatedRoute,
+  constructor(private forgotpasswordService: ForgotpasswordService,
     private router: Router) {
     this.forgotpass = new FormGroup({
       email: new FormControl('', [
