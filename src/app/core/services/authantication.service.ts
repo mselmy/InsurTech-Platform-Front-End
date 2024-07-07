@@ -42,4 +42,12 @@ export class AuthService {
       this.userDataSubject.next(null);
     }
   }
+  getUserId(): string | null {
+    const userData = localStorage.getItem('userData');
+    if (userData) {
+      const parsedData = JSON.parse(userData);
+      return parsedData.id; // Ensure this matches your actual data structure
+    }
+    return null;
+  }
 }
