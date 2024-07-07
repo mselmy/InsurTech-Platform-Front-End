@@ -1,1 +1,23 @@
-<p>notifications works!</p>
+<div class="notification-box" (click)="toggleNotifications()">
+  <span class="notification-count">{{ unreadCount }}</span>
+  <div class="notification-bell" [ngClass]="{ 'animate-bell': hasUnreadNotifications }">
+    <span class="bell-top"></span>
+    <span class="bell-middle"></span>
+    <span class="bell-bottom"></span>
+    <span class="bell-rad" [ngClass]="{ 'rad-animation': hasUnreadNotifications }"></span>
+  </div>
+</div>
+
+<div class="notification-dropdown" [ngClass]="{ 'show': showNotifications }">
+  <div *ngIf="notifications.length > 0; else noNotifications">
+    <div class="notification-item" *ngFor="let notification of notifications.slice().reverse()">
+      <img src="assets/icons/logo.png" class="logo-icon" [class.unread]="!notification.isRead">
+      <p [class.unread]="!notification.isRead">{{notification.body}}</p>
+    </div>
+  </div>
+  <ng-template #noNotifications>
+    <div class="no-notifications">
+      <p>No notifications available.</p>
+    </div>
+  </ng-template>
+</div>

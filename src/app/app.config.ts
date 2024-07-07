@@ -10,15 +10,19 @@ import { tokenInterceptor } from './core/interceptor/token.interceptor';
 import { provideLottieOptions } from 'ngx-lottie';
 import player from 'lottie-web';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
-
-
+import { provideToastr } from 'ngx-toastr';
 
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes), provideLottieOptions({player: () => player,}),
     importProvidersFrom(HttpClientModule), provideHttpClient(withInterceptors([tokenInterceptor])), provideAnimations(),
-    { provide: 'BASE_URL', useValue: environment.apiUrl }, provideAnimationsAsync(), provideCharts(withDefaultRegisterables())
+    { provide: 'BASE_URL', useValue: environment.apiUrl }, provideAnimationsAsync(), provideCharts(withDefaultRegisterables()),
+    provideToastr({
+      timeOut: 6000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    })
   
   ],
 };

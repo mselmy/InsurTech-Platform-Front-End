@@ -14,6 +14,7 @@ import { faCheck, faEdit, faTimes, faUser, faX } from '@fortawesome/free-solid-s
 import { Subject } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
+import { NotificationsComponent } from '../../../Notifications/notifications/notifications.component';
 
 
 

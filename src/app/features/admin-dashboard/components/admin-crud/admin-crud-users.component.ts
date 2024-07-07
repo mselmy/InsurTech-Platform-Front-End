@@ -9,6 +9,7 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { PaginatorModule } from 'primeng/paginator';
 import { User, Company } from './iuserType'; // Import the user types
+import { NotificationsComponent } from '../../../Notifications/notifications/notifications.component';
 
 @Component({
   selector: 'app-admin-crud-users',

@@ -6,11 +6,12 @@ import {
 } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/authantication.service';
+import { NotificationsComponent } from '../../../features/Notifications/notifications/notifications.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink,NotificationsComponent],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })

@@ -9,25 +9,48 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class NotificationService {
 
- 
-
   private hubConnection: signalR.HubConnection;
   private apiUrl = "http://localhost:5028/api/Notifications";
+  private userType: any | null = null; // Initialize userType to null
 
 
-  constructor(private toastr: ToastrService,public http:HttpClient) {
+  // BehaviorSubject to notify components about new notifications
+  private notificationSubject = new BehaviorSubject<string>('');
+  notificationObservable = this.notificationSubject.asObservable();
+
+
+
+  constructor(private toastr: ToastrService, private http: HttpClient) {
+    const userDataString = localStorage.getItem('userData');
+    if (userDataString) {
+      try {
+        const userData = JSON.parse(userDataString);
+        this.userType = JSON.parse(localStorage.getItem('userData')|| "").userType; // Assign userType if present
+        console.log(this.userType,userData,userDataString,JSON.parse(localStorage.getItem('userData')|| "").userType);
+      } catch (error) {
+        console.error('Error parsing userData from localStorage:', error);
+      }
+    }
+
+    
+
     this.hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl('http://localhost:5028/api/notificationHub') // Replace with your SignalR hub URL
-      .build();
-
-    this.hubConnection.start().catch(err => console.error(err));
+    .withUrl(`http://localhost:5028/api/notificationHub?type=${this.userType}`)
+    .build();
+    
+   
+     
+   
+  
+    this.startConnection();
 
     this.hubConnection.on('ReceiveNotification', (message) => {
+      console.log(message);
       this.toastr.success(message, 'New Notification');
+      this.notificationSubject.next(message); // Notify about the new message
+
     });
   }
-
-
 
   getNotifications(): Observable<Notification[]> {
     return this.http.get<Notification[]>(`${this.apiUrl}/GetNotifications`);
@@ -52,4 +75,34 @@ export class NotificationService {
   markAllAsRead(userId: string): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/MarkAllAsRead?userId=${userId}`, {});
   }
+
+  private async startConnection() {
+    try {
+       
+        await this.hubConnection.start();
+        console.log('SignalR connection started successfully.');
+    } catch (err) {
+        console.error('Error while establishing SignalR connection:', err);
+    }
 }
+  receiveMessage(): Observable<string> {
+    return new Observable<string>((observer) => {
+      const handler = (message: string) => observer.next(message);
+      this.hubConnection.on('ReceiveMessage', handler);
+
+      // Return cleanup function
+      return () => {
+        this.hubConnection.off('ReceiveMessage', handler);
+      };
+    });
+  }
+
+  sendMessage(message: string): void {
+    this.hubConnection.invoke('SendMessage', message);
+  }
+
+  }
+
+
+
+  

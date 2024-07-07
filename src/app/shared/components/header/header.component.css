@@ -1,12 +1,17 @@
 .navbar {  
   border-radius: 50px;
   margin: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .navbar-toggler-icon {
   color: #10B981;
 }
-
+navbar-toggler {
+  margin-left: -100px;
+}
 .navbar-nav {
   flex: 1;
   justify-content: center;

@@ -52,9 +52,7 @@ ul li {
   list-style-type: none;
 }
 
-.navbar-nav.me-auto {
-  margin-right: auto;
-}
+
 
 .navbar-nav.ms-auto {
   margin-left: auto;
@@ -62,4 +60,7 @@ ul li {
 
 .navbar-nav .nav-link i {
   margin-right: 5px;
+}
+.ab{
+  margin-left: -70px;
 }

@@ -37,6 +37,7 @@ import { HomearticlesComponent } from './features/homearticles/homearticles.comp
 import { PaymentPageComponent } from './features/paymen-gateaway/payment-page/payment-page.component';
 import { PaymentSelectionComponent } from './features/paymen-gateaway/payment-selection/payment-selection.component';
 import { ElementTestComponent } from './features/element-test/element-test.component';
+import { NotificationsComponent } from './features/Notifications/notifications/notifications.component';
 
 
 export const routes: Routes = [
@@ -48,6 +49,8 @@ export const routes: Routes = [
       ),
     canActivate: [authAdminGuard],
   },
+  { path: 'noti', component: NotificationsComponent },
+
   { path: 'apply-for-insurance', component: ApplyForInsuranceComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'register-user', component: RegisterUserComponent },
@@ -139,6 +142,7 @@ export const routes: Routes = [
 
   {path: 'payment', component: PaymentPageComponent},
   { path: 'payment-selection', component: PaymentSelectionComponent },
+
   // { path: 'payments', component: PaymentComponent },
 
 
@@ -146,4 +150,6 @@ export const routes: Routes = [
   { path: 'test', component: ElementTestComponent},
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: '**', redirectTo: '/404' },
+
+
 ];
