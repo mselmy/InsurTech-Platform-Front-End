@@ -1,4 +1,3 @@
-
 <app-header></app-header>
 <div class="container mt-5">
   <div class="row justify-content-center">
@@ -36,8 +35,12 @@
                 <div *ngIf="registerForm.get('userName')?.errors?.['usernameTaken']">
                   Username must be unique.
                 </div>
+                <div *ngIf="registerForm.get('userName')?.errors?.['invalidUsername']">
+                  Username must not contain special characters or spaces.
+                </div>
               </div>
             </div>
+
 
             <!-- Email Address Field -->
             <div class="form-group mb-3">
@@ -61,8 +64,8 @@
             <!-- National ID Field -->
             <div class="form-group mb-3">
               <label for="nationalId">National ID:</label>
-              <p-inputMask id="nationalId" formControlName="nationalId" mask="99999999999999" style="display: flex;"
-                required></p-inputMask>
+              <p-inputMask id="nationalId" formControlName="nationalId" mask="99999999999999"
+                [ngStyle]="{ 'display': 'flex' }" required></p-inputMask>
               <div *ngIf="registerForm.get('nationalId')?.invalid && registerForm.get('nationalId')?.touched"
                 class="text-danger error-message">
                 <div *ngIf="registerForm.get('nationalId')?.errors?.['required']">
@@ -80,7 +83,7 @@
             <!-- Password Field -->
             <div class="form-group mb-3">
               <label for="password">Password:</label>
-              <p-password id="password" formControlName="password" [toggleMask]="true" style="display: flex;"
+              <p-password id="password" formControlName="password" [toggleMask]="true" [ngStyle]="{ 'display': 'flex' }"
                 required></p-password>
               <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
                 class="text-danger error-message">
@@ -100,7 +103,7 @@
             <div class="form-group mb-3">
               <label for="birthDate">Birth Date:</label>
               <p-calendar id="birthDate" formControlName="birthDate" [showIcon]="true" dateFormat="yy-mm-dd"
-                style="display: flex;"></p-calendar>
+                [ngStyle]="{ 'display': 'flex' }"></p-calendar>
               <div *ngIf="registerForm.get('birthDate')?.invalid && registerForm.get('birthDate')?.touched"
                 class="text-danger error-message">
                 <div *ngIf="registerForm.get('birthDate')?.errors?.['required']">
@@ -115,8 +118,8 @@
             <!-- Phone Number Field -->
             <div class="form-group mb-3">
               <label for="phoneNumber">Phone Number:</label>
-              <p-inputMask id="phoneNumber" formControlName="phoneNumber" mask="99999999999" style="display: flex;"
-                required autocomplete="tel"></p-inputMask>
+              <p-inputMask id="phoneNumber" formControlName="phoneNumber" mask="99999999999"
+                [ngStyle]="{ 'display': 'flex' }" required autocomplete="tel"></p-inputMask>
               <div *ngIf="registerForm.get('phoneNumber')?.invalid && registerForm.get('phoneNumber')?.touched"
                 class="text-danger error-message">
                 <div *ngIf="registerForm.get('phoneNumber')?.errors?.['required']">

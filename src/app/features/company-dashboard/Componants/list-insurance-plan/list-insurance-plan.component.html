@@ -1,32 +1,31 @@
-
 <br>
 <div class="container">
   <div class="row">
-      <div class="col d-flex align-items-center insurance-item" id="Motor" (click)="click('Motor')">
-          <i class="fas fa-car"></i>
-          <div class="ms-3">
-              <h2>Motor Insurance</h2>
-          </div>
+    <div class="col d-flex align-items-center insurance-item" id="Motor" (click)="click('Motor')">
+      <i class="fas fa-car"></i>
+      <div class="ms-3">
+        <h2>Motor Insurance</h2>
       </div>
+    </div>
 
-      <div class="col d-flex align-items-center insurance-item" id="health" (click)="click('health')">
-          <i class="fas fa-heartbeat"></i>
-          <div class="ms-3">
-              <h2>Health Insurance</h2>
-          </div>
+    <div class="col d-flex align-items-center insurance-item" id="health" (click)="click('health')">
+      <i class="fas fa-heartbeat"></i>
+      <div class="ms-3">
+        <h2>Health Insurance</h2>
       </div>
+    </div>
 
-      <div class="col d-flex align-items-center insurance-item" id="home" (click)="click('home')">
-          <i class="fas fa-home"></i>
-          <div class="ms-3">
-              <h2>Home Insurance</h2>
-          </div>
+    <div class="col d-flex align-items-center insurance-item" id="home" (click)="click('home')">
+      <i class="fas fa-home"></i>
+      <div class="ms-3">
+        <h2>Home Insurance</h2>
       </div>
+    </div>
   </div>
 </div>
 <div class="container" style=" background-color: white;">
   <!-- Motor Insurance Table -->
-  <div class="table-responsive rounded p-3"  style="background-color: white;" *ngIf="flag == 1">
+  <div class="table-responsive rounded p-3" style="background-color: white;" *ngIf="flag == 1">
     <div *ngIf="MotorList?.length; else noMotorInsurance">
       <p-table #dt [value]="MotorList" [rows]="10" [paginator]="true"
         [globalFilterFields]="['YearlyCoverag', 'level', 'category', 'quotation','personalAccident','theft','thirdPartyLiability','ownDamage','legalExpenses','numberOfUsers']"
@@ -35,17 +34,17 @@
         <ng-template pTemplate="caption">
           <div class="flex align-items-center justify-content-center">
             <p-button label="+ New Plan" (click)="showDialog()"
-                      [style]="{'background-color': '#2acaac', 'color': 'white','border':'none'}"></p-button>
-            
+              [style]="{'background-color': '#2acaac', 'color': 'white','border':'none'}"></p-button>
+
             <div class="search-input-container ml-auto">
               <span class="p-input-icon-left">
                 <i class="pi pi-search action"></i>
                 <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
-                       placeholder="Search..." />
+                  placeholder="Search..." />
               </span>
             </div>
           </div>
-          
+
         </ng-template>
         <ng-template pTemplate="header">
           <tr>
@@ -128,7 +127,7 @@
             </td>
             <td>
               <!-- routerLink="editmotorinsurance/{{product.id}}" -->
-              <button class="btn newprimary btn-sm"  (click)="showModal(1, product)">
+              <button class="btn newprimary btn-sm" (click)="showModal(1, product)">
                 <i class="fas fa-edit action"></i>
               </button>
               <button class="btn newdanger btn-sm" (click)="deleteInsurance(product.id)">
@@ -146,7 +145,7 @@
     <p-confirmDialog />
   </div>
 
-  
+
 
   <!-- Health Insurance Table -->
   <div class="table-responsive rounded p-3" style="background-color: white;" *ngIf="flag == 2">
@@ -158,17 +157,17 @@
         <ng-template pTemplate="caption">
           <div class="flex align-items-center justify-content-center">
             <p-button label="+ New Plan" (click)="showDialog()"
-                      [style]="{'background-color': '#2acaac', 'color': 'white','border':'none'}"></p-button>
-            
+              [style]="{'background-color': '#2acaac', 'color': 'white','border':'none'}"></p-button>
+
             <div class="search-input-container ml-auto">
               <span class="p-input-icon-left">
                 <i class="pi pi-search action"></i>
                 <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
-                       placeholder="Search..." />
+                  placeholder="Search..." />
               </span>
             </div>
           </div>
-          
+
         </ng-template>
         <ng-template pTemplate="header">
           <tr>
@@ -271,7 +270,7 @@
   </div>
 
   <!-- Home Insurance Table -->
-  <div class="table-responsive rounded p-3 "  style="background-color: white;" *ngIf="flag == 3">
+  <div class="table-responsive rounded p-3 " style="background-color: white;" *ngIf="flag == 3">
     <div *ngIf="HomeList?.length; else noHomeInsurance">
       <p-table #dt [value]="HomeList" [rows]="10" [paginator]="true"
         [globalFilterFields]="['yearlyCoverag', 'level', 'category', 'quotation','waterDamage','glassBreakage','naturalHazard','attemptedTheft','firesAndExplosion','numberOfUsers']"
@@ -280,13 +279,13 @@
         <ng-template pTemplate="caption">
           <div class="flex">
             <p-button label="+ New Plan" (click)="showDialog()"
-                      [style]="{'background-color': '#2acaac', 'color': 'white','border':'none'}"></p-button>
-            
+              [style]="{'background-color': '#2acaac', 'color': 'white','border':'none'}"></p-button>
+
             <div class="search-input-container ml-auto">
               <span class="p-input-icon-left">
                 <i class="pi pi-search action"></i>
                 <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
-                       placeholder="Search..." />
+                  placeholder="Search..." />
               </span>
             </div>
           </div>
@@ -371,7 +370,7 @@
             </td>
             <td>
               <!-- routerLink="edithomeinsurance/{{product.id}}" -->
-              <button class="btn newprimary btn-sm"   (click)="showModal(3, product)">
+              <button class="btn newprimary btn-sm" (click)="showModal(3, product)">
                 <i class="fas fa-edit action"></i>
               </button>
               <button class="btn newdanger btn-sm" (click)="deleteInsurance(product.id)">
@@ -397,7 +396,7 @@
     [resizable]="false">
     <app-motorinsurance *ngIf="flag==1" style="margin: 0px; padding: 0px"></app-motorinsurance>
     <app-healthinsurance *ngIf="flag==2" style="margin: 0px; padding: 0px"></app-healthinsurance>
-    <app-homeinsurance  *ngIf="flag==3" style="margin: 0px; padding: 0px"></app-homeinsurance>
+    <app-homeinsurance *ngIf="flag==3" style="margin: 0px; padding: 0px"></app-homeinsurance>
   </p-dialog>
 </div>
 
@@ -408,9 +407,8 @@
     [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '80%', padding: '-10px' }"
     [draggable]="false" [resizable]="false">
     <app-editmotorinsurance *ngIf="showEditModal==1" [motorInsuranceData]="dataToSend"></app-editmotorinsurance>
-    <app-edit-health-insurance-plan *ngIf="showEditModal==2" [healthInsuranceData]="dataToSend"></app-edit-health-insurance-plan>
+    <app-edit-health-insurance-plan *ngIf="showEditModal==2"
+      [healthInsuranceData]="dataToSend"></app-edit-health-insurance-plan>
     <app-edithomeinsurance *ngIf="showEditModal==3" [homeInsuranceData]="dataToSend"></app-edithomeinsurance>
   </p-dialog>
 </div>
-
-

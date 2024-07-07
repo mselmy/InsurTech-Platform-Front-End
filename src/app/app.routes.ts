@@ -43,6 +43,7 @@ import { BillingComponent } from './features/userProfile/billing/billing.compone
 import { PlansComponent } from './features/userProfile/plans/plans.component';
 
 import { UserFeedBackComponent } from './features/user-feed-back/user-feed-back.component';
+import { ComparingInsuranceComponent } from './features/comparing-insurance/comparing-insurance.component';
 export const routes: Routes = [
   {
     path: 'admin',
@@ -173,5 +174,6 @@ export const routes: Routes = [
     component: UserFeedBackComponent,
     canActivate: [authUserGuard],
   },
+  { path: 'compare', component: ComparingInsuranceComponent },
   { path: '**', redirectTo: '/404' },
 ];

@@ -42,7 +42,7 @@ import { HeaderComponent } from '../../shared/components/header/header.component
     ToastModule,
     InputMaskModule,
     CalendarModule,
-    HeaderComponent
+    HeaderComponent,
   ],
   providers: [RegistrationUserService, MessageService, CookieService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -59,7 +59,11 @@ export class RegisterUserComponent {
   ) {
     this.registerForm = this.fb.group({
       name: ['', Validators.required],
-      userName: ['', [Validators.required], [this.usernameAsyncValidator()]],
+      userName: [
+        '',
+        [Validators.required, this.usernameValidator()],
+        [this.usernameAsyncValidator()],
+      ],
       emailAddress: [
         '',
         [Validators.required, Validators.email],
@@ -80,6 +84,14 @@ export class RegisterUserComponent {
         [Validators.required, Validators.pattern(/^(011|012|010|015)\d{8}$/)],
       ],
     });
+  }
+
+  usernameValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const username = control.value;
+      const isValid = /^[a-zA-Z0-9]*$/.test(username); // Only alphanumeric characters
+      return isValid ? null : { invalidUsername: true };
+    };
   }
 
   passwordValidator(control: AbstractControl): ValidationErrors | null {
@@ -115,8 +127,24 @@ export class RegisterUserComponent {
         debounceTime(300),
         switchMap((email) =>
           this.registrationService.checkEmailAvailability(email).pipe(
-            map(() => null),
-            catchError(() => of({ emailTaken: true }))
+            map((response) => {
+              console.log(`Email validation response: ${response}`);
+              if (response && response.email === email) {
+                return { emailTaken: true };
+              }
+              return null;
+            }),
+            catchError((error) => {
+              console.error(
+                `Email validation error: ${this.registrationService.getErrorMessage(
+                  error
+                )}`
+              );
+              if (error.status === 404) {
+                return of(null); // Email not found, hence available
+              }
+              return of({ emailTaken: true });
+            })
           )
         )
       );
@@ -129,8 +157,24 @@ export class RegisterUserComponent {
         debounceTime(300),
         switchMap((username) =>
           this.registrationService.checkUsernameAvailability(username).pipe(
-            map(() => null),
-            catchError(() => of({ usernameTaken: true }))
+            map((response) => {
+              console.log(`Username validation response: ${response}`);
+              if (response && response.userName === username) {
+                return { usernameTaken: true };
+              }
+              return null;
+            }),
+            catchError((error) => {
+              console.error(
+                `Username validation error: ${this.registrationService.getErrorMessage(
+                  error
+                )}`
+              );
+              if (error.status === 404) {
+                return of(null); // Username not found, hence available
+              }
+              return of({ usernameTaken: true });
+            })
           )
         )
       );
@@ -143,8 +187,24 @@ export class RegisterUserComponent {
         debounceTime(300),
         switchMap((nationalId) =>
           this.registrationService.checkNationalIdAvailability(nationalId).pipe(
-            map(() => null),
-            catchError(() => of({ nationalIdTaken: true }))
+            map((response) => {
+              console.log(`National ID validation response: ${response}`);
+              if (response && response.nationalId === nationalId) {
+                return { nationalIdTaken: true };
+              }
+              return null;
+            }),
+            catchError((error) => {
+              console.error(
+                `National ID validation error: ${this.registrationService.getErrorMessage(
+                  error
+                )}`
+              );
+              if (error.status === 404) {
+                return of(null); // National ID not found, hence available
+              }
+              return of({ nationalIdTaken: true });
+            })
           )
         )
       );
