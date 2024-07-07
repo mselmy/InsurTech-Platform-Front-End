@@ -33,7 +33,7 @@ export class InsurancePlansComponent {
   colors: string[] = [
     'badge-primary',
     'badge-secondary',
-    'badge-success',
+    'badge-dark',
     'badge-danger',
     'badge-warning',
   ];
@@ -53,8 +53,9 @@ export class InsurancePlansComponent {
     this.insurancePlanService
       .GetInsurancePlanByCategory(this.catId)
       .subscribe((data) => {
-        console.log('data FOR retrieving insuarnce plans', data);
-        this.data = data;
+       // console.log('data FOR retrieving insuarnce plans', data);
+        this.data=this.rearrangeInsurancePlans(data);
+        //this.data = data;
       });
   }
   getBadgeColor(company: string): string {
@@ -63,5 +64,27 @@ export class InsurancePlansComponent {
       this.colorIndex++;
     }
     return this.colorMap[company];
+  }
+  //function to rearrange the insurance plans based on the level of coverage
+  rearrangeInsurancePlans(data: any): [] {
+    let plans: any = [];
+    let level1: any = [];
+    let level2: any = [];
+    let level3: any = [];
+    console.log('data from rearrange', data);
+    data.forEach((plan: any) => {
+      if (plan.level == 0) {
+        level1.push(plan);
+      } else if (plan.level == 1) {
+        level2.push(plan);
+      } else if (plan.level == 2) {
+        level3.push(plan);
+      }
+    });
+
+    plans = level1.concat(level2).concat(level3);
+    console.log('plans from rearrange', plans);
+    return plans;
+   
   }
 }
