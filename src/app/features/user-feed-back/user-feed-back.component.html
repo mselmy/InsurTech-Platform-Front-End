@@ -1,0 +1,54 @@
+<!-- Service section -->
+<section id="services">
+  <div class="about">
+    <h2>Feed Back</h2>
+  </div>
+
+  <div class="services">
+    <div class="service-card" *ngFor="let plan of insurancePlans; let i = index">
+      <div class="number">
+        <i *ngIf="plan.catId === 1" class="fas fa-heartbeat"></i>
+        <i *ngIf="plan.catId === 2" class="fas fa-home"></i>
+        <i *ngIf="plan.catId === 3" class="fas fa-car"></i>
+      </div>
+      <div class="service-text">
+        <h3>Category: {{ getCategoryName(plan.catId) }}</h3>
+        <h4>
+          Company: {{ plan.companyName }}
+        </h4>
+
+        <h4 [ngClass]="{
+              'premium-plan': plan.insurancePlanLevel === 'Premium',
+              'standard-plan': plan.insurancePlanLevel === 'Standard',
+              'basic-plan': plan.insurancePlanLevel === 'Basic'
+            }">
+          {{ plan.insurancePlanLevel }}
+        </h4>
+        <br>
+        <p [ngClass]="{
+          'Approved': plan.status === 'Approved',
+          'Pending': plan.status === 'Pending',
+          'Rejected': plan.status === 'Rejected'
+        }">Status: {{ plan.status }}</p>
+        <!-- Feedback Form -->
+        <form [formGroup]="feedbackForms[i]" (ngSubmit)="submitFeedback(plan.planId, i)" class="feedback-form">
+          <div class="form-group">
+            <ngb-rating [(rate)]="ratings[i]" [max]="5" [readonly]="false" formControlName="rating"
+              id="rate"></ngb-rating>
+          </div>
+          <div class="form-group">
+            <p-floatLabel>
+              <textarea id="float-input" pInputTextarea rows="5" cols="30" formControlName="comment"></textarea>
+              <label for="float-input">Comment</label>
+            </p-floatLabel>
+          </div>
+          <p-button icon="pi pi-check" [rounded]="true" severity="success" type="submit"></p-button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #noPlans>
+  <p>No insurance plans found.</p>
+</ng-template>

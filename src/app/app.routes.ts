@@ -42,6 +42,7 @@ import { ProfileComponent } from './features/userProfile/profile/profile.compone
 import { BillingComponent } from './features/userProfile/billing/billing.component';
 import { PlansComponent } from './features/userProfile/plans/plans.component';
 
+import { UserFeedBackComponent } from './features/user-feed-back/user-feed-back.component';
 export const routes: Routes = [
   {
     path: 'admin',
@@ -131,8 +132,7 @@ export const routes: Routes = [
     component: InsurancecollectionComponent,
     children: [
       {
-        path: 'homeinsurance',
-        component: HomeinsuranceComponent,
+        path: 'homeinsurance', component: HomeinsuranceComponent
       },
       {
         path: 'healthinsurance',
@@ -144,6 +144,7 @@ export const routes: Routes = [
       },
     ],
   },
+  { path: 'payment', component: PaymentPageComponent },
 
   {
     path: 'successpurchasing/:id/:catId',
@@ -167,5 +168,10 @@ export const routes: Routes = [
   { path: '404', component: PageNotFoundComponent },
   { path: 'test', component: ElementTestComponent },
   { path: '', component: HomeComponent, pathMatch: 'full' },
+  {
+    path: 'feedback',
+    component: UserFeedBackComponent,
+    canActivate: [authUserGuard],
+  },
   { path: '**', redirectTo: '/404' },
 ];

@@ -9,11 +9,15 @@ import { SidenavComponent } from '../sidenav/sidenav.component';
 @Component({
   selector: 'app-insurancecollection',
   standalone: true,
-  imports: [HomeinsuranceComponent,HealthinsuranceComponent,MotorinsuranceComponent,RouterOutlet,SidenavComponent,RouterModule],
+  imports: [
+    HomeinsuranceComponent,
+    HealthinsuranceComponent,
+    MotorinsuranceComponent,
+    RouterOutlet,
+    SidenavComponent,
+    RouterModule,
+  ],
   templateUrl: './insurancecollection.component.html',
-  styleUrl: './insurancecollection.component.css'
+  styleUrl: './insurancecollection.component.css',
 })
-export class InsurancecollectionComponent {
-
-}
-
+export class InsurancecollectionComponent {}
