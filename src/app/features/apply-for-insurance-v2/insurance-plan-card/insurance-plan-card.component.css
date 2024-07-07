@@ -1,31 +1,31 @@
 /* Custom badge colors */
 .badge-primary {
-    background-color: #007bff !important;
+    background-color: #51b1c0 !important;
     color: #fff;
   }
   
   .badge-secondary {
-    background-color: #6c757d !important;
+    background-color: #96a8b7 !important;
     color: #fff;
   }
   
   .badge-success {
-    background-color: #28a745 !important;
+    background-color: #8deba3 !important;
     color: #fff;
   }
   
   .badge-danger {
-    background-color: #dc3545 !important;
+    background-color: #e6858f !important;
     color: #fff;
   }
   
   .badge-warning {
-    background-color: #ffc107 !important;
+    background-color: #f0db9c !important;
     color: #212529;
   }
   
   .badge-info {
-    background-color: #17a2b8 !important;
+    background-color: #1b7a89 !important;
     color: #fff;
   }
   
