@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CompanyRequests } from '../Models/company-requests';
+import { BASE_URL } from '../../../core/base-url';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CompanyRequestsService {
-  private BaseUrl = 'http://localhost:5028/api/companies/';
-  // http://localhost:5028/api/companies/ChangeStatus/2
-// 
+  private BaseUrl = `${BASE_URL}/companies/`;
+
   constructor(private http: HttpClient) {}
 
   GetAllRequestsByCompanyId(companyId: string): Observable<CompanyRequests[]> {

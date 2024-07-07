@@ -19,6 +19,7 @@ export class InsurancePlanCardComponent {
     private questionService: QuestionsFormService,
     private router: Router,
     private insurancePlanService:InsurancePlanService
+
   ) {
   }
  ngOnChanges(): void {
