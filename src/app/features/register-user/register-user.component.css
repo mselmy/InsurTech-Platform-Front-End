@@ -39,7 +39,11 @@ body {
   overflow: hidden;
   position: relative;
 }
-
+.p-inputMask,
+p-password,
+p-calendar {
+  display: flex;
+}
 body::before {
   content: "";
   position: absolute;

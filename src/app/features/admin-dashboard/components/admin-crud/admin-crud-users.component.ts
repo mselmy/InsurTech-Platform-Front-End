@@ -3,12 +3,20 @@ import { UserService } from '../../layout/service/crud-user.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
-import Swal from 'sweetalert2';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { PaginatorModule } from 'primeng/paginator';
 import { User, Company } from './iuserType'; // Import the user types
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { MessagesModule } from 'primeng/messages';
+import { ToastModule } from 'primeng/toast'; // Import ToastModule
+import { DialogModule } from 'primeng/dialog';
+import { RippleModule } from 'primeng/ripple';
+import { ToolbarModule } from 'primeng/toolbar';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { DropdownModule } from 'primeng/dropdown';
 
 @Component({
   selector: 'app-admin-crud-users',
@@ -21,7 +29,16 @@ import { User, Company } from './iuserType'; // Import the user types
     ButtonModule,
     InputTextModule,
     PaginatorModule,
+    MessagesModule,
+    ToastModule,
+    DialogModule,
+    RippleModule,
+    ToolbarModule,
+    ConfirmDialogModule,
+    InputTextareaModule,
+    DropdownModule,
   ],
+  providers: [ConfirmationService, MessageService],
   templateUrl: './admin-crud-users.component.html',
   styleUrls: ['./admin-crud-users.component.css'],
 })
@@ -32,7 +49,16 @@ export class AdminCrudUsersComponent implements OnInit {
   currentPage: number = 1;
   activeTab: string = 'customers'; // Default active tab
 
-  constructor(private userService: UserService) {}
+  displayEditDialog: boolean = false;
+  displayViewDialog: boolean = false;
+  selectedUser: User | null = null;
+  editUserModel: User | Company | null = null;
+
+  constructor(
+    private userService: UserService,
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService
+  ) {}
 
   ngOnInit() {
     const observer = {
@@ -42,7 +68,11 @@ export class AdminCrudUsersComponent implements OnInit {
       },
       error: (error: any) => {
         console.error('Error fetching users:', error);
-        Swal.fire('Error', 'Failed to fetch users.', 'error');
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Failed to fetch users.',
+        });
       },
     };
 
@@ -76,141 +106,125 @@ export class AdminCrudUsersComponent implements OnInit {
   }
 
   editUser(user: User) {
-    const htmlContent = `
-      <input id="swal-input1" class="swal2-input" placeholder="Name" value="${
-        user.name
-      }">
-      <input id="swal-input2" class="swal2-input" placeholder="Username" value="${
-        user.userName
-      }">
-      <input id="swal-input3" class="swal2-input" placeholder="Email" value="${
-        user.email
-      }">
-      ${
-        user.userType === 1
-          ? `<input id="swal-input4" class="swal2-input" placeholder="Tax Number" value="${
-              (user as Company).taxNumber
-            }">
-                              <input id="swal-input5" class="swal2-input" placeholder="Location" value="${
-                                (user as Company).location
-                              }">`
-          : ''
-      }
-      <input id="swal-input6" class="swal2-input" placeholder="Phone Number" value="${
-        user.phoneNumber
-      }">`;
+    this.editUserModel = { ...user };
+    this.displayEditDialog = true;
+  }
 
-    Swal.fire({
-      title: 'Edit User',
-      html: htmlContent,
-      focusConfirm: false,
-      preConfirm: () => {
-        const updatedUser: Partial<User> = {
-          id: user.id,
-          name: (document.getElementById('swal-input1') as HTMLInputElement)
-            .value,
-          userName: (document.getElementById('swal-input2') as HTMLInputElement)
-            .value,
-          email: (document.getElementById('swal-input3') as HTMLInputElement)
-            .value,
-          phoneNumber: (
-            document.getElementById('swal-input6') as HTMLInputElement
-          ).value,
-          userType: user.userType,
-        };
-        if (user.userType === 1) {
-          (updatedUser as Company).taxNumber = (
-            document.getElementById('swal-input4') as HTMLInputElement
-          ).value;
-          (updatedUser as Company).location = (
-            document.getElementById('swal-input5') as HTMLInputElement
-          ).value;
-        }
-        return updatedUser;
-      },
-    }).then((result) => {
-      if (result.isConfirmed) {
-        const observer = {
-          next: () => {
-            const index = this.users.findIndex((u) => u.id === user.id);
-            if (index !== -1) {
-              this.users[index] = result.value as User;
-              this.filterUsers();
-              Swal.fire('Updated!', 'Your user has been updated.', 'success');
-            }
-          },
-          error: (error: any) => {
-            console.error('Error updating user:', error);
-            Swal.fire(
-              'Error!',
-              'There was an error updating the user.',
-              'error'
-            );
-          },
-        };
-        this.userService
-          .editUser(result.value as User, user.userType)
-          .subscribe(observer);
-      }
-    });
+  viewUser(user: User) {
+    this.selectedUser = user;
+    this.displayViewDialog = true;
+  }
+
+  get editUserTaxNumber(): string {
+    return (this.editUserModel as Company)?.taxNumber || '';
+  }
+
+  set editUserTaxNumber(value: string) {
+    if (this.editUserModel && this.editUserModel.userType === 1) {
+      (this.editUserModel as Company).taxNumber = value;
+    }
+  }
+
+  get editUserLocation(): string {
+    return (this.editUserModel as Company)?.location || '';
+  }
+
+  set editUserLocation(value: string) {
+    if (this.editUserModel && this.editUserModel.userType === 1) {
+      (this.editUserModel as Company).location = value;
+    }
+  }
+
+  saveUser() {
+    if (this.editUserModel) {
+      this.confirmationService.confirm({
+        message: `Are you sure you want to edit user with ID: ${this.editUserModel.id}?`,
+        header: 'Edit Confirmation',
+        icon: 'pi pi-info-circle',
+        acceptButtonStyleClass: 'p-button-warning p-button-text',
+        rejectButtonStyleClass: 'p-button-text p-button-text',
+        acceptIcon: 'none',
+        rejectIcon: 'none',
+        accept: () => {
+          const observer = {
+            next: () => {
+              const index = this.users.findIndex(
+                (u) => u.id === this.editUserModel!.id
+              );
+              if (index !== -1) {
+                this.users[index] = this.editUserModel!;
+                this.filterUsers();
+                this.messageService.add({
+                  severity: 'success',
+                  summary: 'Successful',
+                  detail: 'User updated successfully',
+                });
+              }
+              this.displayEditDialog = false;
+            },
+            error: (error: any) => {
+              console.error('Error updating user:', error);
+              this.messageService.add({
+                severity: 'error',
+                summary: 'Error',
+                detail: 'There was an error updating the user.',
+              });
+            },
+          };
+          this.userService
+            .editUser(this.editUserModel as User, this.editUserModel!.userType)
+            .subscribe(observer);
+        },
+        reject: () => {
+          this.messageService.add({
+            severity: 'info',
+            summary: 'Cancelled',
+            detail: 'User edit cancelled',
+          });
+        },
+      });
+    }
   }
 
   deleteUser(user: User) {
-    console.log('Deleting user with ID:', user.id);
-    console.log('User type:', user.userType);
-
-    Swal.fire({
-      title: 'Are you sure?',
-      text: `You won't be able to revert this!`,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, cancel!',
-    }).then((result) => {
-      if (result.isConfirmed) {
+    this.confirmationService.confirm({
+      message: `Are you sure you want to delete user with ID: ${user.id}?`,
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      acceptButtonStyleClass: 'p-button-danger p-button-text',
+      rejectButtonStyleClass: 'p-button-text p-button-text',
+      acceptIcon: 'none',
+      rejectIcon: 'none',
+      accept: () => {
         const observer = {
           next: () => {
             this.users = this.users.filter((u) => u.id !== user.id);
             this.filterUsers();
-            Swal.fire('Deleted!', 'Your user has been deleted.', 'success');
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Successful',
+              detail: 'User Deleted',
+            });
           },
           error: (error: any) => {
             console.error('Error deleting user:', error);
-            Swal.fire(
-              'Error!',
-              'There was an error deleting the user.',
-              'error'
-            );
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: 'There was an error deleting the user.',
+            });
           },
         };
 
         this.userService.deleteUser(user.id, user.userType).subscribe(observer);
-      } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire('Cancelled', 'Your user is safe :)', 'error');
-      }
-    });
-  }
-
-  viewUser(user: User) {
-    let details = `<strong>Name:</strong> ${user.name}<br>
-                   <strong>Username:</strong> ${user.userName}<br>
-                   <strong>Email:</strong> ${user.email}<br>
-                   <strong>Phone Number:</strong> ${user.phoneNumber}<br>
-                   <strong>User Type:</strong> ${this.getUserType(
-                     user.userType
-                   )}`;
-
-    if (user.userType === 1) {
-      const company = user as Company;
-      details += `<br><strong>Tax Number:</strong> ${company.taxNumber}<br>
-                  <strong>Location:</strong> ${company.location}`;
-    }
-
-    Swal.fire({
-      title: 'User Details',
-      html: details,
-      icon: 'info',
-      confirmButtonText: 'Close',
+      },
+      reject: () => {
+        this.messageService.add({
+          severity: 'info',
+          summary: 'Cancelled',
+          detail: 'Your user is safe',
+        });
+      },
     });
   }
 }

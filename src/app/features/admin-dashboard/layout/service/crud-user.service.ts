@@ -30,4 +30,7 @@ export class UserService {
         : `${this.apiBaseUrl}/Customers/UpdateCustomer/${user.id}`;
     return this.http.put<any>(url, user);
   }
+  updateUser(user: any): Observable<any> {
+    return this.http.put<any>(`${this.apiBaseUrl}/Customers/UpdateUser`, user);
+  }
 }
