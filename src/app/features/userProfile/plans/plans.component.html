@@ -1,1 +1,42 @@
-<p>plans works!</p>
+<div class="plans-container">
+      <h2>Pending Requests</h2>
+      <div *ngIf="pendingRequests.length; else noPending">
+        <div *ngFor="let request of pendingRequests" class="card">
+          <app-insurance-plan-card [plan]="request"></app-insurance-plan-card>
+        </div>
+      </div>
+      <ng-template #noPending>
+        <p>No pending requests.</p>
+      </ng-template>
+    
+      <h2>Paid Requests</h2>
+      <div *ngIf="paidRequests.length; else noPaid">
+        <div *ngFor="let request of paidRequests" class="card">
+          <app-insurance-plan-card [plan]="request"></app-insurance-plan-card>
+        </div>
+      </div>
+      <ng-template #noPaid>
+        <p>No paid requests.</p>
+      </ng-template>
+    
+      <h2>Approved but Not Paid Requests</h2>
+      <div *ngIf="approvedButNotPaidRequests.length; else noApprovedButNotPaid">
+        <div *ngFor="let request of approvedButNotPaidRequests" class="card">
+          <app-insurance-plan-card [plan]="request"></app-insurance-plan-card>
+        </div>
+      </div>
+      <ng-template #noApprovedButNotPaid>
+        <p>No approved but not paid requests.</p>
+      </ng-template>
+    
+      <h2>Rejected Requests</h2>
+      <div *ngIf="rejectedRequests.length; else noRejected">
+        <div *ngFor="let request of rejectedRequests" class="card">
+          <app-insurance-plan-card [plan]="request"></app-insurance-plan-card>
+        </div>
+      </div>
+      <ng-template #noRejected>
+        <p>No rejected requests.</p>
+      </ng-template>
+    </div>
+    
