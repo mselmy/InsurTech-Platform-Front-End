@@ -28,7 +28,8 @@ export class HomeinsuranceService {
   edit(homeinsurance: EditHomeInsurance): Observable<any> {
     return this.httpClient.put<any>(`${this.baseurl}${homeinsurance.id}`, homeinsurance)
       .pipe(
-        catchError(this.handleError)
+        catchError(this.handleError),
+        tap(()=>this.homeinsurancechanges.next())
       );
   }
 

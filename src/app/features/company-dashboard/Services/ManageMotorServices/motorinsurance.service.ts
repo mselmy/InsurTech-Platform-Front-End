@@ -23,7 +23,8 @@ export class MotorinsuranceService {
    }
    
    edit(motorinsurance: EditMotorInsurance): Observable<any> {
-    return this.httpClient.put<any>(`${this.baseurl}EditMotorPlan/${motorinsurance.id}`, motorinsurance);
+    return this.httpClient.put<any>(`${this.baseurl}EditMotorPlan/${motorinsurance.id}`, motorinsurance).pipe(
+      tap(()=>{this.motorinsurancechanges.next()}));
   }
   
 

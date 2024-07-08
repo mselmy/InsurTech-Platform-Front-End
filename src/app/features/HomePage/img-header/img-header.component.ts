@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import {  GalleriaModule } from 'primeng/galleria';
+import $ from 'jquery';
 
 @Component({
   selector: 'app-img-header',
@@ -29,6 +30,8 @@ export class ImgHeaderComponent  {
   ];
 
 
-
+  getscrolly(id:string){
+   $('html,body').scrollTop($(`#${id}`).offset()?.top as number)
+  }
  
 }

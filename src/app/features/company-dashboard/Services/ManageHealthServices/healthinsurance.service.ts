@@ -24,7 +24,8 @@ export class HealthinsuranceService {
   }
 
   edit(healthinsurance: EditHealthInsurance): Observable<any> {
-    return this.http.put<any>(`${this.baseurl}${healthinsurance.id}`, healthinsurance);
+    return this.http.put<any>(`${this.baseurl}${healthinsurance.id}`, healthinsurance).pipe(
+      tap(() => this.healthInsuranceChanges.next()));
   }
 
   getById(id: string): Observable<any> {

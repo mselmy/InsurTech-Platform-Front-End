@@ -37,6 +37,9 @@ import { HomearticlesComponent } from './features/homearticles/homearticles.comp
 import { PaymentPageComponent } from './features/paymen-gateaway/payment-page/payment-page.component';
 import { PaymentSelectionComponent } from './features/paymen-gateaway/payment-selection/payment-selection.component';
 import { ElementTestComponent } from './features/element-test/element-test.component';
+import { HomeDetailsComponent } from './features/home-details/home-details.component';
+import { HealthDetailsComponent } from './features/health-details/health-details.component';
+import { MotorDetailsComponent } from './features/motor-details/motor-details.component';
 
 
 export const routes: Routes = [
@@ -82,7 +85,18 @@ export const routes: Routes = [
     component: companydashbordcomponant,
     canActivate: [authCompanyGuard],
   },
-
+  {
+    path:'homedetails',
+    component:HomeDetailsComponent
+  },
+  {
+    path:'healthdetails',
+    component:HealthDetailsComponent
+  },
+  {
+    path:'motordetails',
+    component:MotorDetailsComponent
+  },
   {
     path: 'edithealthinsurance/:id',
     component: EditHealthInsurancePlanComponent,
@@ -146,4 +160,5 @@ export const routes: Routes = [
   { path: 'test', component: ElementTestComponent},
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: '**', redirectTo: '/404' },
+
 ];
