@@ -37,10 +37,15 @@ import { HomearticlesComponent } from './features/homearticles/homearticles.comp
 import { PaymentPageComponent } from './features/paymen-gateaway/payment-page/payment-page.component';
 import { PaymentSelectionComponent } from './features/paymen-gateaway/payment-selection/payment-selection.component';
 import { ElementTestComponent } from './features/element-test/element-test.component';
+
+import { HomeDetailsComponent } from './features/home-details/home-details.component';
+import { HealthDetailsComponent } from './features/health-details/health-details.component';
+import { MotorDetailsComponent } from './features/motor-details/motor-details.component';
 import { UserDashboardComponent } from './features/userProfile/user-dashboard/user-dashboard.component';
 import { ProfileComponent } from './features/userProfile/profile/profile.component';
 import { BillingComponent } from './features/userProfile/billing/billing.component';
 import { PlansComponent } from './features/userProfile/plans/plans.component';
+
 
 import { UserFeedBackComponent } from './features/user-feed-back/user-feed-back.component';
 import { ComparingInsuranceComponent } from './features/comparing-insurance/comparing-insurance.component';
@@ -88,7 +93,18 @@ export const routes: Routes = [
     component: companydashbordcomponant,
     canActivate: [authCompanyGuard],
   },
-
+  {
+    path:'homedetails',
+    component:HomeDetailsComponent
+  },
+  {
+    path:'healthdetails',
+    component:HealthDetailsComponent
+  },
+  {
+    path:'motordetails',
+    component:MotorDetailsComponent
+  },
   {
     path: 'edithealthinsurance/:id',
     component: EditHealthInsurancePlanComponent,
@@ -179,4 +195,5 @@ export const routes: Routes = [
   },
   { path: 'compare', component: ComparingInsuranceComponent },
   { path: '**', redirectTo: '/404' },
+
 ];

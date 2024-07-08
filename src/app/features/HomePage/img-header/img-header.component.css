@@ -76,7 +76,18 @@ button i{
     animation: animate 5s ease-in-out infinite;
     transition: all 1s ease-in-out;
 }
-
+.blobback
+{
+    width: 200px;
+    height: 150px;
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    border: 2px solid #10B981;
+    z-index: -1;
+    position: absolute;
+    top: 8rem;
+    left:-6rem;
+    background-color:#10B981 ;
+}
 @keyframes animate {
     0%, 100%{
         border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
@@ -110,3 +121,34 @@ button i{
         width: 100%;
     }
 }
+
+.heading {
+    font-size: 4rem;
+    color: var(--navyBlue);
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bolder;
+    margin: auto;
+    width: fit-content;
+    margin-bottom: 6rem;
+    font-family: "Nunito", sans-serif;
+  }
+  
+  .heading span {
+    text-transform: uppercase;
+    font-family: "Nunito", sans-serif;
+  }
+  .heading::before{
+    content: '';
+    display: block;
+    width: 100%;
+    height: 25px;
+    background-color: var(--bluemain);
+    position: relative;
+    top: 50px;
+    z-index: -1;
+    animation:widthanimation 5050ms infinite linear ;
+    animation-delay: 2s;
+    border-radius: 10px;
+    -webkit-animation:widthanimation 9050ms infinite linear ;
+  }

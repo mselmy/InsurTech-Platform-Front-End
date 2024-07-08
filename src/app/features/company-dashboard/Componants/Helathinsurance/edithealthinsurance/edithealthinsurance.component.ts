@@ -5,12 +5,14 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { EditHealthInsurance, InsurancePlanLevel } from '../../../Model/Helathinsurance/edit-health-insurance';
-import Swal from 'sweetalert2';
+import { ConfirmationService, MessageService } from 'primeng/api'
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-edit-health-insurance-plan',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule,ToastModule],
+  providers: [MessageService, ConfirmationService],
   templateUrl: './edithealthinsurance.component.html',
   styleUrls: ['./edithealthinsurance.component.css']
 })
@@ -27,37 +29,10 @@ export class EditHealthInsurancePlanComponent implements OnChanges, OnDestroy {
     private fb: FormBuilder,
     public healthService: HealthinsuranceService,
     public activateRoute: ActivatedRoute,
+    private messageService: MessageService,
   public router:Router) {}
 
-  // ngOnInit(): void {
-    
-  //   this.sub = this.activateRoute.params.subscribe(param => {
-  //     this.healthService.getById(param['id']).subscribe(
-  //       {
-  //         next: (data) => {
-  //           debugger;
 
-  //           this.EditObj = data;
-  //           console.log('Health insurance fetched successfully', data);
-  //           this.updateFormWithData(data); // Update form with fetched data
-  //         },
-  //         error: (error) => {
-  //           console.error('Error fetching health insurance', error);
-  //         }
-  //       }
-  //     );
-  //   });
-  //   this.Edithealthform = new FormGroup({
-  //     yearlyCoverage: new FormControl(this.EditObj.yearlyCoverage, [Validators.required, Validators.min(0), Validators.max(1.7976931348623157e+308)]),
-  //     level: new FormControl(this.EditObj.level, [Validators.required]),
-  //     quotation: new FormControl(this.EditObj.quotation, [Validators.required, Validators.min(0), Validators.max(1.7976931348623157e+308)]),
-  //     medicalNetwork: new FormControl(this.EditObj.medicalNetwork, [Validators.required]),
-  //     clinicsCoverage: new FormControl(this.EditObj.clinicsCoverage, [Validators.required, Validators.min(0), Validators.max(1.7976931348623157e+308)]),
-  //     hospitalizationAndSurgery: new FormControl(this.EditObj.hospitalizationAndSurgery, [Validators.required, Validators.min(0), Validators.max(1.7976931348623157e+308)]),
-  //     opticalCoverage: new FormControl(this.EditObj.opticalCoverage, [Validators.required, Validators.min(0), Validators.max(1.7976931348623157e+308)]),
-  //     dentalCoverage: new FormControl(this.EditObj.dentalCoverage, [Validators.required, Validators.min(0), Validators.max(1.7976931348623157e+308)])
-  //   });
-  // }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['healthInsuranceData'] && this.healthInsuranceData) {
       this.initializeForm();
@@ -107,32 +82,10 @@ export class EditHealthInsurancePlanComponent implements OnChanges, OnDestroy {
       this.healthService.edit(healthObj).subscribe(
         {
           next:(data) => {
-            console.log('Health insurance updated successfully', data);
-            this.Edithealthform.reset();
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "Health insurance updated successfully",
-              showConfirmButton: false,
-              timer: 1000
-            });
-            // this.router.navigate(['/dashboard']);
-            setTimeout(() => {
-              this.router.navigate(['company']).then(() => {
-                window.location.reload();
-              });
-            }, 1500);
-            
+            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Insurance plan Has Been Editied' });    
           },
           error:(error) => {
-            console.error('Error updating health insurance', error);
-            Swal.fire({
-              position: "top-end",
-              icon: "error",
-              title: "Error updating health insurance",
-              text: error.message,
-              showConfirmButton: true
-            });
+            this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'Error Occured Try again later' });
           }
         }
       );

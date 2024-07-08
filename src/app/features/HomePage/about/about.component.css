@@ -78,3 +78,36 @@ h2{
         height: 280px;
     }
 }
+.heading {
+    font-size: 4rem;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bolder;
+    margin: auto;
+    width: fit-content;
+    margin-bottom: 6rem;
+    font-family: "Nunito", sans-serif;
+    color: #1e4135;
+  }
+  
+  .heading span {
+    text-transform: uppercase;
+    font-family: "Nunito", sans-serif;
+  }
+ 
+  .aicon
+  {
+    color: #1e4135;
+    font-size: 3rem;
+    margin-right: 2%;
+  }
+  .about .row .content p {
+    font-size: 1.1rem;
+    padding: 1rem 0;
+    line-height: 2;
+    font-family: "Nunito", sans-serif;
+  }
+  h3{
+    font-size: 4.3rem;
+    color: white;
+  }
