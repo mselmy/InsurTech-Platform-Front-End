@@ -34,6 +34,7 @@ export class ProfileComponent implements OnInit {
     this.uploadService.getCustomerInfo().subscribe({
       next: (response) => {
         this.customerData = response;
+        console.log('customerData', this.customerData);
       },
       error: (error) => {
         this.uploadMessage = 'Failed to get customer info: ' + error.message;

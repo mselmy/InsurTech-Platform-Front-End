@@ -46,7 +46,8 @@ export class InsurancePlanCardComponent {
         console.error('There was an error!', error);
       }
     });
-     this.router.navigate(['payment'], { state: { plan: this.plan, answers: this.questionService.GetAnswers() } });
+    //  this.router.navigate(['payment'], { state: { plan: this.plan, answers: this.questionService.GetAnswers() } });
+    // this.createRequest();
   }}
 
  

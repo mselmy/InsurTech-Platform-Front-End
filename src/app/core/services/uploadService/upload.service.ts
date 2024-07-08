@@ -20,6 +20,6 @@ export class UploadService {
   }
 
   getCustomerInfo() {
-    return this.http.get(`${this.apiUrl}/customers/profile`);
+    return this.http.get(`${this.apiUrl}/customers/GetCustomer`);
   }
 }
