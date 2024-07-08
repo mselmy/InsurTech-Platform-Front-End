@@ -76,7 +76,18 @@ button i{
     animation: animate 5s ease-in-out infinite;
     transition: all 1s ease-in-out;
 }
-
+.blobback
+{
+    width: 200px;
+    height: 150px;
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    border: 2px solid #10B981;
+    z-index: -1;
+    position: absolute;
+    top: 8rem;
+    left:-6rem;
+    background-color:#10B981 ;
+}
 @keyframes animate {
     0%, 100%{
         border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
