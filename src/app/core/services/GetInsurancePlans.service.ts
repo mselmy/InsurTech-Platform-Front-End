@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { BASE_URL } from '../base-url';
 
 @Injectable({
   providedIn: 'root',
 })
 export class InsuranceService {
-  private baseUrl = 'http://localhost:5028/api/Customers';
-  private feedbackUrl = 'http://localhost:5028/api/Feedback';
+  private baseUrl = `${BASE_URL}/Customers`;
+  private feedbackUrl = `${BASE_URL}/Feedback`;
 
   constructor(private http: HttpClient) {}
 
