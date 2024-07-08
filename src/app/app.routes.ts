@@ -94,16 +94,16 @@ export const routes: Routes = [
     canActivate: [authCompanyGuard],
   },
   {
-    path:'homedetails',
-    component:HomeDetailsComponent
+    path: 'homedetails',
+    component: HomeDetailsComponent
   },
   {
-    path:'healthdetails',
-    component:HealthDetailsComponent
+    path: 'healthdetails',
+    component: HealthDetailsComponent
   },
   {
-    path:'motordetails',
-    component:MotorDetailsComponent
+    path: 'motordetails',
+    component: MotorDetailsComponent
   },
   {
     path: 'edithealthinsurance/:id',
@@ -167,10 +167,15 @@ export const routes: Routes = [
     path: 'successpurchasing/:id/:catId',
     component: SuccessPurchasingComponent,
   },
+
+  {
+    path: 'successpurchasing',
+    component: SuccessPurchasingComponent,
+  },
   { path: 'payment', component: PaymentPageComponent },
   { path: 'payment-selection', component: PaymentSelectionComponent },
   // { path: 'payments', component: PaymentComponent },
-    {
+  {
     path: 'userProfile',
     component: UserDashboardComponent,
     children: [
