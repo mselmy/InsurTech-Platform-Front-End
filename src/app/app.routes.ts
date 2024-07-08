@@ -164,11 +164,7 @@ export const routes: Routes = [
   { path: 'payment', component: PaymentPageComponent },
 
   {
-    path: 'successpurchasing',
-    component: SuccessPurchasingComponent,
-  },
-  {
-    path: 'successpurchasing',
+    path: 'successpurchasing/:id/:catId',
     component: SuccessPurchasingComponent,
   },
   { path: 'payment', component: PaymentPageComponent },
