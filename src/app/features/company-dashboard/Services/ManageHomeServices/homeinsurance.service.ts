@@ -4,12 +4,13 @@ import { AddHomeInsurance } from '../../Model/Homeinsurance/add-home-insurance';
 import { EditHomeInsurance } from '../../Model/Homeinsurance/edit-home-insurance';
 import { Observable, Subject, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { BASE_URL } from '../../../../core/base-url';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HomeinsuranceService {
-  private baseurl: string = "http://localhost:5028/api/HomeInsurance/";
+  private baseurl: string = `${BASE_URL}/HomeInsurance/`;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -39,7 +40,7 @@ export class HomeinsuranceService {
   }
     // Get by ID
     getAll(): Observable<any> {
-      return this.httpClient.get<any>(`http://localhost:5028/api/HomeInsurance/GetHomeInsurance`)
+      return this.httpClient.get<any>(`${BASE_URL}/HomeInsurance/GetHomeInsurance`)
         .pipe(
           map(response => response.result),
           catchError(this.handleError)

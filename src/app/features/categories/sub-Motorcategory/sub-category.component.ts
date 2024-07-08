@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router'; 
 import { CategoriesService } from '../../../core/services/categories.service';
 import { HeaderComponent } from '../../../shared/components/header/header.component';
+import { BASE_URL } from '../../../core/base-url';
 
 @Component({
   selector: 'Motorcategory',
@@ -26,7 +27,7 @@ export class SubCategoryMotorComponent implements OnInit {
 
   fetchData() {
     this.loading = true;
-    this.categoriesService.getCategories('http://localhost:5028/api/MotorInsurance/GetMotorInsurance').subscribe(
+    this.categoriesService.getCategories(`${BASE_URL}/MotorInsurance/GetMotorInsurance`).subscribe(
       (data) => {
         this.data = data;
         this.loading = false;

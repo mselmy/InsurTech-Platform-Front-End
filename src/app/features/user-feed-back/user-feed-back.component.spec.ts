@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AllarticlesComponent } from './allarticles.component';
+import { UserFeedBackComponent } from './user-feed-back.component';
 
-describe('AllarticlesComponent', () => {
-  let component: AllarticlesComponent;
-  let fixture: ComponentFixture<AllarticlesComponent>;
+describe('UserFeedBackComponent', () => {
+  let component: UserFeedBackComponent;
+  let fixture: ComponentFixture<UserFeedBackComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AllarticlesComponent]
+      imports: [UserFeedBackComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(AllarticlesComponent);
+    fixture = TestBed.createComponent(UserFeedBackComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

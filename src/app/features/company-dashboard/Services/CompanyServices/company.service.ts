@@ -6,13 +6,14 @@ import { CompanyUsers } from '../../Model/company/CompanyUser';
 import { HealthinsuranceService } from '../ManageHealthServices/healthinsurance.service';
 import { HomeinsuranceService } from '../ManageHomeServices/homeinsurance.service';
 import { MotorinsuranceService } from '../ManageMotorServices/motorinsurance.service';
+import { BASE_URL } from '../../../../core/base-url';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CompanyService {
 
-  private baseUrl: string = "http://localhost:5028/api/";
+  private baseUrl: string = `${BASE_URL}/`;
   public companId:string=JSON.parse(localStorage.getItem('userData') || "{}").id;
   private insurancePlansSubject = new BehaviorSubject<ListInsurancePlan | null>(null);
   insurancePlans$ = this.insurancePlansSubject.asObservable();
