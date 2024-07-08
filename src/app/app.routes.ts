@@ -148,7 +148,7 @@ export const routes: Routes = [
   { path: 'payment', component: PaymentPageComponent },
 
   {
-    path: 'successpurchasing/:id/:catId',
+    path: 'successpurchasing',
     component: SuccessPurchasingComponent,
   },
 
