@@ -25,6 +25,7 @@ export class PlansComponent implements OnInit {
     this.loadPaidRequests();
     this.loadApprovedButNotPaidRequests();
     this.loadRejectedRequests();
+    console.log(this.pendingRequests);
   }
 
   loadPendingRequests(): void {
