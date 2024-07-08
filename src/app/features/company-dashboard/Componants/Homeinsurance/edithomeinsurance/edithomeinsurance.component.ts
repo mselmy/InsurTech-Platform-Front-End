@@ -5,13 +5,15 @@ import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { HomeinsuranceService } from '../../../Services/ManageHomeServices/homeinsurance.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import Swal from 'sweetalert2';
 import { InsurancePlanLevel } from '../../../Model/Homeinsurance/add-home-insurance';
+import { ConfirmationService, MessageService } from 'primeng/api'
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-edithomeinsurance',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule,ToastModule],
+  providers: [MessageService, ConfirmationService],
   templateUrl: './edithomeinsurance.component.html',
   styleUrls: ['./edithomeinsurance.component.css']
 })
@@ -28,39 +30,9 @@ export class EdithomeinsuranceComponent implements OnChanges, OnDestroy {
     private fb: FormBuilder,
     public homeservices: HomeinsuranceService,
     public activateRoute: ActivatedRoute,
+    private messageService: MessageService,
     public router:Router) { }
 
-  // ngOnInit(): void {
-  //   this.sub = this.activateRoute.params.subscribe(param => {
-  //     this.homeservices.getById(param['id']).subscribe(
-  //       {
-  //         next: (data) => {
-  //           debugger;
-
-  //           this.EditObj = data;
-  //           console.log('Home insurance fetched successfully', data);
-  //           this.updateFormWithData(data);
-  //         },
-  //         error: (error) => {
-  //           console.error('Error fetching home insurance', error);
-  //         }
-  //       }
-  //     );
-  //   });
- 
-  
-
-  //   this.Edithomeform = new FormGroup({
-  //     yearlyCoverage: new FormControl(this.EditObj.yearlyCoverage, [Validators.required, Validators.min(0), Validators.max(1.7976931348623157e+308)]),
-  //     level: new FormControl(this.EditObj.level, [Validators.required]),
-  //     quotation: new FormControl(this.EditObj.quotation, [Validators.required, Validators.min(0), Validators.max(1.7976931348623157e+308)]),
-  //     glassBreakage: new FormControl(this.EditObj.glassBreakage, [Validators.required, Validators.min(0), Validators.max(1.7976931348623157e+308)]),
-  //     attemptedTheft: new FormControl(this.EditObj.attemptedTheft, [Validators.required, Validators.min(0), Validators.max(1.7976931348623157e+308)]),
-  //     firesAndExplosion: new FormControl(this.EditObj.firesAndExplosion, [Validators.required, Validators.min(0), Validators.max(1.7976931348623157e+308)]),
-  //     naturalHazard: new FormControl(this.EditObj.naturalHazard, [Validators.required, Validators.min(0), Validators.max(1.7976931348623157e+308)]),
-  //     waterDamage: new FormControl(this.EditObj.waterDamage, [Validators.required, Validators.min(0), Validators.max(1.7976931348623157e+308)])
-  //   });
-  // }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['homeInsuranceData'] && this.homeInsuranceData) {
        this.initializeForm();
@@ -109,32 +81,11 @@ export class EdithomeinsuranceComponent implements OnChanges, OnDestroy {
       this.homeservices.edit(homeObj).subscribe(
         {
           next: (data) => {
-            console.log('Home insurance updated successfully', data);
-            this.Edithomeform.reset();
-            Swal.fire({
-              position: "center",
-              icon: "success",
-              title: "Home insurance updated successfully",
-              showConfirmButton: false,
-              timer: 1500
-            });
-            setTimeout(() => {
-              this.router.navigate(['company']).then(() => {
-                window.location.reload();
-              });
-            }, 1000);
-            // this.router.navigate(['company']);
+            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Insurance plan Has Been Editied' });    
 
           },
           error: (error) => {
-            console.error('Error updating Home insurance', error);
-            Swal.fire({
-              position: "top-end",
-              icon: "error",
-              title: "Error updating Home insurance",
-              text: error.message,
-              showConfirmButton: true
-            });
+            this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'Error Occured Try again later' });
           }
         }
       );

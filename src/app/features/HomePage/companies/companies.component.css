@@ -76,3 +76,41 @@
 .title {
     font-weight: bold; /* Adjust the font weight as needed */
 }
+.heading {
+  font-size: 4rem;
+  color: var(--navyBlue);
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bolder;
+  margin: auto;
+  width: fit-content;
+  margin-bottom: 6rem;
+  font-family: "Nunito", sans-serif;
+}
+
+.heading span {
+  text-transform: uppercase;
+  font-family: "Nunito", sans-serif;
+}
+.heading::before{
+  content: '';
+  display: block;
+  width: 100%;
+  height: 25px;
+  background-color: #10B981;
+  position: relative;
+  top: 50px;
+  z-index: -1;
+  animation:widthanimation 5050ms infinite linear ;
+  animation-delay: 2s;
+  border-radius: 10px;
+  -webkit-animation:widthanimation 9050ms infinite linear ;
+}
+@keyframes widthanimation {
+  0%{
+    width: 0;
+  }
+  25%{
+    width: 100%;
+  }
+}
