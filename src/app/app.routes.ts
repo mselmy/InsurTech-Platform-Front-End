@@ -45,10 +45,15 @@ import { UserDashboardComponent } from './features/userProfile/user-dashboard/us
 import { ProfileComponent } from './features/userProfile/profile/profile.component';
 import { BillingComponent } from './features/userProfile/billing/billing.component';
 import { PlansComponent } from './features/userProfile/plans/plans.component';
+import { UsersInquiriesComponent } from './features/users-inquiries/users-inquiries.component';
+import { UserInquireComponent } from './features/UserInqure/user-inqure/user-inqure.component'; 
+
+
 
 
 import { UserFeedBackComponent } from './features/user-feed-back/user-feed-back.component';
 import { ComparingInsuranceComponent } from './features/comparing-insurance/comparing-insurance.component';
+
 export const routes: Routes = [
   {
     path: 'admin',
@@ -88,6 +93,12 @@ export const routes: Routes = [
     component: FAQComponent,
     children: [{ path: '', component: FAQComponent }],
   },
+  {
+    path: 'userinquire',
+    component:  UserInquireComponent,
+    children: [{ path: '', component:  UserInquireComponent }],
+  },
+
   {
     path: 'company',
     component: companydashbordcomponant,
