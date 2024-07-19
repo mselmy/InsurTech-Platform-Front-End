@@ -1,0 +1,61 @@
+<div class="col-12">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Users Inquiries</h5>
+      <div class="d-flex justify-content-between mb-3">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search by E-mail" (input)="filterByEmail($event)" />
+        </div>
+      </div>
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>E-mail</th>
+            <th>Content</th>
+            <th>Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let inquiry of filteredInquiries">
+            <td>{{ inquiry.email }}</td>
+            <td (click)="openModal(inquiry)" style="cursor: pointer;">
+              {{ inquiry.content | slice:0:10 }}<span *ngIf="inquiry.content.length > 12">...</span>
+              <i class="fa-solid fa-eye"></i>
+            </td>
+            <td>{{ inquiry.date | date: 'MM/dd/yyyy' }}</td>
+            <td>
+              <a [href]="'mailto:' + inquiry.email" class="btn" title="Send Email">
+                <img src="../../../assets/icons/mail.png" style="width: 20px; height: 20px;">
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="loading" class="text-center">
+        Loading inquiries data. Please wait.
+      </div>
+      <div *ngIf="!loading && filteredInquiries.length === 0" class="text-center">
+        No inquiries found.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="contentModal" tabindex="-1" aria-labelledby="contentModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="contentModalLabel">{{ modalTitle }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div [innerText]="modalContent"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn buttonColor" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
