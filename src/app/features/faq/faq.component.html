@@ -1,6 +1,8 @@
-<app-header/>
+<!-- 
+<app-header class="row"/>
+<div class="container">
 <h3 >FREQUENTLY ASKED QUESTIONS</h3>
-<div class="center-container">
+<div class="center-container m-5"> 
     <div class="row justify-content-center">
       <div class="col-md-12 custom-container">
     <div class="row">
@@ -36,7 +38,108 @@
         </div>
       </div>
     </div>
+
+  
+  </div>
+ 
+
+</div>
+</div> 
+</div> -->
+<app-header class="row" />
+<div class="center-container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-12 custom-container">
+      <h5 class="card-title">Frequently Asked Questions</h5>
+
+      <div class="row">
+        <div class="col-md-7">
+          <div class="card" *ngIf="faqs.length > 0">
+            <div class="flex mb-3 gap-2 justify-content-end">
+              <p-button
+                *ngFor="let faq of faqs; let i = index"
+                (click)="setActiveIndex(i)"
+                rounded="true"
+                [label]="(i + 1).toString()"
+                [outlined]="activeIndex !== i"
+                styleClass="w-2rem h-2rem p-0"
+              >
+              </p-button>
+            </div>
+            <p-accordion
+              [activeIndex]="activeIndex"
+              (activeIndexChange)="setActiveIndex($event)"
+            >
+              <p-accordionTab
+                *ngFor="let faq of faqs; let i = index"
+                [header]="'Question ' + (i + 1)"
+              >
+                <div>{{ faq.body }}</div>
+                <div>Answer: {{ faq.answer }}</div>
+              </p-accordionTab>
+            </p-accordion>
+          </div>
+          <div class="card" *ngIf="faqs.length === 0">
+            <h5 class="card-header">No FAQs found</h5>
+            <div class="card-body">
+              <p>No frequently asked questions available.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4 img-container">
+          <div class="image-container">
+            <img
+              src="assets/demo/images/landing/FAQs.svg"
+              [width]="200"
+              [height]="300"
+              class="img-fluid mx-auto d-block image"
+              alt="FAQs"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-12 custom-container ">
+        <div class="row ">
+          <div class="col-md-7 custom-container  ">
+            <div class="row text-center">
+              <button
+                type="button"
+                class="btn btn-primary buttonColor rounded"
+                data-bs-toggle="modal"
+                data-bs-target="#contentModal"
+              >
+                Have A Custom Inquire?
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-<!-- </div> -->
-
+<div
+  class="modal fade"
+  id="contentModal"
+  tabindex="-100"
+  aria-labelledby="contentModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Custom Inquire</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <app-user-inquire></app-user-inquire>
+      </div>
+    </div>
+  </div>
+</div>

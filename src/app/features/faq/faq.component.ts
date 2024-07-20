@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { HeaderComponent } from '../../shared/components/header/header.component';
 import { BASE_URL } from '../../core/base-url';
+import { UserInquireComponent } from '../UserInqure/user-inqure/user-inqure.component';
 
 interface FAQ {
   id: number;
@@ -15,7 +16,7 @@ interface FAQ {
 @Component({
   selector: 'app-faq',
   standalone: true,
-  imports: [AccordionModule ,CommonModule,ButtonModule, HeaderComponent],
+  imports: [AccordionModule ,CommonModule,ButtonModule, HeaderComponent,UserInquireComponent],
   templateUrl: './faq.component.html',
   styleUrl: './faq.component.css'
 })
