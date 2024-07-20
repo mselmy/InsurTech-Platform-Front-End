@@ -1,9 +1,12 @@
 .modal-body {
-    white-space: pre-wrap; 
-    word-wrap: break-word; 
-  }
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+
+.buttonColor {
+
+  background-color: #1b5e1f;
+  color: azure;
   
-  .buttonColor{
-    background-color: #1b5e1f;
-    color: azure;
-    } 
+}
