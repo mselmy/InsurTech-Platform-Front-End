@@ -7,13 +7,15 @@ import { Subscription } from 'rxjs';
 import { MotorinsuranceService } from '../../../Services/ManageMotorServices/motorinsurance.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { InsurancePlanLevel } from '../../../Model/Motorinsurance/add-motor-insurance';
-import Swal from 'sweetalert2';
+import { ConfirmationService, MessageService } from 'primeng/api'
+import { ToastModule } from 'primeng/toast';
 
 
 @Component({
   selector: 'app-editmotorinsurance',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  providers: [MessageService, ConfirmationService],
+  imports: [ReactiveFormsModule, CommonModule,ToastModule],
   templateUrl: './editmotorinsurance.component.html',
   styleUrl: './editmotorinsurance.component.css'
 })
@@ -26,6 +28,7 @@ export class EditmotorinsuranceComponent implements  OnChanges, OnDestroy {
 
   constructor(
     private fb: FormBuilder,
+    private messageService: MessageService,
     private motorservices: MotorinsuranceService,
     private activateRoute: ActivatedRoute,
     private router: Router) { }
@@ -75,30 +78,11 @@ export class EditmotorinsuranceComponent implements  OnChanges, OnDestroy {
       this.motorservices.edit(homeObj).subscribe(
         {
           next: (data) => {
-            this.Editmotorform.reset();
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "Motor insurance updated successfully",
-              showConfirmButton: false,
-              timer: 1000
-            });
-            setTimeout(() => {
-              this.router.navigate(['company']).then(() => {
-                window.location.reload();
-              });
-            }, 1000);
-            // this.router.navigate(['company']);
-
+            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Insurance plan Has Been Editied' });
           },
           error: (error) => {
-            Swal.fire({
-              position: "center",
-              icon: "error",
-              title: "Error updating Home insurance",
-              text: error.message,
-              showConfirmButton: true
-            });
+            this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'Error Occured Try again later' });
+
           }
         }
       );

@@ -3,16 +3,17 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { registerUser } from '../services/iregistration-user.service';
+import { BASE_URL } from '../base-url';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RegistrationUserService {
   private endpoints = {
-    getByEmail: `http://localhost:5028/api/Customers/GetCustomerByEmail`,
-    getByUsername: `http://localhost:5028/api/Customers/GetCustomerByUsername`,
-    getByNationalId: `http://localhost:5028/api/Customers/GetCustomerByNationalId`,
-    registerCustomer: `http://localhost:5028/api/Account/RegisterCustomer`,
+    getByEmail: `${BASE_URL}/Customers/GetCustomerByEmail`,
+    getByUsername: `${BASE_URL}/Customers/GetCustomerByUsername`,
+    getByNationalId: `${BASE_URL}/Customers/GetCustomerByNationalId`,
+    registerCustomer: `${BASE_URL}/Account/RegisterCustomer`,
   };
 
   constructor(private http: HttpClient) {}

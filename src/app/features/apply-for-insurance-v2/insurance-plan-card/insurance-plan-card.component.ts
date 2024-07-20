@@ -2,7 +2,8 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { InsurancePlanService } from '../../../core/services/insurancePlan.service';
 import { QuestionsFormService } from '../../../core/services/questions-form.service';
-
+import Swal from 'sweetalert2';
+      
 @Component({
   selector: 'app-insurance-plan-card',
   standalone: true,
@@ -18,7 +19,10 @@ export class InsurancePlanCardComponent {
   constructor(
     private questionService: QuestionsFormService,
     private router: Router,
-    private insurancePlanService: InsurancePlanService
+
+
+
+    private insurancePlanService:InsurancePlanService
   ) {
   }
  ngOnChanges(): void {
@@ -32,7 +36,6 @@ export class InsurancePlanCardComponent {
 
 
   createRequest() {
-
     this.insurancePlanService.SendRequestInsurancePlan(this.plan.id, this.questionService.GetAnswers()).subscribe({
       next: data => {
         this.router.navigate([
@@ -44,9 +47,17 @@ export class InsurancePlanCardComponent {
       },
       error: error => {
         console.error('There was an error!', error);
+        Swal.fire({
+          title: 'Error!',
+          text: 'There was an error processing your request. Please try again.',
+          icon: 'error',
+          confirmButtonText: 'OK'
+        });
       }
     });
-     this.router.navigate(['payment'], { state: { plan: this.plan, answers: this.questionService.GetAnswers() } });
-  }}
+    // this.router.navigate(['payment'], { state: { plan: this.plan, answers: this.questionService.GetAnswers() } });
+    // this.createRequest();
+  }
+}
 
  

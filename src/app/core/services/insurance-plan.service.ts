@@ -4,13 +4,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ApiResponse, InsurancePlan } from '../types/UserInsurancePlans';
+import { BASE_URL } from '../base-url';
 
 @Injectable({
   providedIn: 'root',
 })
 export class InsurancePlanService {
   private apiUrl =
-    'http://localhost:5028/api/InsurancePlan/InsurancePlansByCustomerId';
+    `${BASE_URL}/InsurancePlan/InsurancePlansByCustomerId`;
 
   constructor(private http: HttpClient) {}
 

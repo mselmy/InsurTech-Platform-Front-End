@@ -1,50 +1,27 @@
-
 @if (data == null || data.length == 0) {
-<app-no-insurance-plane />
-}@else {
-<app-header />
-<div class="container">
-  <div class="row m-auto">
-    <div class="d-flex gap-5 m-auto justify-content-center flex-wrap">
-      @for (insurance of data; track $index) { @if(catId == 2){
-      <app-insurance-plan-card
-        [plan]="insurance"
-        [catId]="2"
-        [badgeColor]="getBadgeColor(insurance.company)"
-
-      ></app-insurance-plan-card>
-      } @else if (catId == 1) {
-      <app-insurance-plan-card
-        [plan]="insurance"
-        [catId]="1"
-        [badgeColor]="getBadgeColor(insurance.company)"
-
-      ></app-insurance-plan-card>
-      } @else{
-      <app-insurance-plan-card
-        [plan]="insurance"
-        [catId]="3"
-        [badgeColor]="getBadgeColor(insurance.company)"
-
-      ></app-insurance-plan-card>
-      <!-- <app-insurance-plan-card
-        [plan]="insurance"
-        [catId]="3"
-        [badgeColor]="getBadgeColor(insurance.company)"
-
-      ></app-insurance-plan-card> -->
-      <!-- <app-insurance-plan-card
-        [plan]="insurance"
-        [catId]="3"
-        [badgeColor]="getBadgeColor(insurance.company)"
-
-      ></app-insurance-plan-card> -->
-      } }
-    </div>
-    <div class="request-call-card">
-        <button class="btn-call">Request a call</button>
-        <p>One of our insurance experts will contact you within 1 working day</p>
+  <app-no-insurance-plane />
+} @else {
+  <app-header />
+  <div class="container">
+    <div class="row m-auto">
+      <div class="d-flex flex-column gap-5 m-auto justify-content-center">
+        @for (level of [0, 1, 2]; track $index) { <!-- Iterate through each level -->
+          <div class="level-section m-auto">
+            <h3>{{ level == 0 ? "Basic" : (level==1? "Standard": (level ==2 ? "Premium":"null")) }}</h3>
+            <div class="d-flex gap-3 flex-row flex-wrap">
+              @for (insurance of data; track $index) {
+                @if (insurance.level == level) {
+                  <app-insurance-plan-card
+                    [plan]="insurance"
+                    [catId]="catId"
+                    [badgeColor]="getBadgeColor(insurance.company)"
+                  ></app-insurance-plan-card>
+                }
+              }
+            </div>
+          </div>
+        }
       </div>
+    </div>
   </div>
-</div>
 }

@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Categories } from '../../../core/models/Home_Page/Categories';
 import { GetCategoriesService } from '../../../core/services/HomePage/get-categories.service';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-categories',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,RouterLink],
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.css'
 })
