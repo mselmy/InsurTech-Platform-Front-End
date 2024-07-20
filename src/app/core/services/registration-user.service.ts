@@ -13,10 +13,10 @@ export class RegistrationUserService {
     getByEmail: `${BASE_URL}/Customers/GetCustomerByEmail`,
     getByUsername: `${BASE_URL}/Customers/GetCustomerByUsername`,
     getByNationalId: `${BASE_URL}/Customers/GetCustomerByNationalId`,
-    registerCustomer: `${BASE_URL}/Customers/RegisterCustomer`,
+    registerCustomer: `${BASE_URL}/Account/RegisterCustomer`,
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   registerCustomer(user: registerUser): Observable<any> {
     return this.http
