@@ -1,3 +1,4 @@
+
 <div class="container-fluid">
   <div class="row">
     <div class="col-12">
@@ -9,17 +10,28 @@
               <div class="form-group">
                 <textarea class="form-control" rows="5" placeholder="Your Message" [(ngModel)]="inquiry.content"></textarea>
               </div>
-              <div class="mt-2">
-                <button class="btn buttonColor" (click)="submitInquiry()">Submit</button>
+              <div class="col-12 mt-2 text-center">
+                <button class="btn buttonColor rounded" (click)="submitInquiry()" [disabled]="inquiry.content.length<15">
+                  Submit
+                </button>
               </div>
             </div>
             <div class="col-12 col-md-6 img-container">
-              <img src="assets/demo/images/landing/Questions.svg" class="img-fluid" alt="Home" />
+              <img src="assets/demo/images/landing/Questions.svg" class="img-fluid" [width]="200"
+              [height]="300" alt="Question" />
             </div>
             
           </div>
         </div>
+        <div *ngIf="showSuccessAlert" class="alert alert-success mt-3" role="alert">
+          Your message has been sent successfully!
+        </div>
+
       </div>
     </div>
+
+   
+
   </div>
 </div>
+
