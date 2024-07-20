@@ -29,7 +29,8 @@ export class AppMenuComponent implements OnInit {
                 label: 'User',
                 items: [
                     { label: 'Article', icon: 'pi pi-fw pi-book', routerLink: ['/admin/article'] },
-                    { label: 'Details', icon: 'pi pi-fw pi-database', routerLink: ['/admin/crud'] }
+                    { label: 'Details', icon: 'pi pi-fw pi-database', routerLink: ['/admin/crud'] },
+                    { label: 'Inquiry', icon: 'pi pi-fw pi-question-circle', routerLink: ['/admin/inquiry'] }
                 ]
             }
         ];

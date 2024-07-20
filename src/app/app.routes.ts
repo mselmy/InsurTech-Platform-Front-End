@@ -97,6 +97,7 @@ export const routes: Routes = [
     path: 'userinquire',
     component:  UserInquireComponent,
     children: [{ path: '', component:  UserInquireComponent }],
+    canActivate: [authUserGuard]
   },
 
   {
