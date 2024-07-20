@@ -12,7 +12,7 @@ export class RegistrationUserService {
     getByEmail: `http://localhost:5028/api/Customers/GetCustomerByEmail`,
     getByUsername: `http://localhost:5028/api/Customers/GetCustomerByUsername`,
     getByNationalId: `http://localhost:5028/api/Customers/GetCustomerByNationalId`,
-    registerCustomer: `http://localhost:5028/api/Customers/RegisterCustomer`,
+    registerCustomer: `http://localhost:5028/api/Account/RegisterCustomer`,
   };
 
   constructor(private http: HttpClient) {}
