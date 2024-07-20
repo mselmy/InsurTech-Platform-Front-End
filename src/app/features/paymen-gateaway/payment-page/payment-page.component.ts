@@ -84,15 +84,15 @@ export class PaymentPageComponent implements OnInit {
   }
 
   saveCard() {
-    const cardNumber = this.paymentForm
-      .get('cardNumber')
-      ?.value.replace(/\s+/g, ''); // Remove spaces
-    const lastFour = cardNumber.slice(-4);
-    this.localStorageService.saveCardInfo({
-      ...this.paymentForm.value,
-      cardNumber,
-    }); // Save without spaces
-    this.localStorageService.saveCardLastFour(lastFour);
+    // const cardNumber = this.paymentForm
+    //   .get('cardNumber')
+    //   ?.value.replace(/\s+/g, ''); // Remove spaces
+    // const lastFour = cardNumber.slice(-4);
+    // this.localStorageService.saveCardInfo({
+    //   ...this.paymentForm.value,
+    //   cardNumber,
+    // }); // Save without spaces
+    // this.localStorageService.saveCardLastFour(lastFour);
   }
 
   validateCardDetails() {
@@ -104,20 +104,17 @@ export class PaymentPageComponent implements OnInit {
     const cvv = this.paymentForm.get('cvv')?.value;
 
     forkJoin({
-      isCardNumberValid:
-        this.cardValidationService.validateCardNumber(cardNumber),
-      isCardHolderNameValid:
-        this.cardValidationService.validateCardHolderName(cardHolderName),
-      isExpiryDateValid:
-        this.cardValidationService.validateExpiryDate(expiryDate),
+      isCardNumberValid: this.cardValidationService.validateCardNumber(cardNumber),
+      isCardHolderNameValid: this.cardValidationService.validateCardHolderName(cardHolderName),
+      isExpiryDateValid: this.cardValidationService.validateExpiryDate(expiryDate),
       isCvvValid: this.cardValidationService.validateCvv(cvv),
     }).subscribe(
       (results) => {
         if (
-          results.isCardNumberValid &&
-          results.isCardHolderNameValid &&
-          results.isExpiryDateValid &&
-          results.isCvvValid
+          results.isCardNumberValid.isValid &&
+          results.isCardHolderNameValid.isValid &&
+          results.isExpiryDateValid.isValid &&
+          results.isCvvValid.isValid
         ) {
           Swal.fire({
             icon: 'success',
