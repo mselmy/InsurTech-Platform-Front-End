@@ -23,6 +23,14 @@ export class UserService {
     return this.http.delete<any>(url);
   }
 
+  undoDeleteUser(userId: string, userType: number): Observable<any> {
+    const url =
+      userType === 1
+        ? `${this.apiBaseUrl}/companies/UndoDeleteCompany/${userId}`
+        : `${this.apiBaseUrl}/Customers/UndoDeleteCustomer/${userId}`;
+    return this.http.put<any>(url, null);
+  }
+
   editUser(user: any, userType: number): Observable<any> {
     const url =
       userType === 1
@@ -32,5 +40,15 @@ export class UserService {
   }
   updateUser(user: any): Observable<any> {
     return this.http.put<any>(`${this.apiBaseUrl}/Customers/UpdateUser`, user);
+  }
+
+  checkCompanyPlans(companyId: string): Observable<any> {
+    const url = `${this.apiBaseUrl}/InsurancePlan/InsurancePlansByCompanyId/${companyId}`;
+    return this.http.get<any>(url).pipe();
+  }
+
+  checkCustomerPlans(customerId: string): Observable<any> {
+    const url = `${this.apiBaseUrl}/InsurancePlan/InsurancePlansByCustomerId/${customerId}`;
+    return this.http.get<any>(url).pipe();
   }
 }

@@ -16,7 +16,7 @@ export class RegistrationUserService {
     registerCustomer: `${BASE_URL}/Account/RegisterCustomer`,
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   registerCustomer(user: registerUser): Observable<any> {
     return this.http
