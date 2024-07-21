@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { UserInquireService , UserInquire } from '../../../core/services/Users Inquiries Service/user-inquire.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HeaderComponent } from "../../../shared/components/header/header.component";
 
 
 
 @Component({
   selector: 'app-user-inquire',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, HeaderComponent],
   templateUrl: './user-inqure.component.html',
   styleUrls: ['./user-inqure.component.css']
 })
@@ -33,15 +34,24 @@ export class UserInquireComponent  implements OnInit{
       this.inquiry.email = userData.email;
     }
   }
+   showSuccessAlert = false;
 
   submitInquiry() {
+  
     this.inquiry.date = new Date();
     this.userInquireService.addUserInquiry(this.inquiry).subscribe(response => {
       console.log('Inquiry submitted', response);
-      // Optionally, you can add code here to update the admin component
-      // by sending a message through a shared service or using another method
+      this.showSuccessAlert = true;
+
+      
+      setTimeout(() => {
+        this.showSuccessAlert = false;
+      }, 7000);
+
+      
     }, error => {
       console.error('Error submitting inquiry', error);
     });
   }
+
 }

@@ -16,15 +16,33 @@ export interface UserInquire {
 })
 export class UserInquireService {
  
-  private addInquiryUrl = `${BASE_URL}/UserInquire/AddUserInquery`;
-  private getInquiriesUrl = `${BASE_URL}/UserInquire/GetUserInquery`; 
-  constructor(private http: HttpClient) {}
+//   private addInquiryUrl = `${BASE_URL}/UserInquire/AddUserInquery`;
+//   private getInquiriesUrl = `${BASE_URL}/UserInquire/GetUserInquery`; 
+//   constructor(private http: HttpClient) {}
 
-  getUserInquiries(): Observable<UserInquire[]> {
-    return this.http.get<UserInquire[]>(this.getInquiriesUrl);
-  }
+//   getUserInquiries(): Observable<UserInquire[]> {
+//     return this.http.get<UserInquire[]>(this.getInquiriesUrl);
+//   }
 
-  addUserInquiry(inquiry: UserInquire): Observable<UserInquire> {
-    return this.http.post<UserInquire>(this.addInquiryUrl, inquiry);
-  }
+//   addUserInquiry(inquiry: UserInquire): Observable<UserInquire> {
+//     return this.http.post<UserInquire>(this.addInquiryUrl, inquiry);
+//   }
+// }
+private addInquiryUrl = `${BASE_URL}/UserInquire/AddUserInquery`;
+private getInquiriesUrl = `${BASE_URL}/UserInquire/GetUserInquery`;
+private sendEmailUrl = `${BASE_URL}/UserInquire/SendUserEmail`;
+
+constructor(private http: HttpClient) {}
+
+getUserInquiries(): Observable<UserInquire[]> {
+  return this.http.get<UserInquire[]>(this.getInquiriesUrl);
+}
+
+addUserInquiry(inquiry: UserInquire): Observable<UserInquire> {
+  return this.http.post<UserInquire>(this.addInquiryUrl, inquiry);
+}
+
+sendUserEmail(emailRequest: { toEmail: string; subject: string; content: string }): Observable<any> {
+  return this.http.post(this.sendEmailUrl, emailRequest);
+}
 }
