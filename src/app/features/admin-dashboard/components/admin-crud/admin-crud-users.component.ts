@@ -196,27 +196,11 @@ export class AdminCrudUsersComponent implements OnInit {
       acceptIcon: 'none',
       rejectIcon: 'none',
       accept: () => {
-        const observer = {
-          next: () => {
-            this.users = this.users.filter((u) => u.id !== user.id);
-            this.filterUsers();
-            this.messageService.add({
-              severity: 'success',
-              summary: 'Successful',
-              detail: 'User Deleted',
-            });
-          },
-          error: (error: any) => {
-            console.error('Error deleting user:', error);
-            this.messageService.add({
-              severity: 'error',
-              summary: 'Error',
-              detail: 'There was an error deleting the user.',
-            });
-          },
-        };
-
-        this.userService.deleteUser(user.id, user.userType).subscribe(observer);
+        if (user.userType === 1) {
+          this.checkAndDeleteCompany(user);
+        } else {
+          this.checkAndDeleteCustomer(user);
+        }
       },
       reject: () => {
         this.messageService.add({
@@ -226,5 +210,116 @@ export class AdminCrudUsersComponent implements OnInit {
         });
       },
     });
+  }
+
+  private checkAndDeleteCompany(user: User) {
+    this.userService.checkCompanyPlans(user.id).subscribe({
+      next: (response) => {
+        const planDetails = this.getPlanDetails(response);
+        if (planDetails.totalPlans > 0) {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: `The company has ${
+              planDetails.totalPlans
+            } active insurance plan(s): ${planDetails.planNames.join(', ')}`,
+          });
+        } else {
+          this.proceedWithDeletion(user);
+        }
+      },
+      error: (error: any) => {
+        if (
+          error.status === 404 &&
+          error.error.message === 'No Insurances Yet'
+        ) {
+          this.proceedWithDeletion(user);
+        } else {
+          console.error('Error checking plans:', error);
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'There was an error checking the plans.',
+          });
+        }
+      },
+    });
+  }
+
+  private checkAndDeleteCustomer(user: User) {
+    this.userService.checkCustomerPlans(user.id).subscribe({
+      next: (response) => {
+        const planDetails = this.getPlanDetails(response);
+        if (planDetails.totalPlans > 0) {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: `The customer has ${
+              planDetails.totalPlans
+            } active insurance plan(s): ${planDetails.planNames.join(', ')}`,
+          });
+        } else {
+          this.proceedWithDeletion(user);
+        }
+      },
+      error: (error: any) => {
+        if (
+          error.status === 404 &&
+          error.error.message === 'No Insurances Yet'
+        ) {
+          this.proceedWithDeletion(user);
+        } else {
+          console.error('Error checking plans:', error);
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'There was an error checking the plans.',
+          });
+        }
+      },
+    });
+  }
+
+  private getPlanDetails(response: any): {
+    totalPlans: number;
+    planNames: string[];
+  } {
+    const planNames: string[] = [];
+    let totalPlans = 0;
+
+    for (const planType in response) {
+      if (response[planType] && response[planType].length > 0) {
+        totalPlans += response[planType].length;
+        response[planType].forEach((plan: any) => {
+          planNames.push(plan.category);
+        });
+      }
+    }
+
+    return { totalPlans, planNames };
+  }
+
+  private proceedWithDeletion(user: User) {
+    const observer = {
+      next: () => {
+        this.users = this.users.filter((u) => u.id !== user.id);
+        this.filterUsers();
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Successful',
+          detail: 'User Deleted',
+        });
+      },
+      error: (error: any) => {
+        console.error('Error deleting user:', error);
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'There was an error deleting the user.',
+        });
+      },
+    };
+
+    this.userService.deleteUser(user.id, user.userType).subscribe(observer);
   }
 }
