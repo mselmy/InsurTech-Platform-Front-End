@@ -36,7 +36,7 @@ export class QuestionsCrudComponent implements OnInit {
     categoryId: 1, // Default category
     options: '',
     placeholder: '',
-    questiontype: QuestionType.Text,
+    type: QuestionType.Text,
   };
   displayDialog: boolean = false;
   questionTypes: { label: string; value: QuestionType }[] = [];
@@ -47,7 +47,6 @@ export class QuestionsCrudComponent implements OnInit {
     this.question.getallquestionsArray().subscribe((data) => {
       this.questions = data.map((question) => ({
         ...question,
-        type: QuestionType[question.questiontype as unknown as keyof typeof QuestionType], // Convert number to enum
         optionsArray: question.options
           ? question.options.split(',').map((option) => option.trim())
           : [],
@@ -91,13 +90,14 @@ export class QuestionsCrudComponent implements OnInit {
   }
 
   addQuestion(): void {
+    console.log(this.newQuestion);
     this.question.addQuestion(this.newQuestion).subscribe((addedQuestion) => {
       console.log(addedQuestion);
       this.questions.push(addedQuestion);
       this.updateCategoryQuestions();
       this.resetNewQuestion();
       this.ngOnInit();
-      this.displayDialog = false; // Close the dialog
+      this.displayDialog = false; 
     });
   }
 
@@ -110,7 +110,7 @@ export class QuestionsCrudComponent implements OnInit {
       id: 0,
       body: '',
       categoryId: 1,
-      questiontype: QuestionType.Text,
+      type: QuestionType.Text,
       options: '',
       placeholder: '',
     };

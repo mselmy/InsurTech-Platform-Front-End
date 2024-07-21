@@ -8,6 +8,7 @@ import { ListboxModule } from 'primeng/listbox';
 import { QuestionsFormService } from '../../../core/services/questions-form.service';
 import { Answer } from '../../../core/types/Answer';
 import { QuestionType } from '../../../core/models/Home_Page/question-type.enum';
+import { Adminquestions } from '../../../core/models/AdminQuestions';
 
 @Component({
   selector: 'app-question-card',
@@ -17,14 +18,10 @@ import { QuestionType } from '../../../core/models/Home_Page/question-type.enum'
   styleUrls: ['./question-card.component.css'],
 })
 export class QuestionCardComponent implements OnInit {
-  @Input() question: Question | undefined;
+  manyka: Adminquestions[] | undefined;
+  @Input() question: Adminquestions | undefined;
   @Input() currentIndex: number = 0;
   @Input() totalQuestions: number = 0;
-  stateOptions = [
-    { label: 'Option 1', value: 1 },
-    { label: 'Option 2', value: 2 },
-  ]; // Example state options
-  cities = [{ name: 'City 1' }, { name: 'City 2' }]; // Example cities
   selectedValue: any;
   selectedCity: any;
   answer: string = '';
@@ -34,13 +31,26 @@ export class QuestionCardComponent implements OnInit {
   constructor(private questionsFormService: QuestionsFormService) {}
 
   ngOnInit(): void {
-    this.questionsFormService.GetQuestionsArr(1); // Use category ID or any other identifier
+    this.questionsFormService.GetQuestionsArr(1);
     this.updateQuestion();
+    console.log('Current question:', this.question);
   }
 
   updateQuestion(): void {
     this.question = this.questionsFormService.getQuestion();
     console.log('Current question:', this.question);
+    // if (this.question && this.question.options) {
+    //   this.question.optionsArray = this.question.options.split(',');
+    // }
+  }
+
+  getDropdownOptions(question: Adminquestions | undefined) {
+    if (!question?.optionsArray) return [];
+    console.log(question.optionsArray);
+    return question.optionsArray.map((option) => ({
+      label: option,
+      value: option,
+    }));
   }
 
   NextQuestion(): void {
@@ -56,20 +66,13 @@ export class QuestionCardComponent implements OnInit {
   AddAnswer(): void {
     const answer: Answer = {
       questionId: this.question?.id || 0,
-      answer: this.answer,
+      answer: this.selectedValue,
     };
     this.questionsFormService.AddAnswer(answer);
-    if (
-      this.currentIndex ===
-      this.questionsFormService['questions'].length - 1
-    ) {
-      // Handle form submission
-    } else {
-      this.NextQuestion();
-    }
+    this.NextQuestion();
   }
 
   isNextButtonDisabled(): boolean {
-    return !this.answer.trim();
+    return !this.selectedValue;
   }
 }

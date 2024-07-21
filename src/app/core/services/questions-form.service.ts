@@ -18,26 +18,7 @@ export class QuestionsFormService {
   currentCategory: number = 0;
 
   constructor(private http: HttpClient) {}
-  private questions: Adminquestions[] = [
-    new Adminquestions(
-      1,
-      'What is your name?',
-      1,
-      QuestionType.Text,
-      '',
-      'Enter your name'
-    ),
-    new Adminquestions(2, 'Choose a state', 1, QuestionType.Radio, '', ''),
-    new Adminquestions(3, 'Select your city', 1, QuestionType.List, '', ''),
-    new Adminquestions(
-      4,
-      'Enter your age',
-      1,
-      QuestionType.Number,
-      '',
-      'Enter your age'
-    ),
-  ];
+  
   GetById(id: number) {
     return this.http.get<Question[]>(
       BASE_URL + '/Customers/GetQusetionsByCategory/' + id

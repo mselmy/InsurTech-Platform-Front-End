@@ -5,7 +5,7 @@ export class Adminquestions {
     public id: number,
     public body: string,
     public categoryId: number,
-    public questiontype: QuestionType,
+    public type: QuestionType,
     public options: string,
     public placeholder: string,
     public optionsArray?: string[]

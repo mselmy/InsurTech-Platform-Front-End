@@ -1,66 +1,53 @@
 <!-- question-card.component.html -->
 <div class="p-card-body">
-  <div *ngIf="question">
-    <h1>{{ question?.body }}</h1>
+  <h1>{{ question?.body }}</h1>
 
-    <!-- Conditionally render input based on the question type -->
-    <div *ngIf="question.questiontype === questionTypes.Radio" class="full-width-container">
-      <p-selectButton
-        [options]="stateOptions"
-        [(ngModel)]="selectedValue"
-        optionLabel="label"
-        optionValue="value"
-        class="full-width-selectbutton"
-      ></p-selectButton>
-    </div>
+  <!-- Conditionally render input based on the question type -->
+  <div *ngIf="question?.type == 1" class="full-width-container">
+    <p-selectButton
+      [options]="stateOptions"
+      [(ngModel)]="selectedValue"
+      optionLabel="label"
+      optionValue="value"
+      class="full-width-selectbutton"
+    ></p-selectButton>
+  </div>
+<p>{{question?.type}}</p>
+  <div *ngIf="question?.type == 2" class="full-width-container">
+    <p-listbox
+      [options]="getDropdownOptions(question)"
+    [(ngModel)]="selectedValue"
+    optionLabel="label"
+    [style]="{ width: '100%' }"
+    [listStyle]="{ 'max-height': '220px' }"
+    class="horizontal-listbox"
+    ></p-listbox>
+  </div>
 
-    <div *ngIf="question.questiontype === questionTypes.List" class="full-width-container">
-      <p-listbox
-        [options]="cities"
-        [(ngModel)]="selectedCity"
-        optionLabel="name"
-        [style]="{ width: '100%' }"
-        [listStyle]="{ 'max-height': '220px' }"
-        class="horizontal-listbox"
-      ></p-listbox>
-    </div>
-
-    <div *ngIf="question.questiontype === questionTypes.Text" class="full-width-container">
-      <div class="p-field">
-        <input
-          id="answer"
-          type="text"
-          [(ngModel)]="answer"
-          class="p-inputtext w-100 inpAsh"
-          placeholder="{{ question?.Placeholder }}"
-        />
-      </div>
-    </div>
-
-    <div *ngIf="question.questiontype === questionTypes.Number" class="full-width-container">
-      <div class="p-field">
-        <input
-          id="answer"
-          type="number"
-          [(ngModel)]="answer"
-          class="p-inputtext w-100 inpAsh"
-          placeholder="{{ question?.Placeholder }}"
-        />
-      </div>
-    </div>
-
+  <div *ngIf="question?.type == 0" class="full-width-container">
     <div class="p-field">
-      <button
-        class="btn btn-info btnAsh"
-        [disabled]="isNextButtonDisabled()"
-        type="button"
-        (click)="AddAnswer()"
-      >
-        {{ currentIndex === totalQuestions - 1 ? "Submit" : "Next" }}
-      </button>
+      <input
+        id="answer"
+        type="text"
+        [(ngModel)]="selectedValue"
+        class="p-inputtext w-100 inpAsh"
+        placeholder="{{ question?.placeholder }}"
+      />
     </div>
   </div>
-  <div *ngIf="!question">
-    <span>No question available</span>
+
+  <div class="p-field">
+    <button
+      class="btn btn-info btnAsh"
+      [disabled]="isNextButtonDisabled()"
+      type="button"
+      (click)="AddAnswer()"
+    >
+      {{ currentIndex === totalQuestions - 1 ? "Submit" : "Next" }}
+    </button>
   </div>
 </div>
+<div *ngIf="!question">
+  <span>No question available</span>
+</div>
+
