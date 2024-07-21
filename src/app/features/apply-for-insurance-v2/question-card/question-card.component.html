@@ -1,34 +1,53 @@
+<!-- question-card.component.html -->
 <div class="p-card-body">
-  @if(question){
-
   <h1>{{ question?.body }}</h1>
-  <div class="p-field">
-    <input
-      id="answer"
-      type="text"
-      [(ngModel)]="answer"
-      class="p-inputtext w-50 inpAsh"
-      placeholder="{{ question?.body}}"
-    />
+
+  <!-- Conditionally render input based on the question type -->
+  <div *ngIf="question?.type == 1" class="full-width-container">
+    <p-selectButton
+      [options]="stateOptions"
+      [(ngModel)]="selectedValue"
+      optionLabel="label"
+      optionValue="value"
+      class="full-width-selectbutton"
+    ></p-selectButton>
+  </div>
+<p>{{question?.type}}</p>
+  <div *ngIf="question?.type == 2" class="full-width-container">
+    <p-listbox
+      [options]="getDropdownOptions(question)"
+    [(ngModel)]="selectedValue"
+    optionLabel="label"
+    [style]="{ width: '100%' }"
+    [listStyle]="{ 'max-height': '220px' }"
+    class="horizontal-listbox"
+    ></p-listbox>
+  </div>
+
+  <div *ngIf="question?.type == 0" class="full-width-container">
+    <div class="p-field">
+      <input
+        id="answer"
+        type="text"
+        [(ngModel)]="selectedValue"
+        class="p-inputtext w-100 inpAsh"
+        placeholder="{{ question?.placeholder }}"
+      />
+    </div>
   </div>
 
   <div class="p-field">
     <button
       class="btn btn-info btnAsh"
-      [disabled]="answer.length == 0"
+      [disabled]="isNextButtonDisabled()"
       type="button"
-      label="Next"
       (click)="AddAnswer()"
     >
-      {{
-        this.questionService.questIndex ==
-        this.questionService.questionArr.length - 1
-          ? "Submit"
-          : "Next"
-      }}
+      {{ currentIndex === totalQuestions - 1 ? "Submit" : "Next" }}
     </button>
   </div>
-  }@else {
-  <span>No question available</span>
-  }
 </div>
+<div *ngIf="!question">
+  <span>No question available</span>
+</div>
+
