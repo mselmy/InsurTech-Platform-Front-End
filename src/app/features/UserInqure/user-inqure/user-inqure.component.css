@@ -1,0 +1,16 @@
+ .buttonColor{
+background-color: #1b5e1f;
+color: azure;
+} 
+.img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .img-container img {
+    max-width: 100%;
+    height: auto;
+  }
+  
