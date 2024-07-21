@@ -188,7 +188,7 @@ export class AdminCrudUsersComponent implements OnInit {
 
   deleteUser(user: User) {
     this.confirmationService.confirm({
-      message: `Are you sure you want to delete user with ID: ${user.id}?`,
+      message: `Are you sure you want to delete user with ID: ${user.userName}?`,
       header: 'Delete Confirmation',
       icon: 'pi pi-info-circle',
       acceptButtonStyleClass: 'p-button-danger p-button-text',
@@ -217,12 +217,28 @@ export class AdminCrudUsersComponent implements OnInit {
       next: (response) => {
         const planDetails = this.getPlanDetails(response);
         if (planDetails.totalPlans > 0) {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: `The company has ${
+          this.confirmationService.confirm({
+            message: `The company ${user.name} has ${
               planDetails.totalPlans
-            } active insurance plan(s): ${planDetails.planNames.join(', ')}`,
+            } active insurance plan(s): ${planDetails.planNames.join(
+              ', '
+            )}. Are you sure you want to delete this user despite the active plans?`,
+            header: 'Warning: Active Plans',
+            icon: 'pi pi-exclamation-triangle',
+            acceptButtonStyleClass: 'p-button-danger p-button-text',
+            rejectButtonStyleClass: 'p-button-text p-button-text',
+            acceptIcon: 'none',
+            rejectIcon: 'none',
+            accept: () => {
+              this.proceedWithDeletion(user);
+            },
+            reject: () => {
+              this.messageService.add({
+                severity: 'info',
+                summary: 'Cancelled',
+                detail: 'User deletion cancelled',
+              });
+            },
           });
         } else {
           this.proceedWithDeletion(user);
@@ -235,7 +251,6 @@ export class AdminCrudUsersComponent implements OnInit {
         ) {
           this.proceedWithDeletion(user);
         } else {
-          console.error('Error checking plans:', error);
           this.messageService.add({
             severity: 'error',
             summary: 'Error',
@@ -251,12 +266,28 @@ export class AdminCrudUsersComponent implements OnInit {
       next: (response) => {
         const planDetails = this.getPlanDetails(response);
         if (planDetails.totalPlans > 0) {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: `The customer has ${
+          this.confirmationService.confirm({
+            message: `The customer has ${
               planDetails.totalPlans
-            } active insurance plan(s): ${planDetails.planNames.join(', ')}`,
+            } active insurance plan(s): ${planDetails.planNames.join(
+              ', '
+            )}. Are you sure you want to delete this user despite the active plans?`,
+            header: 'Warning: Active Plans',
+            icon: 'pi pi-exclamation-triangle',
+            acceptButtonStyleClass: 'p-button-danger p-button-text',
+            rejectButtonStyleClass: 'p-button-text p-button-text',
+            acceptIcon: 'none',
+            rejectIcon: 'none',
+            accept: () => {
+              this.proceedWithDeletion(user);
+            },
+            reject: () => {
+              this.messageService.add({
+                severity: 'info',
+                summary: 'Cancelled',
+                detail: 'User deletion cancelled',
+              });
+            },
           });
         } else {
           this.proceedWithDeletion(user);
@@ -269,7 +300,6 @@ export class AdminCrudUsersComponent implements OnInit {
         ) {
           this.proceedWithDeletion(user);
         } else {
-          console.error('Error checking plans:', error);
           this.messageService.add({
             severity: 'error',
             summary: 'Error',
@@ -311,7 +341,6 @@ export class AdminCrudUsersComponent implements OnInit {
         });
       },
       error: (error: any) => {
-        console.error('Error deleting user:', error);
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
