@@ -56,21 +56,6 @@
     box-sizing: border-box;
     border-radius: 5px;
 }
-/* Ensure the container div takes full width */
-.horizontal-listbox .p-listbox-list {
-  display: flex;
-  flex-wrap: wrap; /* Allows items to wrap to the next line if they exceed the width */
-}
-
-.horizontal-listbox .p-listbox-item {
-  flex: 0 0 auto; /* Prevents items from shrinking */
-  width: 100px; /* Set a fixed width for each item */
-  margin: 5px; /* Optional: Add some spacing between items */
-  box-sizing: border-box;
-}
-
-
-
 
 @media only screen and (min-width: 280px)and (max-width:360px) {
      .info .greeting p, .info .greeting span {
@@ -81,8 +66,6 @@
  .info .greeting p {
     color: #373334
 }
-
-
 
 @media only screen and (max-width: 767px) {
      .info .greeting p {
