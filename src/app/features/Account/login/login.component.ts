@@ -8,6 +8,7 @@ import { RouterLink ,Router } from '@angular/router';
 import { Googlelogin } from '../../../core/models/googlelogin';
 import Swal from 'sweetalert2';
 import { HeaderComponent } from '../../../shared/components/header/header.component';
+import { client_id } from './ClientId';
 
 
 @Component({
@@ -21,8 +22,7 @@ export class LoginComponent implements OnInit {
   
   ngOnInit(): void {
     google.accounts.id.initialize({
-      client_id: '266324222426-m4sb7dbnjncul86f8l2pqh15ktqlt9nv.apps.googleusercontent.com',
-      //client_id:'720571637733-0dkqjkrolhqs2iq1vbbb4bigmacf4sje.apps.googleusercontent.com',
+      client_id: client_id,
       callback:(res:any)=>this.handlelogin(res)
     })
 
