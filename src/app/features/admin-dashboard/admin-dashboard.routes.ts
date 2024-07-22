@@ -5,6 +5,7 @@ import { AppLayoutComponent } from './layout/app.layout.component';
 import { authAdminGuard } from '../../core/guards/authAdmin.guard';
 import { AdminCrudUsersComponent } from './components/admin-crud/admin-crud-users.component';
 import { ChartPieDemo } from './components/admin-graphs/admin-graphs.component';
+import { UsersInquiriesComponent } from '../users-inquiries/users-inquiries.component';
 
 export const adminDashboardRoutes: Routes = [
   { path: '', component: AppLayoutComponent,
@@ -12,7 +13,8 @@ export const adminDashboardRoutes: Routes = [
             { path: 'registration-requests', component: RegistrationRequestsComponent, canActivate: [authAdminGuard]},
             { path: 'article', component: ArticleComponent, canActivate: [authAdminGuard] },
             { path: 'crud', component: AdminCrudUsersComponent, canActivate: [authAdminGuard] },
-            {path:'dashboard',component:ChartPieDemo,canActivate:[authAdminGuard]}
+            { path: 'inquiry', component: UsersInquiriesComponent, canActivate: [authAdminGuard]},
+            {path:'dashboard',component:ChartPieDemo,canActivate:[authAdminGuard]},
         ]
     },
 ];

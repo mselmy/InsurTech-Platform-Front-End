@@ -1,0 +1,37 @@
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Send us a message</h5>
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <div class="form-group">
+                <textarea class="form-control" rows="5" placeholder="Your Message (you should write more than 15 letter)" [(ngModel)]="inquiry.content"></textarea>
+              </div>
+              <div class="col-12 mt-2 text-center">
+                <button class="btn buttonColor rounded" (click)="submitInquiry()" [disabled]="inquiry.content.length<15">
+                  Submit
+                </button>
+              </div>
+            </div>
+            <div class="col-12 col-md-6 img-container">
+              <img src="assets/demo/images/landing/Questions.svg" class="img-fluid" [width]="200"
+              [height]="300" alt="Question" />
+            </div>
+            
+          </div>
+        </div>
+        <div *ngIf="showSuccessAlert" class="alert alert-success mt-3" role="alert">
+          Your message has been sent successfully!
+        </div>
+
+      </div>
+    </div>
+
+   
+
+  </div>
+</div>
+
