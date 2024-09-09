@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../../shared/components/header/header.component';
-import {Swiper} from'swiper'
+import { Swiper } from 'swiper';
 
 @Component({
   selector: 'app-health-details',
   standalone: true,
   imports: [HeaderComponent],
   templateUrl: './health-details.component.html',
-  styleUrl: './health-details.component.css'
+  styleUrl: './health-details.component.css',
 })
 export class HealthDetailsComponent implements OnInit {
   ngOnInit(): void {
-    var swiper = new Swiper(".swiper", {
-      effect: "cube",
+    var swiper = new Swiper('.swiper', {
+      effect: 'cube',
       grabCursor: true,
       loop: true,
       speed: 1000,
@@ -27,7 +27,7 @@ export class HealthDetailsComponent implements OnInit {
         pauseOnMouseEnter: true,
       },
     });
-    
+
     // tsParticles.load("tsparticles", {
     //   fpsLimit: 60,
     //   backgroundMode: {
@@ -140,8 +140,5 @@ export class HealthDetailsComponent implements OnInit {
     //   },
     //   detectRetina: true,
     // });
-    
   }
-
-
 }
